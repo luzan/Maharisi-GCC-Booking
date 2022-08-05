@@ -21,8 +21,8 @@ export class LoginComponent {
   }
 
   login(): void {
-    // console.log("==this.loginForm.value.email==", this.loginForm.value.email);
-    // console.log("==this.loginForm.value.password==", this.loginForm.value.password);
+    console.log("==this.loginForm.value.email==", this.loginForm.value.email);
+    console.log("==this.loginForm.value.password==", this.loginForm.value.password);
 
     this.userService.login(this.loginForm.value.email, this.loginForm.value.password)
       .subscribe(response => {

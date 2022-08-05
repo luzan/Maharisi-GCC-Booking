@@ -11,9 +11,11 @@ export class UserService {
   userState$ = new BehaviorSubject<{ token: string }>({ token: '' });
 
   constructor(private http: HttpClient) { }
+  
+  baseUrl="http://localhost:3000/api/v1";
 
   login(email: string, password: string) {
-    return this.http.post<{ token: string }>('http://localhost:3000/api/v1/users/login', { email, password });
+    return this.http.post<{ token: string }>(`${this.baseUrl}/users/login`, { email, password });
   }
   logout() {
     this.userState$.next({ token: '' });
