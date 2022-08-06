@@ -27,20 +27,34 @@ async function getBookingById(req, res, next) {
 async function createBooking(req, res, next) {
     try {
         const {
-            roomId, userId, firstName, lastName, email,
+            roomId, roomType, userId, firstName, lastName, email,
             numberOfGuests, accessibleRequired,
-            checkInDate, checkOutDate, arrivalTime, departureTime
+            checkInDate, checkOutDate, arrivalTime, departureTime,
+            purposeOfStay, bookingFor
         } = req.body;
 
         let daysToBook = createArrayOfDays(checkInDate, checkOutDate);
+        // Todo: check and get room availability by room type and number of guests
+        let roomAvailable;
+        let query = {};
+        (accessibleRequired) ? query.isAccessible = accessibleRequired == "true" ? true : false : null;
+        if (roomId) {
+            console.log(roomId)
+            roomAvailable = await RoomService.checkRoomAvailabilityForBooking(roomId, daysToBook);
+        }
 
-        const roomAvailable = await RoomService.checkRoomAvailabilityForBooking(roomId, daysToBook);
+        if (roomType) {
+            query.bookingDates = { $nin: daysToBook };
+            roomAvailable = await RoomService.getRoomsByRoomType(roomType, query, { $limit: 1 });
+            (roomAvailable.length > 0) ? roomAvailable = roomAvailable[0] : null;
+        }
 
         if (roomAvailable) {
             const totalPrice = roomAvailable.pricePerNight * daysToBook.length;
+
             const booking = {
                 room: {
-                    room_id: roomId,
+                    room_id: roomAvailable._id,
                     roomNumber: roomAvailable.roomNumber,
                 },
                 user: {
@@ -55,6 +69,8 @@ async function createBooking(req, res, next) {
                 checkOutDate: sanitizeDate(checkOutDate),
                 arrivalTime: arrivalTime ? arrivalTime : null,
                 departureTime: departureTime ? departureTime : null,
+                bookingFor: bookingFor,
+                purposeOfStay: purposeOfStay,
                 cost: {
                     regularPrice: totalPrice,
                     totalPrice: totalPrice,

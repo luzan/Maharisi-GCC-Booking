@@ -13,6 +13,7 @@ const bookingModel = new Schema({
         email: String,
     },
     numberOfGuests: Number,
+    bookingFor: { type: String, default: 'student' },
     accessibleRequired: Boolean,
     checkInDate: { type: Number, required: true, default: Date.now() },
     checkOutDate: { type: Number, required: true },
@@ -25,6 +26,7 @@ const bookingModel = new Schema({
         totalPrice: { type: Number, required: true },
     },
     paymentStatus: { type: String, default: 'pending' },
+    purposeOfStay: { type: String },
     // bookingStatus: { type: String, required: true, default: 'pending' },
 }, { timestamps: true });
 
