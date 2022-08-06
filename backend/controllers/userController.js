@@ -58,15 +58,24 @@ async function deleteUser(req, res, next) {
 
 async function login(req, res, next) {
     const { email, password } = req.body;
-    // compare the hashed password with the password that the user entered
-    const userDB = await User.findOne({ email });
-    if (userDB.password === password) {
-        //sign the token
-        const token = jwt.sign({ user_id: userDB._id, firstName: userDB.firstName, email: userDB.email }, `${process.env.JWT_SECRET}`, { expiresIn: '1h' });
-        res.status(200).json({ token });
-    } else {
-        res.status(401).json({ message: 'Invalid email or password' });
-    }
+    User.findOne({ email: email }).exec(function (error, user) {
+        if (error) {
+            next(error);
+        } else if (!user) {
+            res.status(401).json({ message: `User doesn't exists` });
+        } else {
+            user.comparePassword(password, function (matchError, isMatch) {
+                if (matchError) {
+                    res.status(401).json({ message: `Error! Password didn't matched` });
+                } else if (!isMatch) {
+                    res.status(401).json({ message: `Password didn't matched` });
+                } else {
+                    const token = jwt.sign({ user_id: user._id, firstName: user.firstName, email: user.email }, `${process.env.JWT_SECRET}`, { expiresIn: '6h' });
+                    res.status(200).json({ token });
+                }
+            })
+        }
+    })
 }
 
 module.exports = {
