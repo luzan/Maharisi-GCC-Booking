@@ -67,7 +67,7 @@ async function createBooking(req, res, next) {
             });
         } else {
             res.status(400).json({
-                message: `Room is already booked`
+                message: `Room is already booked for that period`
             });
         }
     } catch (err) {
