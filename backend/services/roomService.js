@@ -12,6 +12,20 @@ async function addBookingDates(room_id, bookingDays) {
     }
 }
 
+async function getRoomsByRoomType(roomType, query, options) {
+    try {
+        const rooms = await Room.aggregate([{
+            $match: {
+                roomType: roomType,
+                ...query
+            }
+        }, options]);
+        return rooms;
+    } catch (err) {
+        throw err;
+    }
+}
+
 async function checkRoomAvailabilityForBooking(room_id, daysToBook) {
     try {
         const room = await Room.aggregate([{
@@ -48,6 +62,7 @@ async function resetRoomBookingDatesForGivenDays(room_id, previousBookingDates, 
 
 module.exports = {
     addBookingDates,
+    getRoomsByRoomType,
     checkRoomAvailabilityForBooking,
     resetRoomBookingDatesForGivenDays
 }

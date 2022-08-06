@@ -7,13 +7,13 @@ async function getAllRooms(req, res, next) {
 
         let filter = {};
         if (accessible) {
-            filter.isAccessible = accessible;
+            filter.isAccessible = accessible == "true" ? true : false;
         }
         if (building) {
             filter.building = building;
         }
         if (floor) {
-            filter.floor = floor;
+            filter.floor = parseInt(floor);
         }
         if (available) {
             let daysToSearch = createArrayOfDays(parseInt(checkInDate), parseInt(checkOutDate));
