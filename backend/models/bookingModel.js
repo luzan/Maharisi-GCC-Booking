@@ -12,8 +12,21 @@ const bookingModel = new Schema({
         lastName: String,
         email: String,
     },
+    numberOfGuests: Number,
+    accessibleRequired: Boolean,
     checkInDate: { type: Number, required: true, default: Date.now() },
     checkOutDate: { type: Number, required: true },
-    totalPrice: { type: Number, required: true },
+    arrivalTime: { type: Number },
+    departureTime: { type: Number },
+    cost: {
+        regularPrice: { type: Number, required: true },
+        discountType: { type: String },
+        discount: { type: Number, default: 0 },
+        totalPrice: { type: Number, required: true },
+    },
+    paymentStatus: { type: String, default: 'pending' },
+    // bookingStatus: { type: String, required: true, default: 'pending' },
+}, { timestamps: true });
 
-});
+const Booking = mongoose.model('Booking', bookingModel);
+module.exports = Booking;

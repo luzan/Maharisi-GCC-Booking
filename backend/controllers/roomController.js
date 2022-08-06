@@ -1,24 +1,28 @@
 const Room = require('../models/roomModels');
-
-// api/v1/rooms/?available=true&accessible=true&building=B&floor=1
+const { createArrayOfDays } = require('../utils/dateUtils');
+// api/v1/rooms/?available=true&accessible=true&building=B&floor=1&checkInDate=1659589200000&checkOutDate=1659589200000
 async function getAllRooms(req, res, next) {
     try {
-        const { accessible, available, building, floor } = req.query;
-        let query = {};
+        const { accessible, available, building, floor, checkInDate, checkOutDate } = req.query;
+
+        let filter = {};
         if (accessible) {
-            query.isAccessible = accessible;
+            filter.isAccessible = accessible;
         }
-        // if (available) {
-        //     query.available = available;
-        // }
         if (building) {
-            query.building = building;
+            filter.building = building;
         }
         if (floor) {
-            query.floor = floor;
+            filter.floor = floor;
         }
-        console.log(query);
-        const rooms = await Room.find(query);
+        if (available) {
+            let daysToSearch = createArrayOfDays(parseInt(checkInDate), parseInt(checkOutDate));
+            filter.bookingDates = { $nin: daysToSearch };
+        }
+
+        const rooms = await Room.aggregate([{
+            $match: filter
+        }]);
         res.status(200).json({
             rooms: rooms
         });
