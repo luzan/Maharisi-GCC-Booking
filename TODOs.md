@@ -25,5 +25,13 @@
 - [ ] Upload Image to S3
 
 ### FrontEnd
-
+- [x] User Login UI
+  - [ ] Login integate with API
+  - [ ] Register UI
+  - [ ] Register integate with API
+  - [ ] Logout
+- [ ] Dashbaord
+  - [ ] menu
+  - [ ] booking UI CRUD
+  - [ ] booking integate with API CRUD
 

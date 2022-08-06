@@ -1,19 +1,21 @@
 <div class="container">
-    <img src="../assets/images/logo.png" class="img-log"/>
+    <img src="../assets/images/logo.png" class="img-log" />
     <p class="title-txt">Guest and Conference Center</p>
-    <p>
-        <mat-form-field appearance="fill" class="input-style">
-            <mat-label>Enter your email</mat-label>
-            <input matInput placeholder="abc@example.com" required>
-        </mat-form-field>
-    </p>
-    <p>
-        <mat-form-field appearance="fill" class="input-style">
-            <mat-label>Password</mat-label>
-            <input matInput placeholder="******" required>
-        </mat-form-field>
-    </p>
-    <button mat-stroked-button class="bg-btn-color">Login</button>
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
+        <p>
+            <mat-form-field appearance="fill" class="input-style">
+                <mat-label>Enter your email</mat-label>
+                <input matInput placeholder="Enter your email" name="email" formControlName="email" required>
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field appearance="fill" class="input-style">
+                <mat-label>Password</mat-label>
+                <input matInput placeholder="Enter your password" name="password" formControlName="password" required>
+            </mat-form-field>
+        </p>
+        <button mat-stroked-button class="bg-btn-color" type="submit">Login</button>
+    </form>
     <a href="/register">
         <p class="regis-txt">Register New User</p>
     </a>
@@ -22,16 +24,6 @@
 
 
 <!-- <div class="example-container">
-    <mat-form-field appearance="fill">
-        <mat-label>Enter your email</mat-label>
-        <input matInput placeholder="pat@example.com" [formControl]="email" required>
-        <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
-    </mat-form-field>
-    <mat-form-field appearance="fill">
-        <mat-label>Enter your email</mat-label>
-        <input matInput placeholder="pat@example.com" [formControl]="email" required>
-        <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
-    </mat-form-field>
     <mat-form-field appearance="fill">
         <mat-label>Enter your email</mat-label>
         <input matInput placeholder="pat@example.com" [formControl]="email" required>
