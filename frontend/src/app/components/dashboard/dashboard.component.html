@@ -21,6 +21,9 @@
         <mat-grid-tile class="body-boxs" *ngFor="let body of bodys" [colspan]="body.cols" [rowspan]="body.rows"
             [style.background]="body.color">
             <p class="txt-head">{{body.text}}</p>
+            <a href="/add-booking">
+                <p class="regis-txt">add booking</p>
+            </a>
         </mat-grid-tile>
     </mat-grid-list>
     <!-- <mat-grid-list cols="4" class="dashbaord-body">

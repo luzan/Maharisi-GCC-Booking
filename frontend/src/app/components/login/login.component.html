@@ -1,5 +1,5 @@
 <div class="container">
-    <img src="../assets/images/logo.png" class="img-log"/>
+    <img src="../assets/images/logo.png" class="img-log" />
     <p class="title-txt">Guest and Conference Center</p>
     <p class="red" *ngIf="registration_faileds">{{registration_failed_message}}</p>
     <form [formGroup]="loginForm" (ngSubmit)="login()">
