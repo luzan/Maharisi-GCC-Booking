@@ -13,7 +13,7 @@ const checkToken = require('../middlewares/checkToken');
 // api/v1/users
 router.get('/', checkToken, getAllUsers);
 router.get('/:id', checkToken, getUserById);
-router.post('/', checkToken, createUser);
+router.post('/', createUser);
 router.put('/:id', checkToken, updateUser);
 router.delete('/:id', checkToken, deleteUser);
 
