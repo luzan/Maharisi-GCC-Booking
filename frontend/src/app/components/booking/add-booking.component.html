@@ -1,0 +1,66 @@
+<div class="container">
+    <mat-toolbar class="header">
+        <img src="../assets/images/miu-icon.png" class="img-log"/>
+        <span>Maharisi GCC Booking</span>
+        <span class="example-spacer"></span>
+        <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon" (click)="logout()">
+            <mat-icon>logout</mat-icon>
+        </button>
+    </mat-toolbar>
+    <mat-grid-list cols="4" rowHeight="100px" class="dashbaord-body">
+        <mat-grid-tile class="header-boxs"  *ngFor="let tile of tiles" [colspan]="tile.cols" [rowspan]="tile.rows"
+            [style.background]="tile.color">
+            {{tile.text}}
+        </mat-grid-tile>
+    </mat-grid-list>
+    
+    <!-- <p class="red" *ngIf="registration_faileds">{{registration_failed_message}}</p> -->
+    <div class="main-book">
+        <!-- <form [formGroup]="bookForm" (ngSubmit)="addBook()"> -->
+            <p>
+                <mat-form-field appearance="fill" class="input-style">
+                    <mat-label>Enter your first name</mat-label>
+                    <input matInput placeholder="First Name" required> 
+                </mat-form-field>
+            </p>
+            <p>
+                <mat-form-field appearance="fill" class="input-style">
+                    <mat-label>Enter your middle name</mat-label>
+                    <input matInput placeholder="Middle name">
+                </mat-form-field>
+            </p>
+            <p>
+                <mat-form-field appearance="fill" class="input-style">
+                    <mat-label>Enter your last name</mat-label>
+                    <input matInput placeholder="Last name" required>
+                </mat-form-field>
+            </p>
+            <p>
+                <mat-form-field appearance="fill" class="input-style">
+                    <mat-label>Enter your email</mat-label>
+                    <input type="email" matInput placeholder="Email" required> 
+                </mat-form-field>
+            </p>
+            <p>
+                <mat-form-field appearance="fill" class="input-style">
+                    <mat-label>Enter your phone</mat-label>
+                    <input type="number" matInput placeholder="phone" required>
+                </mat-form-field>
+            </p>
+            <p>
+                <mat-form-field appearance="fill" class="input-style">
+                    <mat-label>Enter your gender</mat-label>
+                    <input matInput placeholder="Gender" required>
+                </mat-form-field>
+            </p>
+            <p>
+                <mat-form-field appearance="fill" class="input-style">
+                    <mat-label>Enter your role</mat-label>
+                    <input matInput placeholder="Role" required>
+                </mat-form-field>
+            </p>
+            <button mat-stroked-button class="bg-btn-book" type="submit">Book</button>
+            <button mat-stroked-button class="bg-btn-color" type="submit">Clear</button>
+        <!-- </form> -->
+    </div>
+</div>

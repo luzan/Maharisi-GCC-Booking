@@ -1,0 +1,101 @@
+/* ======= dashbaord-body ======= */
+
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+.header {
+    color: #fff;
+    background-color: #8aa771;
+}
+
+.container{
+    font-family: sans-serif;
+    margin: 0 auto;
+}
+
+.img-log{    
+    width: 40px;
+    margin-right: 10px;
+    border-radius: 20px;
+}
+
+.dashbaord-body{
+    width: 1200px;
+    margin: 20px auto;
+}
+
+.header-boxs{
+    font-size: 30px;
+    color: #fff;
+    font-weight: bold;
+}
+
+.body-boxs{
+    font-size: 24px;
+    color: #fff;
+}
+
+.txt-head, .mat-grid-tile-content{
+    color: #696a6c;
+    align-items: unset;
+    justify-content: flex-start;
+    padding: 30px 20px;
+    font-size: 24px;
+}
+
+
+
+
+
+/* ====== login ====== */
+
+.example-container .mat-form-field+.mat-form-field {
+    margin-left: 8px;
+}
+
+.main-book {
+    width: 500px;
+    margin: 0 auto;
+    text-align: center;
+    font-weight: 100;
+}
+
+.input-style {
+    width: 75%;
+}
+
+.mat-form-field-appearance-fill .mat-form-field-underline::before {
+    background-color: #fcb806;
+}
+
+.bg-btn-color, .bg-btn-book {
+    background-color: #fcb806;
+    color: #fff;
+    padding: 10px 0;
+    width: 75%;
+    font-size: 20px;
+    font-weight: 100;
+    margin: 10px 0 30px 0;
+}
+
+.bg-btn-book{
+    background-color: #8aa771;
+}
+
+.title-txt {
+    padding: 20px 0;
+    color: #818283;
+    font-size: 30px;
+}
+
+a,
+.regis-txt {
+    color: #8aa771;
+    font-size: 18px;
+    font-weight: 100;
+}
+
+.red{
+    color: red;
+}

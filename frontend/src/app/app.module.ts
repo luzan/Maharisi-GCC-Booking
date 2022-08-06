@@ -17,13 +17,17 @@ import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { RouterModule } from '@angular/router';
+import { AddBookingComponent } from './components/booking/add-booking.component';
+import { EditBookingComponent } from './components/booking/edit-booking.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RegisterComponent,
     LoginComponent,
-    DashboardComponent
+    DashboardComponent,
+    AddBookingComponent,
+    EditBookingComponent,
   ],
   imports: [
     BrowserModule,

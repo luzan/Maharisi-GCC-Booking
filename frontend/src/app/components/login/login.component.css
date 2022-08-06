@@ -20,7 +20,7 @@
 }
 
 .mat-form-field-appearance-fill .mat-form-field-underline::before {
-    background-color: rgb(233 169 9);
+    background-color: #fcb806;
 }
 
 .bg-btn-color {
@@ -44,4 +44,8 @@ a,
     color: #8aa771;
     font-size: 18px;
     font-weight: 100;
+}
+
+.red{
+    color: red;
 }

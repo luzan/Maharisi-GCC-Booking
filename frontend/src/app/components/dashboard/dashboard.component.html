@@ -1,7 +1,32 @@
-<p>dashboard works!</p>
-<mat-grid-list cols="4" rowHeight="100px">
-    <mat-grid-tile *ngFor="let tile of tiles" [colspan]="tile.cols" [rowspan]="tile.rows"
-        [style.background]="tile.color">
-        {{tile.text}}
-    </mat-grid-tile>
-</mat-grid-list>
+<div class="container">
+    <mat-toolbar class="header">
+        <img src="../assets/images/miu-icon.png" class="img-log"/>
+        <span>Maharisi GCC Booking</span>
+        <span class="example-spacer"></span>
+        <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon" (click)="logout()">
+            <mat-icon>logout</mat-icon>
+        </button>
+        <!-- <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+            <mat-icon>menu</mat-icon>
+        </button> -->
+    </mat-toolbar>
+    
+    <mat-grid-list cols="4" rowHeight="100px" class="dashbaord-body">
+        <mat-grid-tile class="header-boxs"  *ngFor="let tile of tiles" [colspan]="tile.cols" [rowspan]="tile.rows"
+            [style.background]="tile.color">
+            {{tile.text}}
+        </mat-grid-tile>
+    </mat-grid-list>
+    <mat-grid-list cols="4" class="dashbaord-body">
+        <mat-grid-tile class="body-boxs" *ngFor="let body of bodys" [colspan]="body.cols" [rowspan]="body.rows"
+            [style.background]="body.color">
+            <p class="txt-head">{{body.text}}</p>
+        </mat-grid-tile>
+    </mat-grid-list>
+    <!-- <mat-grid-list cols="4" class="dashbaord-body">
+        <mat-grid-tile class="body-boxs" *ngFor="let book of bookings" [colspan]="book.cols" [rowspan]="book.rows"
+            [style.background]="book.color">
+            {{book.text}}
+        </mat-grid-tile>
+    </mat-grid-list> -->
+</div>

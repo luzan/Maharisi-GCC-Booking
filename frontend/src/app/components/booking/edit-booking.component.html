@@ -1,24 +1,25 @@
+<p>edit booking works!</p>
 <div class="container">
     <img src="../assets/images/logo.png" class="img-log"/>
     <p class="title-txt">Guest and Conference Center</p>
-    <p class="red" *ngIf="registration_faileds">{{registration_failed_message}}</p>
-    <form [formGroup]="loginForm" (ngSubmit)="login()">
+    <!-- <p class="red" *ngIf="registration_faileds">{{registration_failed_message}}</p> -->
+    <!-- <form [formGroup]="loginForm" (ngSubmit)="login()"> -->
         <p>
             <mat-form-field appearance="fill" class="input-style">
                 <mat-label>Enter your email</mat-label>
                 <input matInput placeholder="abc@example.com" formControlName="email" required>
-                <div *ngIf="loginForm.get('email')?.touched && !loginForm.get('email')?.valid">{{email_required}}</div>
+                <!-- <div *ngIf="loginForm.get('email')?.touched && !loginForm.get('email')?.valid">{{email_required}}</div> -->
             </mat-form-field>
         </p>
         <p>
             <mat-form-field appearance="fill" class="input-style">
                 <mat-label>Password</mat-label>
                 <input type="password" matInput placeholder="******" formControlName="password" required>
-                <div *ngIf="loginForm.get('password')?.touched && !loginForm.get('password')?.valid">{{password_required}}</div>
+                <!-- <div *ngIf="loginForm.get('password')?.touched && !loginForm.get('password')?.valid">{{password_required}}</div> -->
             </mat-form-field>
         </p>
-        <button mat-stroked-button class="bg-btn-color" type="submit" [disabled]="!loginForm.valid">Login</button>
-    </form>
+        <button mat-stroked-button class="bg-btn-color" type="submit">Login</button>
+    <!-- </form> -->
     <a href="/register">
         <p class="regis-txt">Register New User</p>
     </a>
