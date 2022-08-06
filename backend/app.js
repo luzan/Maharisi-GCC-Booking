@@ -9,6 +9,7 @@ app.use(express.json());
 
 app.use('/api/v1/users', require('./routers/users'));
 app.use('/api/v1/rooms', require('./routers/rooms'));
+app.use('/api/v1/bookings', require('./routers/bookings'));
 
 app.use((err, req, res, next) => {
     console.log(err);

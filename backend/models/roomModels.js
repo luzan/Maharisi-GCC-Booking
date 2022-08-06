@@ -26,7 +26,14 @@ const roomModel = new Schema({
         type: Number,
         required: true
     },
-
+    pricePerNight: {
+        type: Number,
+        required: true
+    },
+    bookingDates: [Number],
+    pictureUrls: [{
+        type: String,
+    }]
 })
 
 const Room = mongoose.model('Room', roomModel);
