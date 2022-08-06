@@ -1,17 +1,17 @@
 <div class="container">
-    <img src="../assets/images/logo.png" class="img-log"/>
+    <img src="../assets/images/logo.png" class="img-log" />
     <p class="title-txt">Guest and Conference Center</p>
     <form [formGroup]="loginForm" (ngSubmit)="login()">
         <p>
             <mat-form-field appearance="fill" class="input-style">
                 <mat-label>Enter your email</mat-label>
-                <input matInput placeholder="abc@example.com" name="email" required>
+                <input matInput placeholder="Enter your email" name="email" formControlName="email" required>
             </mat-form-field>
         </p>
         <p>
             <mat-form-field appearance="fill" class="input-style">
                 <mat-label>Password</mat-label>
-                <input matInput placeholder="******" name="password" required>
+                <input matInput placeholder="Enter your password" name="password" formControlName="password" required>
             </mat-form-field>
         </p>
         <button mat-stroked-button class="bg-btn-color" type="submit">Login</button>
