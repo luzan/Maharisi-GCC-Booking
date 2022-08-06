@@ -8,18 +8,18 @@ const DashboardModules = import('./modules/dashboard.module');
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { AddBookingComponent } from './components/booking/add-booking.component';
+import { BookingComponent } from './components/booking/booking.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
   {
-    path: 'dashboard', component: DashboardComponent
-    // loadChildren: () => DashboardModules.then(module => module.DashboardModule),
-    // canActivate: [CheckTokenGuard]
+    path: 'dashboard', //component: DashboardComponent
+    loadChildren: () => DashboardModules.then(module => module.DashboardModule),
+    canActivate: [CheckTokenGuard]
   },
-  { path: 'add-booking', component: AddBookingComponent },
+  { path: 'booking', component: BookingComponent },
   { path: '**', redirectTo: 'login' }
 ];
 

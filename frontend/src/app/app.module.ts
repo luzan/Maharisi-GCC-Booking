@@ -19,6 +19,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { RouterModule } from '@angular/router';
 import { AddBookingComponent } from './components/booking/add-booking.component';
 import { EditBookingComponent } from './components/booking/edit-booking.component';
+import { BookingComponent } from './components/booking/booking.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { EditBookingComponent } from './components/booking/edit-booking.componen
     RegisterComponent,
     LoginComponent,
     DashboardComponent,
+    BookingComponent,
     AddBookingComponent,
     EditBookingComponent,
   ],

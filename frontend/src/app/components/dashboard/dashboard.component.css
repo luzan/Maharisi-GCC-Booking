@@ -1,42 +1,213 @@
+/* ======= dashbaord-body ======= */
+
 .example-spacer {
     flex: 1 1 auto;
 }
 
 .header {
     color: #fff;
+    font-size: 26px;
     background-color: #8aa771;
 }
 
-.container{
+.container {
     margin: 0 auto;
 }
 
-.img-log{    
+.img-log {
     width: 40px;
     margin-right: 10px;
     border-radius: 20px;
 }
 
-.dashbaord-body{
-    width: 1200px;
+.dashbaord-body {
+    /* width: 1200px; */
+    width: 100%;
     margin: 20px auto;
 }
 
-.header-boxs{
+.header-boxs {
     font-size: 30px;
     color: #fff;
     font-weight: bold;
 }
 
-.body-boxs{
+.body-boxs {
     font-size: 24px;
     color: #fff;
 }
 
-.txt-head, .mat-grid-tile-content{
+.txt-head,
+.mat-grid-tile-content {
     color: #696a6c;
     align-items: unset;
     justify-content: flex-start;
     padding: 30px 20px;
     font-size: 24px;
+}
+
+.book-box {
+    position: relative;
+    width: 90%;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.bg-btn-booked,
+.bg-btn-available,
+.bg-btn-checkIns,
+.bg-btn-checkOuts {    
+    background-color: #8aa771;
+    width: 24.5%;
+    font-size: 30px;
+    color: #fff;
+    margin: 0 0.2%;
+    border-radius: 0;
+    padding: 15px 0;
+    font-weight: bold;
+}
+
+.p-txt {
+    font-size: 25px;
+    font-weight: 200;
+    margin: 0;
+}
+
+.bg-btn-available {
+    background-color: #fcb806;
+}
+
+.bg-btn-checkIns {
+    background-color: #818283;
+}
+
+.bg-btn-checkOuts {
+    background-color: #647754;
+}
+
+.title-book{
+    font-size: 25px;
+    font-weight: 200;
+    padding-left: 5px;
+    padding-bottom: 20px;
+}
+
+.main-list-book {
+    width: 31%;
+    margin: 20px auto;
+    margin-left: 0.5%;
+    margin-right: 1.5%;
+    font-weight: 100;
+    background-color: #f4f7f2;
+    float: left;
+    padding: 20px;
+    text-align: left;
+    min-height: 645px;
+}
+
+.main-book {
+    width: 60.5%;
+    margin: 20px auto;
+    font-weight: 100;
+    background-color: #f4f4f4;
+    float: left;
+    padding: 20px;
+    text-align: left;
+    min-height: 645px;
+}
+
+.input-style-30 {
+    width: 31.5%;
+    margin: 0 5px;
+}
+
+.input-style-60 {
+    width: 64.2%;
+    margin: 0 5px;
+}
+
+.input-style-100{
+    width: 97.5%;
+    margin: 0 5px;
+}
+.input-style-45{
+    width: 48%;
+    margin: 0 5px;
+}
+
+.box-next-visit{
+    position: relative;
+    background: #eaeaea;
+    margin-bottom: 15px;
+}
+
+.box-nub-visit{
+    width: 25%;
+    float: left;
+    text-align: center;
+    font-size: 20px;
+    color: #fff;
+    background: #8aa771;
+    font-weight: 400;
+    height: 80px;
+    display: table;
+    margin-right: 15px;
+}
+
+.number{
+    vertical-align: middle;
+    display: table-cell;
+}
+
+.box-name{
+    margin: 0;
+    font-size: 18px;
+    font-weight: 400;
+    padding: 5px 0;
+}
+
+.box-checkin{
+    margin: 0;
+    font-size: 16px;
+    font-style: italic;
+}
+
+.box-phone{
+    margin: 0;
+    font-size: 16px;
+    font-weight: 400;
+    padding: 5px 0;
+    font-style: italic;
+}
+
+.float-left{
+    float: left;
+}
+
+.float-right{
+    float: right;
+}
+
+.mg-checkbox{
+    margin: 5px 90px 20px 0px
+}
+
+.bg-btn-color,
+.bg-btn-book {
+    background-color: #fcb806;
+    color: #fff;
+    padding: 10px 0;
+    width: 40%;
+    font-size: 20px;
+    font-weight: 100;
+    margin: 10px 5px 30px 5px;
+    border-radius: 0;
+}
+
+.bg-btn-book {
+    background-color: #8aa771;
+}
+
+.red {
+    color: red;
 }
