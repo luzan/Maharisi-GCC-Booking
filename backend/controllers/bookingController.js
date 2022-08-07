@@ -1,7 +1,7 @@
 const Booking = require('../models/bookingModel');
 const RoomService = require('../services/roomService');
 const { createArrayOfDays, sanitizeDate } = require('../utils/dateUtils');
-
+const Utils = require('../utils/tools');
 async function getAllBookings(req, res, next) {
     try {
         const bookings = await Booking.find();
@@ -34,24 +34,23 @@ async function createBooking(req, res, next) {
         } = req.body;
 
         let daysToBook = createArrayOfDays(checkInDate, checkOutDate);
-        // Todo: check and get room availability by room type and number of guests
         let roomAvailable;
+        // Todo: move it to admin controller and also add discount logic
+        // if (roomId) {
+        //     roomAvailable = await RoomService.checkRoomAvailabilityForBooking(roomId, daysToBook);
+        // roomAvailable = roomAvailable[0];
+        // } else {
+        //     throw new Error(`Room ID is required`);
+        // }
         let query = {};
-        (accessibleRequired) ? query.isAccessible = accessibleRequired == "true" ? true : false : null;
-        if (roomId) {
-            console.log(roomId)
-            roomAvailable = await RoomService.checkRoomAvailabilityForBooking(roomId, daysToBook);
-        }
-
+        accessibleRequired == true ? query.isAccessible = true : null;
         if (roomType) {
             query.bookingDates = { $nin: daysToBook };
             roomAvailable = await RoomService.getRoomsByRoomType(roomType, query, { $limit: 1 });
             (roomAvailable.length > 0) ? roomAvailable = roomAvailable[0] : null;
         }
-
         if (roomAvailable) {
             const totalPrice = roomAvailable.pricePerNight * daysToBook.length;
-
             const booking = {
                 room: {
                     room_id: roomAvailable._id,
@@ -77,7 +76,7 @@ async function createBooking(req, res, next) {
                 }
             }
             const bookingResponse = await Booking.create(booking);
-            RoomService.addBookingDates(roomId, daysToBook);
+
             res.status(201).json({
                 message: `Booking created successfully`, booking: bookingResponse
             });
@@ -97,7 +96,7 @@ async function updateBooking(req, res, next) {
             numberOfGuests, accessibleRequired,
             checkInDate, checkOutDate, arrivalTime, departureTime
         } = req.body;
-
+        const booking_id = req.params.id;
         let data = {};
         numberOfGuests ? data.numberOfGuests = numberOfGuests : null;
         accessibleRequired ? data.accessibleRequired = accessibleRequired : null;
@@ -105,14 +104,15 @@ async function updateBooking(req, res, next) {
         departureTime ? data.departureTime = departureTime : null;
         checkInDate ? data.checkInDate = sanitizeDate(checkInDate) : null;
         checkOutDate ? data.checkOutDate = sanitizeDate(checkOutDate) : null;
+        data.status = "revised";
 
-        const booking = await Booking.findByIdAndUpdate(req.params.id, data, { new: true });
+        const booking = await Booking.findByIdAndUpdate(booking_id, data, { new: true });
 
-        if (checkInDate && checkOutDate) {
-            const newBookingDates = createArrayOfDays(data.checkInDate, data.checkOutDate);
-            const previousBookingDates = createArrayOfDays(booking.checkInDate, booking.checkOutDate);
-            RoomService.resetRoomBookingDatesForGivenDays(booking.room.room_id, previousBookingDates, newBookingDates);
-        }
+        // if (checkInDate && checkOutDate) {
+        //     const newBookingDates = createArrayOfDays(data.checkInDate, data.checkOutDate);
+        //     const previousBookingDates = createArrayOfDays(booking.checkInDate, booking.checkOutDate);
+        //     RoomService.resetRoomBookingDatesForGivenDays(booking.room.room_id, previousBookingDates, newBookingDates);
+        // }
         res.status(200).json({
             message: `Booking updated successfully`
         });
