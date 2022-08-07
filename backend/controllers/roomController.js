@@ -24,7 +24,8 @@ async function getAllRooms(req, res, next) {
             $match: filter
         }]);
         res.status(200).json({
-            rooms: rooms
+            message: `Rooms found successfully`,
+            data: rooms
         });
     } catch (err) {
         next(err);
@@ -35,7 +36,8 @@ async function getRoomById(req, res, next) {
     try {
         const room = await Room.findById(req.params.id);
         res.status(200).json({
-            room: room
+            message: `Room found successfully`,
+            data: room
         });
     } catch (err) {
         next(err);
@@ -46,7 +48,8 @@ async function createRoom(req, res, next) {
     try {
         const room = await Room.create(req.body);
         res.status(201).json({
-            room: room
+            message: `Room created successfully`,
+            data: room
         });
     } catch (err) {
         next(err);
@@ -57,7 +60,8 @@ async function updateRoom(req, res, next) {
     try {
         const room = await Room.findByIdAndUpdate(req.params.id, req.body, { new: true });
         res.status(200).json({
-            message: `Room updated successfully`
+            message: `Room updated successfully`,
+            data: room
         });
     } catch (err) {
         next(err);
@@ -68,7 +72,8 @@ async function deleteRoom(req, res, next) {
     try {
         const room = await Room.findByIdAndDelete(req.params.id);
         res.status(200).json({
-            message: `Room deleted successfully`
+            message: `Room deleted successfully`,
+            data: room
         });
     } catch (err) {
         next(err);

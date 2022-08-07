@@ -1,11 +1,13 @@
 const User = require('../models/userModels');
 const jwt = require('jsonwebtoken');
+const Role = require('../_helpers/roles');
 
 async function getAllUsers(req, res, next) {
     try {
-        const users = await User.find();
+        const users = await User.find().select({ password: 0 });
         res.status(200).json({
-            users: users
+            message: 'All users retrieved successfully',
+            data: users
         });
     } catch (err) {
         next(err);
@@ -14,9 +16,15 @@ async function getAllUsers(req, res, next) {
 
 async function getUserById(req, res, next) {
     try {
-        const user = await User.findById(req.params.id);
+        const currentUser = req.user;
+        const userID = req.params.id;
+        if (userID !== currentUser.user_id && currentUser.role !== Role.Admin) {
+            return res.status(401).json({ message: 'Unauthorized' });
+        }
+        const user = await User.findById(userID).select({ password: 0 });
         res.status(200).json({
-            user: user
+            message: `User retrieved successfully`,
+            data: user
         });
     } catch (err) {
         next(err);
@@ -27,7 +35,8 @@ async function createUser(req, res, next) {
     try {
         const user = await User.create(req.body);
         res.status(201).json({
-            user: user
+            message: `User created successfully`,
+            data: user
         });
     } catch (err) {
         next(err);
@@ -36,9 +45,14 @@ async function createUser(req, res, next) {
 
 async function updateUser(req, res, next) {
     try {
-        const user = await User.findByIdAndUpdate(req.params.id, req.body, { new: true });
+        const userID = req.params.id;
+        if (userID !== currentUser.user_id && currentUser.role !== Role.Admin) {
+            return res.status(401).json({ message: 'Unauthorized' });
+        }
+        const user = await User.findByIdAndUpdate(userID, req.body, { new: true });
         res.status(200).json({
-            message: `User updated successfully`
+            message: `User updated successfully`,
+            data: user
         });
     } catch (err) {
         next(err);
@@ -47,9 +61,14 @@ async function updateUser(req, res, next) {
 
 async function deleteUser(req, res, next) {
     try {
-        const user = await User.findByIdAndDelete(req.params.id);
+        const userID = req.params.id;
+        if (userID !== currentUser.user_id && currentUser.role !== Role.Admin) {
+            return res.status(401).json({ message: 'Unauthorized' });
+        }
+        const user = await User.findByIdAndDelete(userID);
         res.status(200).json({
-            message: `User deleted successfully`
+            message: `User deleted successfully`,
+            data: user
         });
     } catch (err) {
         next(err);
@@ -70,7 +89,7 @@ async function login(req, res, next) {
                 } else if (!isMatch) {
                     res.status(401).json({ message: `Password didn't matched` });
                 } else {
-                    const token = jwt.sign({ user_id: user._id, firstName: user.firstName, email: user.email }, `${process.env.JWT_SECRET}`, { expiresIn: '6h' });
+                    const token = jwt.sign({ user_id: user._id, firstName: user.firstName, email: user.email, role: user.role }, `${process.env.JWT_SECRET}`, { expiresIn: '6h' });
                     res.status(200).json({ token });
                 }
             })

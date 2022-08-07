@@ -23,6 +23,7 @@
 #### User Controllers
 - [x] User CRUD 
   - [ ] (Profile Image Upload)
+  - [x] Hide User password on response
 - [x] User Login
   - [ ] Logout
 - [ ] Booking CRUD
@@ -34,10 +35,12 @@
   - [x] when payment is done, booking's Payment Flag to be changed to paid
   - [x] no delete operation on payment
 - [x] Room Crud
+- [ ] Payment
+  - [x] Add user information in payment
 
 #### Middlewares 
 - [x] Login using JWT
-  - [ ] Roles based authorization
+  - [x] Roles based authorization
 - [ ] Upload Image to S3
 
 #### Routes

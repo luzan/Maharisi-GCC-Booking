@@ -15,7 +15,11 @@ async function getAllBookings(req, res, next) {
 
 async function getBookingById(req, res, next) {
     try {
+        const currentUser = req.user;
         const booking = await Booking.findById(req.params.id);
+        if (booking.user.user_id !== currentUser.user_id || currentUser.role !== Role.Admin) {
+            return res.status(401).json({ message: 'Unauthorized' });
+        }
         res.status(200).json({
             booking: booking
         });
@@ -26,12 +30,17 @@ async function getBookingById(req, res, next) {
 
 async function createBooking(req, res, next) {
     try {
+        const currentUser = req.user;
         const {
             roomId, roomType, userId, firstName, lastName, email,
             numberOfGuests, accessibleRequired,
             checkInDate, checkOutDate, arrivalTime, departureTime,
             purposeOfStay, bookingFor
         } = req.body;
+
+        if (userId !== currentUser.user_id && currentUser.role !== Role.Admin) {
+            return res.status(401).json({ message: 'Unauthorized' });
+        }
 
         let daysToBook = createArrayOfDays(checkInDate, checkOutDate);
         let roomAvailable;
@@ -92,11 +101,17 @@ async function createBooking(req, res, next) {
 
 async function updateBooking(req, res, next) {
     try {
+        const currentUser = req.user;
+        const { booking_id, user_id } = req.params;
+
+        if (user_id !== currentUser.user_id && currentUser.role !== Role.Admin) {
+            return res.status(401).json({ message: 'Unauthorized' });
+        }
+
         const {
             numberOfGuests, accessibleRequired,
             checkInDate, checkOutDate, arrivalTime, departureTime
         } = req.body;
-        const booking_id = req.params.id;
         let data = {};
         numberOfGuests ? data.numberOfGuests = numberOfGuests : null;
         accessibleRequired ? data.accessibleRequired = accessibleRequired : null;

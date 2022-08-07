@@ -9,13 +9,14 @@ const {
     login
 } = require('../controllers/userController');
 const checkToken = require('../middlewares/checkToken');
-
+const authorize = require('../middlewares/authorize');
+const Role = require('../_helpers/roles');
 // api/v1/users
-router.get('/', checkToken, getAllUsers);
-router.get('/:id', checkToken, getUserById);
-router.post('/', createUser);
-router.put('/:id', checkToken, updateUser);
-router.delete('/:id', checkToken, deleteUser);
-
 router.post('/login', login);
+router.post('/', createUser);
+router.get('/', checkToken, authorize(Role.Admin), getAllUsers);
+router.get('/:id', checkToken, authorize(), getUserById);
+router.put('/:id', checkToken, authorize(), updateUser);
+router.delete('/:id', checkToken, authorize(), deleteUser);
+
 module.exports = router;
