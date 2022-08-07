@@ -17,6 +17,7 @@ export class UserService {
   login(email: string, password: string) {
     return this.http.post<{ token: string }>(`${this.baseUrl}/users/login`, { email, password });
   }
+  
   logout() {
     this.userState$.next({ token: '' });
     localStorage.clear();

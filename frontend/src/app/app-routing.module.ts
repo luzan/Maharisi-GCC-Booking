@@ -2,24 +2,24 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { CheckTokenGuard } from './services/check-token.guard';
-import { AttachTokenInterceptor } from './services/attach-token.interceptor';
 
-const DashboardModules = import('./modules/dashboard/dashboard.module');
+const DashboardModules = import('./modules/dashboard.module');
 
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { BookingComponent } from './components/booking/booking.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
   {
-    path: 'dashboard',
-    // loadChildren: () => DashboardModules.then(module => module.DashboardModule),
-    // canActivate: [CheckTokenGuard]
-    component: DashboardComponent 
+    path: 'dashboard', //component: DashboardComponent
+    loadChildren: () => DashboardModules.then(module => module.DashboardModule),
+    canActivate: [CheckTokenGuard]
   },
+  { path: 'booking', component: BookingComponent },
   { path: '**', redirectTo: 'login' }
 ];
 

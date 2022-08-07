@@ -11,63 +11,24 @@
     <div class="dashbaord-body">
         <div class="book-box">
             <button mat-stroked-button class="bg-btn-booked">
-                20 <p class="p-txt">Booked</p>
+                <p class="box-img"></p>
+                <p class="p-txt"> Single Bed </p> 
+                <p class="p-txt"> $35/night </p>
             </button>
-            <button mat-stroked-button class="bg-btn-available">
-                20 <p class="p-txt">Available</p>
+            <button mat-stroked-button class="bg-btn-booked m4 b-yellow">
+                <p class="box-img"></p>
+                <p class="p-txt"> Double Bed </p> 
+                <p class="p-txt"> $45/night </p>
             </button>
-            <button mat-stroked-button class="bg-btn-checkIns">
-                10 <p class="p-txt">CheckIns</p>
-            </button>
-            <button mat-stroked-button class="bg-btn-checkOuts">
-                4 <p class="p-txt">CheckOuts</p>
+            <button mat-stroked-button class="bg-btn-booked b-green">
+                <p class="box-img"></p>
+                <p class="p-txt"> Delux Bed </p>
+                <p class="p-txt"> $50/night </p>
             </button>
         </div>
         <div class="book-box">
             <!-- <p class="red" *ngIf="registration_faileds">{{registration_failed_message}}</p> -->
-            <div class="main-list-book">
-                <p class="title-book">Next Visits</p>
-                <div class="box-next-visit">
-                    <div class="box-nub-visit">
-                        <p class="number"> 8 </p>
-                    </div>
-                    <div class="box-title-right">
-                        <p class="box-name">Luzan Baral</p>
-                        <p class="box-checkin">CheckIn: Aug 3, 2022</p>
-                        <p class="box-phone">(641)-123-1234</p>
-                    </div>
-                </div>
-                <div class="box-next-visit">
-                    <div class="box-nub-visit">
-                        <p class="number"> 8 </p>
-                    </div>
-                    <div class="box-title-right">
-                        <p class="box-name">Luzan Baral</p>
-                        <p class="box-checkin">CheckIn: Aug 3, 2022</p>
-                        <p class="box-phone">(641)-123-1234</p>
-                    </div>
-                </div>
-                <div class="box-next-visit">
-                    <div class="box-nub-visit">
-                        <p class="number"> 8 </p>
-                    </div>
-                    <div class="box-title-right">
-                        <p class="box-name">Luzan Baral</p>
-                        <p class="box-checkin">CheckIn: Aug 3, 2022</p>
-                        <p class="box-phone">(641)-123-1234</p>
-                    </div>
-                </div>
-                <div class="box-next-visit">
-                    <div class="box-nub-visit">
-                        <p class="number"> 8 </p>
-                    </div>
-                    <div class="box-title-right">
-                        <p class="box-name">Luzan Baral</p>
-                        <p class="box-checkin">CheckIn: Aug 3, 2022</p>
-                        <p class="box-phone">(641)-123-1234</p>
-                    </div>
-                </div>
-            </div>
+            
             <div class="main-book">
                 <p class="title-book">New Booking</p>
                 <!-- <form [formGroup]="bookForm" (ngSubmit)="addBook()"> -->
@@ -117,6 +78,15 @@
                     </mat-form-field>
                 </div>
 
+                <mat-form-field appearance="fill" class="input-style-45">
+                    <mat-label>Enter Arrival Time</mat-label>
+                    <input type="number" matInput placeholder="Arrival Time" required>
+                </mat-form-field>
+                <mat-form-field appearance="fill" class="input-style-45">
+                    <mat-label>Enter Departure Time</mat-label>
+                    <input type="email" matInput placeholder="Departure Time" required>
+                </mat-form-field>
+
                 <mat-form-field appearance="fill" class="input-style-60 float-left">
                     <mat-label>Enter Purpose of Stay</mat-label>
                     <input matInput placeholder="Purpose of Stay" required>
@@ -128,42 +98,66 @@
                     </section>
                 </div>
 
-                <div class="input-style-45 float-left">
-                    <mat-label>Discount Type :</mat-label>
-                    <section class="example-section">
-                        <mat-radio-button class="mg-checkbox" value="flat">Flat</mat-radio-button>
-                        <mat-radio-button class="mg-checkbox" value="percentage">Percentage</mat-radio-button>
-                    </section>
-                </div>
                 <mat-form-field appearance="fill" class="input-style-45">
-                    <mat-label>Enter Discount Of</mat-label>
-                    <input matInput placeholder="Discount Of" required>
-                </mat-form-field>
-
-                <mat-form-field appearance="fill" class="input-style-30">
                     <mat-label>Choose an room</mat-label>
                     <mat-select>
-                        <mat-option value="Single">Single Bed</mat-option>
-                        <mat-option value="Double">Double Bed</mat-option>
-                        <mat-option value="Delux">Delux Bed</mat-option>
+                        <mat-option value="room1">room 1</mat-option>
+                        <mat-option value="room2">room 2</mat-option>
+                        <mat-option value="room3">room 3</mat-option>
                     </mat-select>
                 </mat-form-field>
-                <mat-form-field appearance="fill" class="input-style-30">
+                <mat-form-field appearance="fill" class="input-style-45">
                     <mat-label>Enter Occupants</mat-label>
                     <input matInput placeholder="Occupants">
                 </mat-form-field>
-                <div class="input-style-30 float-right">
-                    <mat-label>Paid in Cash</mat-label>
-                    <section class="example-section">
-                        <mat-checkbox class="mg-checkbox">yes</mat-checkbox>
-                    </section>
-                </div>
-
                 <div>
                     <button mat-stroked-button class="bg-btn-book" type="submit">Book</button>
                     <button mat-stroked-button class="bg-btn-color" type="submit">Clear</button>
                 </div>
                 <!-- </form> -->
+            </div>
+            <div class="main-list-book">
+                <p class="title-book">Next Visits</p>
+                <div class="box-next-visit">
+                    <div class="box-nub-visit">
+                        <p class="number"> 8 </p>
+                    </div>
+                    <div class="box-title-right">
+                        <p class="box-name">Luzan Baral</p>
+                        <p class="box-checkin">CheckIn: Aug 3, 2022</p>
+                        <p class="box-phone">(641)-123-1234</p>
+                    </div>
+                </div>
+                <div class="box-next-visit">
+                    <div class="box-nub-visit">
+                        <p class="number"> 8 </p>
+                    </div>
+                    <div class="box-title-right">
+                        <p class="box-name">Luzan Baral</p>
+                        <p class="box-checkin">CheckIn: Aug 3, 2022</p>
+                        <p class="box-phone">(641)-123-1234</p>
+                    </div>
+                </div>
+                <div class="box-next-visit">
+                    <div class="box-nub-visit">
+                        <p class="number"> 8 </p>
+                    </div>
+                    <div class="box-title-right">
+                        <p class="box-name">Luzan Baral</p>
+                        <p class="box-checkin">CheckIn: Aug 3, 2022</p>
+                        <p class="box-phone">(641)-123-1234</p>
+                    </div>
+                </div>
+                <div class="box-next-visit">
+                    <div class="box-nub-visit">
+                        <p class="number"> 8 </p>
+                    </div>
+                    <div class="box-title-right">
+                        <p class="box-name">Luzan Baral</p>
+                        <p class="box-checkin">CheckIn: Aug 3, 2022</p>
+                        <p class="box-phone">(641)-123-1234</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 
-import { DashboardComponent } from '../../components/dashboard/dashboard.component';
+import { DashboardComponent } from '../components/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [],
@@ -11,6 +11,8 @@ import { DashboardComponent } from '../../components/dashboard/dashboard.compone
     CommonModule,
     RouterModule.forChild([
       { path: '', component: DashboardComponent  },
+      { path: 'add', component: DashboardComponent  },
+      { path: 'edit', component: DashboardComponent  },
     ]),
     ReactiveFormsModule
   ]

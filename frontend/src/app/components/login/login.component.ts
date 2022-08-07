@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from '../../services/user.service';
 
@@ -10,28 +10,35 @@ import { UserService } from '../../services/user.service';
 })
 
 export class LoginComponent {
-
   loginForm!: FormGroup;
+
+  email_required = "Username is required";
+  password_required = "Password is required";
+  registration_failed_message = "Username and Password are not currect";
+  registration_faileds = false;
 
   constructor(private fb: FormBuilder, private userService: UserService, private router: Router) {
     this.loginForm = this.fb.group({
-      email: ['lbaral@miu.edu'],
-      password: ['Luzan12345']
+      email: new FormControl(),
+      password: new FormControl()
     })
   }
 
   login(): void {
-    console.log("==this.loginForm.value.email==", this.loginForm.value.email);
-    console.log("==this.loginForm.value.password==", this.loginForm.value.password);
-
     this.userService.login(this.loginForm.value.email, this.loginForm.value.password)
-      .subscribe(response => {
-        // set the state
-        this.userService.userState$.next(response);
-        this.userService.persistState();
-        this.router.navigate(['/', 'dashboard']);
-        // console.log(this.userService.getUserState())
-      })
+      .subscribe(
+        {
+          next: (response)=>{
+            this.userService.userState$.next(response);
+            this.userService.persistState();
+            this.router.navigate(['/', 'dashboard']);
+          },
+          error:(err)=>{
+            this.registration_faileds = true;
+            console.log(err);
+          }
+        }
+      );
   }
 
 }

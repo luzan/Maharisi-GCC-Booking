@@ -1,11 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
-export interface Tile {
-  color: string;
-  cols: number;
-  rows: number;
-  text: string;
-}
+import { Router } from '@angular/router';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -14,16 +9,15 @@ export interface Tile {
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() { }
-
-  tiles: Tile[] = [
-    { text: 'One', cols: 3, rows: 1, color: 'lightblue' },
-    { text: 'Two', cols: 1, rows: 2, color: 'lightgreen' },
-    { text: 'Three', cols: 1, rows: 1, color: 'lightpink' },
-    { text: 'Four', cols: 2, rows: 1, color: '#DDBDF1' },
-  ];
+  constructor(private userService: UserService, private router: Router) {
+  }
 
   ngOnInit(): void {
+  }
+
+  logout(): void{
+    this.userService.logout();
+    this.router.navigate(['/', 'login']);
   }
 
 }

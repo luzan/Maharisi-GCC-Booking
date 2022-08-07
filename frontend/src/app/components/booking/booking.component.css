@@ -53,12 +53,9 @@
     margin: 0 auto;
 }
 
-.bg-btn-booked,
-.bg-btn-available,
-.bg-btn-checkIns,
-.bg-btn-checkOuts {    
+.bg-btn-booked {        
     background-color: #8aa771;
-    width: 24.5%;
+    width: 30%;
     font-size: 30px;
     color: #fff;
     margin: 0 0.2%;
@@ -66,23 +63,25 @@
     padding: 15px 0;
     font-weight: bold;
 }
-
-.p-txt {
-    font-size: 25px;
-    font-weight: 200;
-    margin: 0;
+.b-green{
+    background-color: #647754;
 }
-
-.bg-btn-available {
+.b-yellow{
     background-color: #fcb806;
 }
 
-.bg-btn-checkIns {
-    background-color: #818283;
+.m4{    
+    margin: 0px 4.5%;
 }
 
-.bg-btn-checkOuts {
-    background-color: #647754;
+.box-img{
+    height: 60px;
+}
+
+.p-txt {    
+    font-size: 22px;
+    font-weight: 200;
+    margin: -5px;
 }
 
 .title-book{
@@ -95,8 +94,6 @@
 .main-list-book {
     width: 31%;
     margin: 20px auto;
-    margin-left: 0.5%;
-    margin-right: 1.5%;
     font-weight: 100;
     background-color: #f4f7f2;
     float: left;
@@ -108,6 +105,8 @@
 .main-book {
     width: 60.5%;
     margin: 20px auto;
+    margin-left: 0.5%;
+    margin-right: 1.5%;
     font-weight: 100;
     background-color: #f4f4f4;
     float: left;
@@ -210,4 +209,10 @@
 
 .red {
     color: red;
+}
+
+@media only screen and (max-width: 1367)  {
+    .main-book, .main-list-book{
+        width: 100%;
+    }
 }
