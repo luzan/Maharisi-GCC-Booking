@@ -18,7 +18,7 @@ async function getBookingById(req, res, next) {
     try {
         const currentUser = req.user;
         const booking = await Booking.findById(req.params.id);
-        if (booking.user.user_id !== currentUser.user_id || currentUser.role !== Role.Admin) {
+        if (booking.user.user_id !== currentUser.user_id && currentUser.role !== Role.Admin) {
             return res.status(401).json({ message: 'Unauthorized' });
         }
         res.status(200).json({
