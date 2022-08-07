@@ -43,8 +43,6 @@
   - [x] Roles based authorization
 - [ ] Upload Image to S3
 
-#### Routes
-- [ ] Roles based routing
 
 ### FrontEnd
 - [x] User Login UI
@@ -52,8 +50,27 @@
   - [ ] Register UI
   - [ ] Register integate with API
   - [ ] Logout
+- [ ] Guest User Registration
+  - [ ] Redirect to login after registration
 - [ ] Dashbaord
-  - [ ] menu
-  - [ ] booking UI CRUD
-  - [ ] booking integate with API CRUD
+  - [ ] Menu
+    - [ ] For Admin
+      - [ ] Bookings
+      - [ ] Payments
+      - [ ] Room
+    - [ ] User
+      - [ ] Bookings
+      - [ ] Payments
+  - [ ] Admin
+    - [x] booking UI CRUD for Admin
+      - [ ] booking integate with API CRUD
+    - [ ] Add and view rooms
+    - [ ] See all user -> change role
+    - [ ] See all bookings
+      - [ ] Make payment for indivdual booking  
+    - [ ] See all payments
+  - [ ] User
+    - [x] Booking for User  
+    - [ ] View Previous Booking
+    - [ ] Make Payment
 
