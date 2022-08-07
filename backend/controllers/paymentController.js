@@ -1,12 +1,13 @@
 const Payment = require('../models/paymentModel');
 const BookingService = require('../services/bookingService');
+const Role = require('../_helpers/roles');
 
 async function getAllPayments(req, res, next) {
     try {
         const payments = await Payment.find();
         res.status(200).json({
             message: 'All payments retrieved successfully',
-            payments: payments
+            data: payments
         });
     } catch (err) {
         next(err);
@@ -15,10 +16,15 @@ async function getAllPayments(req, res, next) {
 
 async function getPaymentById(req, res, next) {
     try {
+        const currentUser = req.user;
         const payment = await Payment.findById(req.params.id);
+        // only allow admins to access other user records
+        if (payment.user.user_id !== currentUser.user_id && currentUser.role !== Role.Admin) {
+            return res.status(401).json({ message: 'Unauthorized' });
+        }
         res.status(200).json({
             message: 'Payment retrieved successfully',
-            payment: payment
+            data: payment
         });
     } catch (err) {
         next(err);
@@ -29,7 +35,7 @@ async function createPaymentForBooking(req, res, next) {
     try {
         const { booking_id } = req.params;
 
-        const { paymentMethod, paymentAmount, paymentRef } = req.body;
+        const { userId, firstName, lastName, email, paymentMethod, paymentAmount, paymentRef } = req.body;
         const bookingCostInfo = await BookingService.getCostInformationFromBooking(booking_id);
 
         if (!bookingCostInfo) {
@@ -41,6 +47,12 @@ async function createPaymentForBooking(req, res, next) {
             let status = (paymentAmount < totalAmountToPay) ? 'partial' : (paymentAmount === totalAmountToPay) ? 'paid' : 'needs_attention'
 
             const payment = await Payment.create({
+                user: {
+                    user_id: userId,
+                    firstName: firstName,
+                    lastName: lastName,
+                    email: email
+                },
                 booking_id: booking_id,
                 paymentMethod: paymentMethod,
                 amount: bookingCostInfo.totalPrice,
@@ -50,7 +62,7 @@ async function createPaymentForBooking(req, res, next) {
             });
             res.status(200).json({
                 message: 'Payment created successfully',
-                payment: payment
+                data: payment
             });
         }
 
