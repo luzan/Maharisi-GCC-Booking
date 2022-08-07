@@ -3,9 +3,10 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 
-import { AddBookingComponent } from '../components/booking/add-booking.component';
-import { EditBookingComponent } from '../components/booking/edit-booking.component';
+import { AddBookingComponent } from '../components/booking/add-booking/add-booking.component';
+import { EditBookingComponent } from '../components/booking/edit-booking/edit-booking.component';
 import { BookingComponent } from '../components/booking/booking.component';
+import { MaterialModule } from '../material/material.module';
 
 
 
@@ -23,7 +24,8 @@ import { BookingComponent } from '../components/booking/booking.component';
       { path: 'add', component: AddBookingComponent },
       { path: 'edit/:todo_id', component: EditBookingComponent },
     ]),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MaterialModule
   ]
 })
 export class BookingsModule { }
