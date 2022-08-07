@@ -2,6 +2,7 @@ const Booking = require('../models/bookingModel');
 const RoomService = require('../services/roomService');
 const { createArrayOfDays, sanitizeDate } = require('../utils/dateUtils');
 const Utils = require('../utils/tools');
+const Role = require('../_helpers/roles');
 async function getAllBookings(req, res, next) {
     try {
         const bookings = await Booking.find();
@@ -56,9 +57,9 @@ async function createBooking(req, res, next) {
         if (roomType) {
             query.bookingDates = { $nin: daysToBook };
             roomAvailable = await RoomService.getRoomsByRoomType(roomType, query, { $limit: 1 });
-            (roomAvailable.length > 0) ? roomAvailable = roomAvailable[0] : null;
         }
-        if (roomAvailable) {
+        if (roomAvailable && roomAvailable.length > 0) {
+            (roomAvailable.length > 0) ? roomAvailable = roomAvailable[0] : null;
             const totalPrice = roomAvailable.pricePerNight * daysToBook.length;
             const booking = {
                 room: {
