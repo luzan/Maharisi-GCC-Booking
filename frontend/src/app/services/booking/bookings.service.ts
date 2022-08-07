@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Booking } from './BookingInterface';
 
 @Injectable({
@@ -9,25 +10,32 @@ export class BookingsService {
 
   constructor(private http: HttpClient) { }
 
-  getBookigs() {
-    return this.http.get<Array<Booking>>('http://localhost:3000/api/v1/book');
+  baseUrl="http://localhost:3000/api/v1";
+
+  addBookUser(booking: Booking) {
+    console.log("--booking-new--", booking);
+    return this.http.post<{ token: string }>(`${this.baseUrl}/bookings`, booking);
   }
 
-  getBookigById(book_id: string) {
-    return this.http.get<Booking>('http://localhost:3000/api/v1/book/' + book_id);
-  }
+  // getBookigs() {
+  //   return this.http.get<Array<Booking>>('http://localhost:3000/api/v1/book');
+  // }
 
-  deleteBookigById(book_id: string) {
-    return this.http.delete('http://localhost:3000/api/v1/book/' + book_id);
-  }
+  // getBookigById(book_id: string) {
+  //   return this.http.get<Booking>('http://localhost:3000/api/v1/book/' + book_id);
+  // }
 
-  addNewBookig(bookig: Booking) {
-    return this.http.post('http://localhost:3000/api/v1/book', bookig);
-  }
+  // deleteBookigById(book_id: string) {
+  //   return this.http.delete('http://localhost:3000/api/v1/book/' + book_id);
+  // }
 
-  updateBookig(bookig: Booking) {
-    return this.http.put('http://localhost:3000/api/v1/book/' + bookig._id, bookig);
+  // addNewBookig(bookig: Booking) {
+  //   return this.http.post('http://localhost:3000/api/v1/book', bookig);
+  // }
 
-  }
+  // updateBookig(bookig: Booking) {
+  //   return this.http.put('http://localhost:3000/api/v1/book/' + bookig._id, bookig);
+
+  // }
 
 }

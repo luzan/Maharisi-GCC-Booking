@@ -18,7 +18,7 @@ export class DashboardsService {
   }
 
   addBook(dashbaord: Dashboard) {
-    console.log("--dashbaord--", dashbaord);
+    console.log("--dashbaord-new--", dashbaord);
     return this.http.post<{ token: string }>(`${this.baseUrl}/bookings`, dashbaord);
   }
 
@@ -26,7 +26,7 @@ export class DashboardsService {
     // firstName: new FormControl(),
     // middleName: new FormControl(), 
     // lastName: new FormControl(), 
-    // phone: new FormControl(),
+    // phoneNumber: new FormControl(),
     // email: new FormControl(), 
 
     // staff: new FormControl(), 

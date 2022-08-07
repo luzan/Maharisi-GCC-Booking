@@ -29,46 +29,19 @@
             <!-- body left -->
             <div class="main-list-book">
                 <p class="title-book">Next Visits</p>
-                <div class="box-next-visit"  *ngFor="let dash of listOfDashboard">
+                <div class="box-next-visit" *ngFor="let dash of listOfDashboard">
                     <div class="box-nub-visit">
-                        <p class="number"> 8 </p>
+                        <p class="number"> {{dash.room.roomNumber}} </p>
                     </div>
                     <div class="box-title-right">
-                        <p class="box-name">Luzan Baral</p>
-                        <p class="box-checkin">CheckIn: Aug 3, 2022</p>
-                        <p class="box-phone">(641)-123-1234</p>
+                        <p class="box-name">
+                            {{dash.user.firstName ? dash.user.firstName : "Empty"}} 
+                            {{dash.user.lastName ? dash.user.lastName : "Empty"}} 
+                        </p>
+                        <p class="box-checkin">CheckIn: {{dash.checkInDate ? dash.checkInDate : "Aug 3, 2022"}}</p>
+                        <p class="box-phone">{{dash.phoneNumber ? dash.phoneNumber : "Empty"}} </p>
                     </div>
                 </div>
-                <!-- <div class="box-next-visit">
-                    <div class="box-nub-visit">
-                        <p class="number"> 8 </p>
-                    </div>
-                    <div class="box-title-right">
-                        <p class="box-name">Luzan Baral</p>
-                        <p class="box-checkin">CheckIn: Aug 3, 2022</p>
-                        <p class="box-phone">(641)-123-1234</p>
-                    </div>
-                </div>
-                <div class="box-next-visit">
-                    <div class="box-nub-visit">
-                        <p class="number"> 8 </p>
-                    </div>
-                    <div class="box-title-right">
-                        <p class="box-name">Luzan Baral</p>
-                        <p class="box-checkin">CheckIn: Aug 3, 2022</p>
-                        <p class="box-phone">(641)-123-1234</p>
-                    </div>
-                </div>
-                <div class="box-next-visit">
-                    <div class="box-nub-visit">
-                        <p class="number"> 8 </p>
-                    </div>
-                    <div class="box-title-right">
-                        <p class="box-name">Luzan Baral</p>
-                        <p class="box-checkin">CheckIn: Aug 3, 2022</p>
-                        <p class="box-phone">(641)-123-1234</p>
-                    </div>
-                </div> -->
             </div>
             <!-- end body left -->
 
@@ -92,7 +65,7 @@
 
                         <mat-form-field appearance="fill" class="input-style-30">
                             <mat-label>Enter your phone</mat-label>
-                            <input type="number" formControlName="phone" matInput placeholder="phone" required>
+                            <input type="number" formControlName="phoneNumber" matInput placeholder="phone">
                         </mat-form-field>
                         <mat-form-field appearance="fill" class="input-style-60">
                             <mat-label>Enter your email</mat-label>
@@ -124,7 +97,7 @@
 
                     <mat-form-field appearance="fill" class="input-style-60 float-left">
                         <mat-label>Enter Purpose of Stay</mat-label>
-                        <input matInput placeholder="Purpose of Stay" formControlName="purposeOfStay" required>
+                        <input matInput placeholder="Purpose of Stay" formControlName="purposeOfStay">
                     </mat-form-field> 
                     <div class="input-style-30 float-right">
                         <mat-label>Accessibility</mat-label>

@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+
 import { UserService } from '../../services/user/user.service';
 import { Dashboard } from '../../services/dashbaord/DashboardInterface';
 import { DashboardsService } from '../../services/dashbaord/dashboards.service';
-
+import { GetDashboard } from '../../services/dashbaord/GetDashboardInterface';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,7 +14,7 @@ import { DashboardsService } from '../../services/dashbaord/dashboards.service';
 })
 export class DashboardComponent implements OnInit {
   bookForm!: FormGroup;
-  listOfDashboard: Dashboard[] = [];
+  listOfDashboard: GetDashboard[] = [];
 
   constructor(private fb: FormBuilder, 
               private userService: UserService,
@@ -24,7 +25,7 @@ export class DashboardComponent implements OnInit {
       firstName: new FormControl(),
       middleName: new FormControl(), 
       lastName: new FormControl(), 
-      phone: new FormControl(),
+      phoneNumber: new FormControl(),
       email: new FormControl(), 
       staff: new FormControl(), 
       student: new FormControl(),
@@ -40,12 +41,12 @@ export class DashboardComponent implements OnInit {
 
     this.dashboardService.getAllBookings().subscribe(
       (response) => {
-        console.log("--response--", response);
+        console.log("--response--", response.bookings);
         this.listOfDashboard = response.bookings;
       }
     );
-
   }
+
   ngOnInit(): void {
   }
 
@@ -61,7 +62,7 @@ export class DashboardComponent implements OnInit {
       firstName: this.bookForm.value.firstName,
       middleName: middleName, 
       lastName: this.bookForm.value.lastName, 
-      phone: this.bookForm.value.phone,
+      phoneNumber: this.bookForm.value.phoneNumber,
       email: this.bookForm.value.email, 
       guest: guest, 
       staff: staff,  
