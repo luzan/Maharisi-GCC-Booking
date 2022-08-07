@@ -10,9 +10,10 @@ import { DashboardComponent } from '../components/dashboard/dashboard.component'
   imports: [
     CommonModule,
     RouterModule.forChild([
-      { path: '', component: DashboardComponent  },
-      { path: 'add', component: DashboardComponent  },
-      { path: 'edit', component: DashboardComponent  },
+      { path: '', component: DashboardComponent },
+      { path: 'add', component: DashboardComponent },
+      { path: 'edit', component: DashboardComponent },
+      { path: 'list', component: DashboardComponent },
     ]),
     ReactiveFormsModule
   ]

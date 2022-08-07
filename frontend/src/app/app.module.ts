@@ -17,9 +17,11 @@ import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { RouterModule } from '@angular/router';
-import { AddBookingComponent } from './components/booking/add-booking.component';
-import { EditBookingComponent } from './components/booking/edit-booking.component';
+import { AddBookingComponent } from './components/booking/add-booking/add-booking.component';
+import { EditBookingComponent } from './components/booking/edit-booking/edit-booking.component';
 import { BookingComponent } from './components/booking/booking.component';
+import { EditDashboardComponent } from './components/dashboard/edit-dashboard/edit-dashboard.component';
+import { AddDashboardComponent } from './components/dashboard/add-dashboard/add-dashboard.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,8 @@ import { BookingComponent } from './components/booking/booking.component';
     BookingComponent,
     AddBookingComponent,
     EditBookingComponent,
+    EditDashboardComponent,
+    AddDashboardComponent,
   ],
   imports: [
     BrowserModule,

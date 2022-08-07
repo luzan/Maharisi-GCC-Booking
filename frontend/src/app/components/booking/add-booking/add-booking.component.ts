@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { UserService } from 'src/app/services/user.service';
+import { UserService } from '../../../services/user/user.service';
 
 export interface Tile {
   color: string;
@@ -13,7 +13,7 @@ export interface Tile {
 @Component({
   selector: 'app-add-booking',
   templateUrl: './add-booking.component.html',
-  styleUrls: ['./booking.component.css']
+  styleUrls: ['../booking.component.css']
 })
 
 export class AddBookingComponent implements OnInit {

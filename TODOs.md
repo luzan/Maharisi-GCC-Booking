@@ -45,12 +45,15 @@
 
 ### FrontEnd
 - [x] User Login UI
-  - [ ] Login integate with API
+  - [x] Login integate with API
   - [ ] Register UI
   - [ ] Register integate with API
-  - [ ] Logout
-- [ ] Dashbaord
+  - [x] Logout
+- [x] Dashbaord
+  - [x] Dashbaord UI CRUD
+  - [x] Dashbaord integate with API CRUD
   - [ ] menu
+- [x] Booking (admin)
   - [ ] booking UI CRUD
   - [ ] booking integate with API CRUD
 
