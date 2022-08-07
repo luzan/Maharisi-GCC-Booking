@@ -31,6 +31,7 @@ async function getUserById(req, res, next) {
     }
 }
 
+// Todo: parse the req.body only allow roles to be added by admin
 async function createUser(req, res, next) {
     try {
         const user = await User.create(req.body);
