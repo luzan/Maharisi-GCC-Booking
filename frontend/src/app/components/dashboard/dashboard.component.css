@@ -56,7 +56,7 @@
 .bg-btn-booked,
 .bg-btn-available,
 .bg-btn-checkIns,
-.bg-btn-checkOuts {    
+.bg-btn-checkOuts {
     background-color: #8aa771;
     width: 24.5%;
     font-size: 30px;
@@ -85,7 +85,7 @@
     background-color: #647754;
 }
 
-.title-book{
+.title-book {
     font-size: 25px;
     font-weight: 200;
     padding-left: 5px;
@@ -126,22 +126,23 @@
     margin: 0 5px;
 }
 
-.input-style-100{
+.input-style-100 {
     width: 97.5%;
     margin: 0 5px;
 }
-.input-style-45{
+
+.input-style-45 {
     width: 48%;
     margin: 0 5px;
 }
 
-.box-next-visit{
+.box-next-visit {
     position: relative;
     background: #eaeaea;
     margin-bottom: 15px;
 }
 
-.box-nub-visit{
+.box-nub-visit {
     width: 25%;
     float: left;
     text-align: center;
@@ -154,25 +155,25 @@
     margin-right: 15px;
 }
 
-.number{
+.number {
     vertical-align: middle;
     display: table-cell;
 }
 
-.box-name{
+.box-name {
     margin: 0;
     font-size: 18px;
     font-weight: 400;
     padding: 5px 0;
 }
 
-.box-checkin{
+.box-checkin {
     margin: 0;
     font-size: 16px;
     font-style: italic;
 }
 
-.box-phone{
+.box-phone {
     margin: 0;
     font-size: 16px;
     font-weight: 400;
@@ -180,18 +181,19 @@
     font-style: italic;
 }
 
-.float-left{
+.float-left {
     float: left;
 }
 
-.float-right{
+.float-right {
     float: right;
 }
 
-.mg-checkbox{
+.mg-checkbox {
     margin: 5px 90px 20px 0px
 }
 
+.bg-btn-next,
 .bg-btn-color,
 .bg-btn-book {
     background-color: #fcb806;
@@ -206,6 +208,10 @@
 
 .bg-btn-book {
     background-color: #8aa771;
+}
+
+.bg-btn-next {
+    background-color: #818283;
 }
 
 .red {
