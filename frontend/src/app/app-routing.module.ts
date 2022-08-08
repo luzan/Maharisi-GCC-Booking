@@ -20,7 +20,8 @@ const routes: Routes = [
     loadChildren: () => DashboardModules.then(module => module.DashboardModule),
     canActivate: [CheckTokenGuard]
   },
-  { path: 'booking', component: BookingComponent,
+  {
+    path: 'booking', component: BookingComponent,
     // loadChildren: () => BookingsModule.then(module => module.BookingsModule),
     // canActivate: [CheckTokenGuard]
   },

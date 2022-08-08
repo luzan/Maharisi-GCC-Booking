@@ -22,6 +22,10 @@ export class UserService {
     localStorage.clear();
   }
 
+  register(user: User) {
+    return this.http.post(`${environment.apiUrl}/users`, user);
+  }
+
   getUserState(): User | null {
     const decoded = this.userState$.value.token && jwt_decode(this.userState$.value.token) as User;
     return decoded || null;

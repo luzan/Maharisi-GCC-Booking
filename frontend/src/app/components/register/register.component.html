@@ -1,170 +1,49 @@
-<p>register works!</p>
-
 <div class="container">
   <img src="../assets/images/logo.png" class="img-log" />
   <p class="title-txt">Registation form</p>
-  <!-- <p class="red" *ngIf="registration_faileds"> -->
-  <!-- {{ registration_failed_message }} -->
-  <!-- </p> -->
+  <p class="red" *ngIf="registration_faileds">{{registration_failed_message}}</p>
   <form [formGroup]="registerForm" (ngSubmit)="register()">
     <p>
       <mat-form-field appearance="fill" class="input-style">
         <mat-label>Enter your firstName</mat-label>
-        <input
-          matInput
-          placeholder="First Name"
-          formControlName="fistName"
-          required
-        />
-        <!-- <div
-          *ngIf="
-            registerForm.get('firstName')?.touched &&
-            !registerName.get('firstName')?.valid
-          "
-        >
-          {{ firstName_required }}
-        </div> -->
+        <input matInput placeholder="First Name" formControlName="firstName" required />
       </mat-form-field>
     </p>
     <p>
       <mat-form-field appearance="fill" class="input-style">
         <mat-label>Enter your Middle Name</mat-label>
-        <input
-          matInput
-          placeholder=" Middle Name"
-          formControlName="middleName"
-          required
-        />
-        <!-- <div
-          *ngIf="
-            resgisterForm.get('middleName')?.touched &&
-            !registerName.get('middleName')?.valid
-          "
-        >
-          {{ middleName_required }}
-        </div> -->
+        <input matInput placeholder=" Middle Name" formControlName="middleName" />
       </mat-form-field>
     </p>
     <p>
       <mat-form-field appearance="fill" class="input-style">
         <mat-label>Enter your Last Name</mat-label>
-        <input
-          matInput
-          placeholder="Last Name"
-          formControlName="LastName"
-          required
-        />
-        <!-- <div
-          *ngIf="
-            registerForm.get('lastName')?.touched &&
-            !registerForm('lastName')?.valid
-          "
-        >
-          {{ lastName_required }}
-        </div> -->
+        <input matInput placeholder="Last Name" formControlName="lastName" required />
       </mat-form-field>
     </p>
     <p>
       <mat-form-field appearance="fill" class="input-style">
         <mat-label>Enter your email</mat-label>
-        <input
-          matInput
-          placeholder="abc@example.com"
-          formControlName="email"
-          required
-        />
-        <!-- <div
-          *ngIf="
-            registerForm.get('email')?.touched &&
-            !registerForm.get('email')?.valid
-          "
-        >
-          {{ email_required }}
-        </div> -->
+        <input matInput placeholder="abc@example.com" formControlName="email" required />
       </mat-form-field>
     </p>
     <p>
       <mat-form-field appearance="fill" class="input-style">
         <mat-label>Enter your Phone Number</mat-label>
-        <input
-          matInput
-          placeholder="###-###-####"
-          formControlName="phone"
-          required
-        />
-        <!-- <div
-          *ngIf="
-            registerForm.get('phone')?.touched &&
-            !registerForm.get('phone')?.valid
-          "
-        >
-          {{ phone_required }}
-        </div> -->
+        <input matInput placeholder="Enter Phone Number" formControlName="phone" required />
       </mat-form-field>
     </p>
     <p>
       <mat-form-field appearance="fill" class="input-style">
         <mat-label>Password</mat-label>
-        <input
-          type="password"
-          matInput
-          placeholder="******"
-          formControlName="password"
-          required
-        />
-        <!-- <div
-          *ngIf="
-            registerForm.get('password')?.touched &&
-            !registerForm.get('password')?.valid
-          "
-        >
-          {{ password_required }}
-        </div> -->
-      </mat-form-field>
-    </p>
-    <p>
-      <mat-form-field appearance="fill" class="input-style">
-        <mat-label>Enter your Gender</mat-label>
-        <input
-          matInput
-          placeholder="M or F"
-          formControlName="gender"
-          required
-        />
-        <!-- <div
-          *ngIf="
-            registerForm.get('gender')?.touched &&
-            !registerForm.get('gender')?.valid
-          "
-        >
-          {{ gender_required }}
-        </div> -->
-      </mat-form-field>
-    </p>
-    <p>
-      <mat-form-field appearance="fill" class="input-style">
-        <mat-label>Enter your Role</mat-label>
-        <input
-          matInput
-          placeholder="Admin of Guest"
-          formControlName="role"
-          required
-        />
-        <!-- <div
-          *ngIf="
-            registerForm.get('role')?.touched &&
-            !registerForm.get('role')?.valid
-          "
-        >
-          {{ role_required }}
-        </div> -->
+        <input type="password" matInput placeholder="Enter Password" formControlName="password" required />
       </mat-form-field>
     </p>
     <button mat-stroked-button class="bg-btn-color" type="submit">
       Register
     </button>
   </form>
-  <a href="/register">
+  <a href="/login">
     <p class="regis-txt">Back to Login</p>
   </a>
 </div>
