@@ -242,6 +242,7 @@
     margin: 5px 90px 20px 0px
 }
 
+.bg-btn-next,
 .bg-btn-color,
 .bg-btn-book {
     background-color: #fcb806;
@@ -256,6 +257,10 @@
 
 .bg-btn-book {
     background-color: #8aa771;
+}
+
+.bg-btn-next {
+    background-color: #818283;
 }
 
 .red {

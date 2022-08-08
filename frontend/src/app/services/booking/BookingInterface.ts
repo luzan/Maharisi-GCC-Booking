@@ -17,6 +17,11 @@ export interface Booking {
     accessibleRequired: boolean;
     occcupants: number;
 
-    arrivalTime: number;
-    numberOfGuests: number;
+    arrivalTime?: number;
+    numberOfGuests?: number;
+
+    paidInCash?: boolean;
+    discountType?: string;
+    discountOf?: number;
+
 }

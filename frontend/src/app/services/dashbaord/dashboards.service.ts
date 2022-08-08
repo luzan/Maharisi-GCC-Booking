@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { Booking } from '../booking/BookingInterface';
 import { Dashboard } from './DashboardInterface';
 
 @Injectable({
@@ -16,8 +17,8 @@ export class DashboardsService {
     return this.http.get<any>(`${environment.apiUrl}/bookings`);;
   }
 
-  addBook(dashbaord: Dashboard) {
-    console.log("--dashbaord-new--", dashbaord);
-    return this.http.post<{ token: string }>(`${environment.apiUrl}/bookings`, dashbaord);
+  addBook(booking: Booking) {
+    console.log("--dashbaord-new--", booking);
+    return this.http.post<{ token: string }>(`${environment.apiUrl}/bookings/admin`, booking);
   }
 }
