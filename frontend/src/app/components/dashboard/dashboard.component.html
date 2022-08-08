@@ -2,6 +2,19 @@
     <mat-toolbar class="header">
         <img src="../assets/images/miu-icon.png" class="img-log" />
         <span>Maharishi GCC Booking</span>
+        <span class="example-spacers"></span>
+        <a href="/dashboard/list-booking" class="menu">
+            <button mat-stroked-button class="example-icon btn-menu">Bookings</button>
+        </a>
+        <a href="/dashboard/payment" class="menu">
+            <button mat-stroked-button class="example-icon btn-menu">Payments</button>
+        </a>
+        <a href="/dashboard/room" class="menu">
+            <button mat-stroked-button class="example-icon btn-menu">Rooms</button>
+        </a>
+        <a href="/dashboard/user" class="menu">
+            <button mat-stroked-button class="example-icon btn-menu">Users</button>
+        </a>
         <span class="example-spacer"></span>
         <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon"
             (click)="logout()">

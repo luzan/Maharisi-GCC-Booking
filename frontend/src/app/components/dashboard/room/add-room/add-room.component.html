@@ -1,0 +1,105 @@
+<div class="container">
+    <mat-toolbar class="header">
+        <img src="../assets/images/miu-icon.png" class="img-log" />
+        <span>Maharishi GCC Booking</span>
+        <span class="example-spacers"></span>
+            <a href="/dashboard/list-booking" class="menu">
+                <button mat-stroked-button class="example-icon btn-menu">Bookings</button>
+            </a>
+            <a href="/dashboard/payment" class="menu">
+                <button mat-stroked-button class="example-icon btn-menu">Payments</button>
+            </a>
+            <a href="/dashboard/room" class="menu">
+                <button mat-stroked-button class="example-icon btn-menu">Rooms</button>
+            </a>
+            <a href="/dashboard/user" class="menu">
+                <button mat-stroked-button class="example-icon btn-menu">Users</button>
+            </a>
+        <span class="example-spacer"></span>
+        <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon"
+            (click)="logout()">
+            <mat-icon>logout</mat-icon>
+        </button>
+    </mat-toolbar>
+    <div class="dashbaord-body">
+        <div class="book-box">
+            <!-- <p class="red" *ngIf="registration_faileds">{{registration_failed_message}}</p> -->
+
+            <!-- body left  -->
+            <div class="main-book main-room">
+                <p class="title-book">Add New Room</p>
+                <form [formGroup]="addRoomForm" (ngSubmit)="addRoom()">
+                    <div>
+                        <mat-form-field appearance="fill" class="input-style-30">
+                            <mat-label>Enter Building Number</mat-label>
+                            <input matInput placeholder="Building Number" formControlName="buildingNumber" required>
+                        </mat-form-field>
+                        <mat-form-field appearance="fill" class="input-style-30">
+                            <mat-label>Enter Floor</mat-label>
+                            <input matInput formControlName="floor" placeholder="Floor">
+                        </mat-form-field>
+                        <mat-form-field appearance="fill" class="input-style-30">
+                            <mat-label>Enter Room Number</mat-label>
+                            <input matInput formControlName="roomNumber" placeholder="Room Number" required>
+                        </mat-form-field>
+
+                        <div class="input-style-30 float-right">
+                            <mat-label>Accessibility : </mat-label>
+                            <mat-radio-group aria-label="Select an Option" formControlName="isAccessible">
+                                <section class="example-section">
+                                    <mat-radio-button class="mg-checkbox" value="true">Yes</mat-radio-button>
+                                    <mat-radio-button class="mg-checkbox" value="false" [checked]="true">No
+                                    </mat-radio-button>
+                                </section>
+                            </mat-radio-group>
+                        </div>
+                        <mat-form-field appearance="fill" class="input-style-60">
+                            <mat-label>Enter Maximum Occupancy</mat-label>
+                            <input formControlName="maxOccupancy" matInput placeholder="Maximum Occupancy" required>
+                        </mat-form-field> 
+
+                        <mat-form-field appearance="fill" class="input-style-100">
+                            <mat-label>Choose an image</mat-label>
+                            <mat-select formControlName="image">
+                                <mat-option value="ima1ge">image1</mat-option>
+                                <mat-option value="imag2e">image2</mat-option>
+                                <mat-option value="image3">image3</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+
+                    <div>
+                        <button mat-stroked-button class="bg-btn-book" type="submit">Add Room</button>
+                        <button mat-stroked-button class="bg-btn-color" type="submit">Clear</button>
+                    </div>
+                </form>
+            </div>
+            <!-- end body left -->
+
+             <!-- body right  -->
+             <div class="main-list-book main-list-room">
+                <p class="title-book">Summary</p>
+                <div class="">
+                    <div class="p10">
+                        <span class="">Building </span>
+                        <span class="float-right">Rooms </span>
+                    </div>
+                    <div class="p10">
+                        <span class="">R41 </span>
+                        <span class="float-right">20 </span>
+                    </div>
+                    <div class="p10">
+                        <span class="">R31 </span>
+                        <span class="float-right">30 </span>
+                    </div>
+                    <div class="p10">
+                        <hr/>
+                        <span class=""><b>Total Rooms</b></span>
+                        <span class="float-right"><b>50</b></span>
+                    </div>
+                </div>
+            </div>
+            <!-- end body right -->
+        </div>
+    </div>
+</div>
