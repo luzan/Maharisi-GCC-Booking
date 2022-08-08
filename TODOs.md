@@ -45,6 +45,10 @@
   - [x] Roles based authorization
 - [ ] Upload Image to S3
 
+### Needs Attention
+- [ ] Room with same room number can be added multiple times
+- [ ] User should be able to cancel their own booking (solve with flag)
+
 
 ### FrontEnd
 - [x] User Login UI
