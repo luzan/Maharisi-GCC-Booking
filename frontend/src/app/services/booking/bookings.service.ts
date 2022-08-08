@@ -15,6 +15,11 @@ export class BookingsService {
     return this.http.post<any>(`${environment.apiUrl}/bookings`, booking);
   }
 
+  addBookingAdmin(booking: Booking) {
+    console.log("--dashbaord-new--", booking);
+    return this.http.post<{ token: string }>(`${environment.apiUrl}/bookings/admin`, booking);
+  }
+
   // getBookigs() {
   //   return this.http.get<Array<Booking>>('http://localhost:3000/api/v1/book');
   // }
