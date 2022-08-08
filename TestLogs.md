@@ -343,5 +343,6 @@ Test Status: Failed
 Observation: Returns "unauthorized" message even for your own booking payment
 Update: 
  - Payment needs to have user {user_id, firstName, lastName, email } data.
-Test Status: Will Pass
+ - Unauthorized issue fixed
+Test Status: Pass
 ```
