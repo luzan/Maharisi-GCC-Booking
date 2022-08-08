@@ -18,30 +18,29 @@ async function getAllRooms(req, res, next) {
         if (roomType) {
             filter.roomType = roomType;
         }
-        if (template) {
-            switch (template) {
-                case "all":
-                    project = { _id: 1, roomType: 1, building: 1, floor: 1, roomNumber: 1, isAccessible: 1, roomPrice: 1, roomDescription: 1, roomImage: 1 }
-                    break;
-                case "summary":
-                    project = { pictureUrl: 0 }
-            }
+        let projectBy = (template) ? template : "";
+        switch (projectBy) {
+            case "summary":
+                project = { _id: 1, roomType: 1, building: 1, floor: 1, roomNumber: 1, isAccessible: 1, pricePerNight: 1, maxOccupancy: 1 };
+                break;
+            default:
+                project = { _id: 1, roomType: 1, building: 1, floor: 1, roomNumber: 1, isAccessible: 1, pricePerNight: 1, pictureUrl: 1, bookingDates: 1 };
         }
+
 
         if (available) {
             let daysToSearch = createArrayOfDays(parseInt(checkInDate), parseInt(checkOutDate));
             filter.bookingDates = { $nin: daysToSearch };
         }
 
-        const rooms = await Room.aggregate([{
-            $match: filter,
-            $project: project
-        }]);
-
-        res.status(200).json({
-            message: `Rooms found successfully`,
-            data: rooms
+        await Room.aggregate().match(filter).project(project).exec((err, rooms) => {
+            res.status(200).json({
+                message: `Rooms found successfully`,
+                docs: rooms.length,
+                data: rooms
+            });
         });
+
     } catch (err) {
         next(err);
     }
