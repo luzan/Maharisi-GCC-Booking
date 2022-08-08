@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { Booking } from './BookingInterface';
 
 @Injectable({
@@ -10,11 +11,8 @@ export class BookingsService {
 
   constructor(private http: HttpClient) { }
 
-  baseUrl="http://localhost:3000/api/v1";
-
   addBookUser(booking: Booking) {
-    console.log("--booking-new--", booking);
-    return this.http.post<{ token: string }>(`${this.baseUrl}/bookings`, booking);
+    return this.http.post<any>(`${environment.apiUrl}/bookings`, booking);
   }
 
   // getBookigs() {

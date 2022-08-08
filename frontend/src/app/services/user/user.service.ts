@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { User } from './userInterface';
 import jwt_decode from "jwt-decode";
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -11,13 +12,11 @@ export class UserService {
   userState$ = new BehaviorSubject<{ token: string }>({ token: '' });
 
   constructor(private http: HttpClient) { }
-  
-  baseUrl="http://localhost:3000/api/v1";
 
   login(email: string, password: string) {
-    return this.http.post<{ token: string }>(`${this.baseUrl}/users/login`, { email, password });
+    return this.http.post<{ token: string }>(`${environment.apiUrl}/users/login`, { email, password });
   }
-  
+
   logout() {
     this.userState$.next({ token: '' });
     localStorage.clear();
