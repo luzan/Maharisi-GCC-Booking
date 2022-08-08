@@ -38,4 +38,310 @@ Observation:
 
 
 ### *API Test Reports Here*
+### User Controller
+```
+Method: Post
+API: http://localhost:3000/api/v1/users
+Expected Task: Able to create a new user
+Test Status: Passed
+```
 
+```
+Method: Get
+API: http://localhost:3000/api/v1/users
+Role: Admin
+Expected Task: Get all users of the system
+Test Status: Passed
+```
+
+```
+Method: Get
+API: http://localhost:3000/api/v1/users
+Role: User
+Expected Task: Get all users of the system
+Test Status: Passed
+```
+
+```
+Method: Get
+API: http://localhost:3000/api/v1/users/{id}
+Role: Admin
+Expected Task: Get specific user based on id
+Test Status: Passed
+```
+
+```
+Method: Get
+API: http://localhost:3000/api/v1/users/{currentUser_id}
+Role: User
+Expected Task: Return user details of current user
+Test Status: Passed
+```
+
+```
+Method: Put
+API: http://localhost:3000/api/v1/users/{id}
+Role: Admin
+Expected Task: Update user information
+Test Status: Failed
+Observation: Not working and Returned with message "currentUser is not defined"
+Update: Fixed
+Test Status: Passed
+```
+
+```
+Method: Put
+API: http://localhost:3000/api/v1/users/{currentUser_id}
+Role: User
+Expected Task: Update user information
+Test Status: Failed
+Observation: Not working and Returned with message "currentUser is not defined"
+Update: Fixed
+Test Status: Passed
+```
+
+```
+Method: Delete
+API: http://localhost:3000/api/v1/users/{id}
+Role: Admin
+Expected Task: Delete the user
+Test Status: Failed
+Observation: Not working and Returned with message "currentUser is not defined"
+Update: Fixed
+Test Status: Passed
+```
+
+```
+Method: Delete
+API: http://localhost:3000/api/v1/users/{currentUser_id}
+Role: User
+Expected Task: Delete the user
+Test Status: Failed
+Observation: Not working and Returned with message "currentUser is not defined"
+Update: Fixed
+Test Status: Passed
+```
+
+### Room Controller
+```
+Method: Post
+API: http://localhost:3000/api/v1/rooms
+Role: Admin
+Expected Task: Add new room information
+Test Status: Needs Attention
+Observation: Room with same room number can be added multiple times
+```
+
+```
+Method: Post
+API: http://localhost:3000/api/v1/rooms
+Role: User
+Expected Task: Cannot add new room details
+Test Status: Passed
+```
+
+```
+Method: Get
+API: http://localhost:3000/api/v1/rooms
+Role: Admin
+Expected Task: Return all rooms
+Test Status: Passed
+```
+
+```
+Method: Get
+API: http://localhost:3000/api/v1/rooms
+Role: User
+Expected Task: Return all rooms
+Test Status: Passed
+```
+
+```
+Method: Get
+API: http://localhost:3000/api/v1/rooms/{id}
+Role: Admin
+Expected Task: Returns specific room by id
+Test Status: Passed
+```
+
+```
+Method: Get
+API: http://localhost:3000/api/v1/rooms/{id}
+Role: User
+Expected Task: Returns specific room by id
+Test Status: Passed
+```
+
+```
+Method: Put
+API: http://localhost:3000/api/v1/rooms/{id}
+Role: Admin
+Expected Task: Update specific room by id
+Test Status: Passed
+```
+
+```
+Method: Put
+API: http://localhost:3000/api/v1/rooms/{id}
+Role: User
+Expected Task: Cannot update room details
+Test Status: Passed
+```
+
+```
+Method: Delete
+API: http://localhost:3000/api/v1/rooms/{id}
+Role: Admin
+Expected Task: Delete specific room based on id
+Test Status: Passed
+```
+
+### Booking Controller
+```
+Method: Post
+API: http://localhost:3000/api/v1/bookings
+Role: Admin
+Expected Task: Create new booking by room type
+Test Status: Passed
+```
+
+```
+Method: Post
+API: http://localhost:3000/api/v1/bookings
+Role: User
+Expected Task: Create new booking by room type
+Test Status: Passed
+```
+
+```
+Method: Post 
+API: http://localhost:3000/api/v1/bookings
+Role: Admin
+Expected Task: Create new booking by room id
+Test Status: Failed
+Observation: Not working
+```
+
+```
+Method: Get
+API: http://localhost:3000/api/v1/bookings
+Role: Admin
+Expected Task: Returns all bookings
+Test Status: Passed
+```
+
+```
+Method: Get
+API: http://localhost:3000/api/v1/bookings
+Role: User
+Expected Task: Cannot access all bookings 
+Test Status: Passed
+```
+
+```
+Method: Get
+API: http://localhost:3000/api/v1/bookings/{id}
+Role: Admin
+Expected Task: Return booking by id
+Test Status: Failed
+Observation: Returned "unauthorized" message
+Update: Fixed
+Test Status: Passed
+```
+
+```
+Method: Get
+API: http://localhost:3000/api/v1/bookings/{id}
+Role: User
+Expected Task: Return booking by id
+Test Status: Failed
+Observation: Returned "unauthorized" message
+Update: Fixed
+Test Status: Passed
+```
+
+```
+Method: Put
+API: http://localhost:3000/api/v1/bookings/{user_id}{booking_id}
+Role: Admin
+Expected Task: Update booking
+Test Status: Passed
+```
+
+```
+Method: Put
+API: http://localhost:3000/api/v1/bookings/{user_id}{booking_id}
+Role: User
+Expected Task: Update booking
+Test Status: Passed
+```
+
+```
+Method: Delete
+API: http://localhost:3000/api/v1/bookings/{id}
+Role: Admin
+Expected Task: Delete specific booking by id
+Test Status: Passed
+```
+
+```
+Method: Delete
+API: http://localhost:3000/api/v1/bookings/{id}
+Role: User
+Expected Task: Delete own booking 
+Test Status: Needs attention
+Observation: User should be able to cancel their own booking
+```
+
+### Payment Controller
+```
+Method: Post
+API: http://localhost:3000/api/v1/payments/booking/{booking_id}
+Role: Admin
+Expected Task: Create payment for specific booking
+Test Status: Passed
+```
+
+```
+Method: Post
+API: http://localhost:3000/api/v1/payments/booking/{booking_id}
+Role: User
+Expected Task: Create payment for specific booking
+Test Status: Passed
+```
+
+```
+Method: Get
+API: http://localhost:3000/api/v1/payments
+Role: Admin
+Expected Task: Get all payments
+Test Status: Passed
+```
+
+```
+Method: Get
+API: http://localhost:3000/api/v1/payments
+Role: User
+Expected Task: Cannot access all payments
+Test Status: Passed
+```
+
+```
+Method: GET
+API: http://localhost:3000/api/v1/payments/{payment_id}
+Role: Admin
+Expected Task: Return payment details for specific booking
+Test Status: Passed
+```
+
+```
+Method: GET
+API: http://localhost:3000/api/v1/payments/{payment_id}
+Role: User
+Expected Task: Return payment details for specific booking
+Test Status: Failed
+Observation: Returns "unauthorized" message even for your own booking payment
+Update: 
+ - Payment needs to have user {user_id, firstName, lastName, email } data.
+Test Status: Will Pass
+```
