@@ -25,146 +25,125 @@
         </div>
         <div class="book-box">
             <!-- <p class="red" *ngIf="registration_faileds">{{registration_failed_message}}</p> -->
+
+            <!-- body left -->
             <div class="main-list-book">
                 <p class="title-book">Next Visits</p>
-                <div class="box-next-visit">
+                <div class="box-next-visit" *ngFor="let dash of listOfDashboard">
                     <div class="box-nub-visit">
-                        <p class="number"> 8 </p>
+                        <p class="number"> {{dash.room.roomNumber}} </p>
                     </div>
                     <div class="box-title-right">
-                        <p class="box-name">Luzan Baral</p>
-                        <p class="box-checkin">CheckIn: Aug 3, 2022</p>
-                        <p class="box-phone">(641)-123-1234</p>
-                    </div>
-                </div>
-                <div class="box-next-visit">
-                    <div class="box-nub-visit">
-                        <p class="number"> 8 </p>
-                    </div>
-                    <div class="box-title-right">
-                        <p class="box-name">Luzan Baral</p>
-                        <p class="box-checkin">CheckIn: Aug 3, 2022</p>
-                        <p class="box-phone">(641)-123-1234</p>
-                    </div>
-                </div>
-                <div class="box-next-visit">
-                    <div class="box-nub-visit">
-                        <p class="number"> 8 </p>
-                    </div>
-                    <div class="box-title-right">
-                        <p class="box-name">Luzan Baral</p>
-                        <p class="box-checkin">CheckIn: Aug 3, 2022</p>
-                        <p class="box-phone">(641)-123-1234</p>
-                    </div>
-                </div>
-                <div class="box-next-visit">
-                    <div class="box-nub-visit">
-                        <p class="number"> 8 </p>
-                    </div>
-                    <div class="box-title-right">
-                        <p class="box-name">Luzan Baral</p>
-                        <p class="box-checkin">CheckIn: Aug 3, 2022</p>
-                        <p class="box-phone">(641)-123-1234</p>
+                        <p class="box-name">
+                            {{dash.user.firstName ? dash.user.firstName : "Empty"}} 
+                            {{dash.user.lastName ? dash.user.lastName : "Empty"}} 
+                        </p>
+                        <p class="box-checkin">CheckIn: {{dash.checkInDate ? dash.checkInDate : "Aug 3, 2022"}}</p>
+                        <p class="box-phone">{{dash.phoneNumber ? dash.phoneNumber : "Empty"}} </p>
                     </div>
                 </div>
             </div>
+            <!-- end body left -->
+
+            <!-- body right  -->
             <div class="main-book">
                 <p class="title-book">New Booking</p>
-                <!-- <form [formGroup]="bookForm" (ngSubmit)="addBook()"> -->
-                <div>
-                    <mat-form-field appearance="fill" class="input-style-30">
-                        <mat-label>Enter your first name</mat-label>
-                        <input matInput placeholder="First Name" required>
-                    </mat-form-field>
-                    <mat-form-field appearance="fill" class="input-style-30">
-                        <mat-label>Enter your middle name</mat-label>
-                        <input matInput placeholder="Middle name">
-                    </mat-form-field>
-                    <mat-form-field appearance="fill" class="input-style-30">
-                        <mat-label>Enter your last name</mat-label>
-                        <input matInput placeholder="Last name" required>
-                    </mat-form-field>
+                <form [formGroup]="bookForm" (ngSubmit)="addBook()">
+                    <div>
+                        <mat-form-field appearance="fill" class="input-style-30">
+                            <mat-label>Enter your first name</mat-label>
+                            <input matInput placeholder="First Name" formControlName="firstName" required>
+                        </mat-form-field>
+                        <mat-form-field appearance="fill" class="input-style-30">
+                            <mat-label>Enter your middle name</mat-label>
+                            <input matInput formControlName="middleName" placeholder="Middle name">
+                        </mat-form-field>
+                        <mat-form-field appearance="fill" class="input-style-30">
+                            <mat-label>Enter your last name</mat-label>
+                            <input matInput formControlName="lastName" placeholder="Last name" required>
+                        </mat-form-field>
 
-                    <mat-form-field appearance="fill" class="input-style-30">
-                        <mat-label>Enter your phone</mat-label>
-                        <input type="number" matInput placeholder="phone" required>
-                    </mat-form-field>
-                    <mat-form-field appearance="fill" class="input-style-60">
-                        <mat-label>Enter your email</mat-label>
-                        <input type="email" matInput placeholder="Email" required>
-                    </mat-form-field>
+                        <mat-form-field appearance="fill" class="input-style-30">
+                            <mat-label>Enter your phone</mat-label>
+                            <input type="number" formControlName="phoneNumber" matInput placeholder="phone">
+                        </mat-form-field>
+                        <mat-form-field appearance="fill" class="input-style-60">
+                            <mat-label>Enter your email</mat-label>
+                            <input type="email" formControlName="email" matInput placeholder="Email" required>
+                        </mat-form-field>
 
-                    <div class="input-style-100">
-                        <mat-label>Booking for :</mat-label>
+                        <div class="input-style-100">
+                            <mat-label>Booking for :</mat-label>
+                            <section class="example-section">
+                                <mat-checkbox class="mg-checkbox" formControlName="staff">Staff</mat-checkbox>
+                                <mat-checkbox class="mg-checkbox" formControlName="student">Student</mat-checkbox>
+                                <mat-checkbox class="mg-checkbox" formControlName="guest">Guest</mat-checkbox>
+                            </section>
+                        </div>
+                        
+                        <mat-form-field color="accent" appearance="fill" class="input-style-45">
+                            <mat-label>CheckIn Date (MM/DD/YYYY)</mat-label>
+                            <input matInput [matDatepicker]="checkInDate" formControlName="checkInDate">
+                            <mat-datepicker-toggle matSuffix [for]="checkInDate"></mat-datepicker-toggle>
+                            <mat-datepicker #checkInDate color="primary"></mat-datepicker>
+                        </mat-form-field>
+                        <mat-form-field color="accent" appearance="fill" class="input-style-45">
+                            <mat-label>CheckIn Date (MM/DD/YYYY)</mat-label>
+                            <input matInput [matDatepicker]="checkOutDate" formControlName="checkOutDate">
+                            <mat-datepicker-toggle matSuffix [for]="checkOutDate"></mat-datepicker-toggle>
+                            <mat-datepicker #checkOutDate color="primary"></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+
+                    <mat-form-field appearance="fill" class="input-style-60 float-left">
+                        <mat-label>Enter Purpose of Stay</mat-label>
+                        <input matInput placeholder="Purpose of Stay" formControlName="purposeOfStay">
+                    </mat-form-field> 
+                    <div class="input-style-30 float-right">
+                        <mat-label>Accessibility</mat-label>
                         <section class="example-section">
-                            <mat-checkbox class="mg-checkbox">Staff</mat-checkbox>
-                            <mat-checkbox class="mg-checkbox">Student</mat-checkbox>
-                            <mat-checkbox class="mg-checkbox">Guest</mat-checkbox>
+                            <mat-checkbox class="mg-checkbox" formControlName="accessibleRequired">Required</mat-checkbox>
                         </section>
                     </div>
 
-                    <mat-form-field color="accent" appearance="fill" class="input-style-45">
-                        <mat-label>CheckIn Date (MM/DD/YYYY)</mat-label>
-                        <input matInput [matDatepicker]="picker1">
-                        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-                        <mat-datepicker #picker1></mat-datepicker>
+                    <div class="input-style-45 float-left">
+                        <mat-label>Discount Type :</mat-label>
+                        <section class="example-section">
+                            <mat-radio-button class="mg-checkbox" value="flat">Flat</mat-radio-button>
+                            <mat-radio-button class="mg-checkbox" value="percentage">Percentage</mat-radio-button>
+                        </section>
+                    </div>
+                    <mat-form-field appearance="fill" class="input-style-45">
+                        <mat-label>Enter Discount Of</mat-label>
+                        <input matInput formControlName="discountOf" placeholder="Discount Of" required>
+                    </mat-form-field> 
+
+                    <mat-form-field appearance="fill" class="input-style-30">
+                        <mat-label>Choose an room</mat-label>
+                        <mat-select>
+                            <mat-option value="Single">Single Bed</mat-option>
+                            <mat-option value="Double">Double Bed</mat-option>
+                            <mat-option value="Delux">Delux Bed</mat-option>
+                        </mat-select>
                     </mat-form-field>
-                    <mat-form-field color="accent" appearance="fill" class="input-style-45">
-                        <mat-label>CheckIn Date (MM/DD/YYYY)</mat-label>
-                        <input matInput [matDatepicker]="picker2">
-                        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-                        <mat-datepicker #picker2 color="primary"></mat-datepicker>
+                    <mat-form-field appearance="fill" class="input-style-30">
+                        <mat-label>Enter Occupants</mat-label>
+                        <input matInput formControlName="occcupants" placeholder="Occupants">
                     </mat-form-field>
-                </div>
+                    <div class="input-style-30 float-right">
+                        <mat-label>Paid in Cash</mat-label>
+                        <section class="example-section">
+                            <mat-checkbox formControlName="paidInCash" class="mg-checkbox">yes</mat-checkbox>
+                        </section>
+                    </div>
 
-                <mat-form-field appearance="fill" class="input-style-60 float-left">
-                    <mat-label>Enter Purpose of Stay</mat-label>
-                    <input matInput placeholder="Purpose of Stay" required>
-                </mat-form-field>
-                <div class="input-style-30 float-right">
-                    <mat-label>Accessibility</mat-label>
-                    <section class="example-section">
-                        <mat-checkbox class="mg-checkbox">Required</mat-checkbox>
-                    </section>
-                </div>
-
-                <div class="input-style-45 float-left">
-                    <mat-label>Discount Type :</mat-label>
-                    <section class="example-section">
-                        <mat-radio-button class="mg-checkbox" value="flat">Flat</mat-radio-button>
-                        <mat-radio-button class="mg-checkbox" value="percentage">Percentage</mat-radio-button>
-                    </section>
-                </div>
-                <mat-form-field appearance="fill" class="input-style-45">
-                    <mat-label>Enter Discount Of</mat-label>
-                    <input matInput placeholder="Discount Of" required>
-                </mat-form-field>
-
-                <mat-form-field appearance="fill" class="input-style-30">
-                    <mat-label>Choose an room</mat-label>
-                    <mat-select>
-                        <mat-option value="Single">Single Bed</mat-option>
-                        <mat-option value="Double">Double Bed</mat-option>
-                        <mat-option value="Delux">Delux Bed</mat-option>
-                    </mat-select>
-                </mat-form-field>
-                <mat-form-field appearance="fill" class="input-style-30">
-                    <mat-label>Enter Occupants</mat-label>
-                    <input matInput placeholder="Occupants">
-                </mat-form-field>
-                <div class="input-style-30 float-right">
-                    <mat-label>Paid in Cash</mat-label>
-                    <section class="example-section">
-                        <mat-checkbox class="mg-checkbox">yes</mat-checkbox>
-                    </section>
-                </div>
-
-                <div>
-                    <button mat-stroked-button class="bg-btn-book" type="submit">Book</button>
-                    <button mat-stroked-button class="bg-btn-color" type="submit">Clear</button>
-                </div>
-                <!-- </form> -->
+                    <div>
+                        <button mat-stroked-button class="bg-btn-book" type="submit">Book</button>
+                        <button mat-stroked-button class="bg-btn-color" type="submit">Clear</button>
+                    </div>
+                </form>
             </div>
+            <!-- end body right -->
         </div>
     </div>
 </div>

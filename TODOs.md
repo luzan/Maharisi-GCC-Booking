@@ -52,7 +52,7 @@
 
 ### FrontEnd
 - [x] User Login UI
-  - [ ] Login integate with API
+  - [x] Login integate with API
   - [ ] Register UI
   - [ ] Register integate with API
   - [ ] Logout

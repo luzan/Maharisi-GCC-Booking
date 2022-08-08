@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { CheckTokenGuard } from './services/check-token.guard';
 
 const DashboardModules = import('./modules/dashboard.module');
+const BookingsModule = import('./modules/bookings.module');
 
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
@@ -15,11 +16,14 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
   {
-    path: 'dashboard', //component: DashboardComponent
+    path: 'dashboard', //component: DashboardComponent,
     loadChildren: () => DashboardModules.then(module => module.DashboardModule),
     canActivate: [CheckTokenGuard]
   },
-  { path: 'booking', component: BookingComponent },
+  { path: 'booking', component: BookingComponent,
+    // loadChildren: () => BookingsModule.then(module => module.BookingsModule),
+    // canActivate: [CheckTokenGuard]
+  },
   { path: '**', redirectTo: 'login' }
 ];
 
