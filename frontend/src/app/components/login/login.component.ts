@@ -12,9 +12,9 @@ import { UserService } from '../../services/user/user.service';
 export class LoginComponent {
   loginForm!: FormGroup;
 
-  email_required = "Username is required";
+  email_required = "Email is required";
   password_required = "Password is required";
-  registration_failed_message = "Username and Password are not currect";
+  registration_failed_message = "Email or Password are not correct";
   registration_faileds = false;
 
   constructor(private fb: FormBuilder, private userService: UserService, private router: Router) {
@@ -28,13 +28,14 @@ export class LoginComponent {
     this.userService.login(this.loginForm.value.email, this.loginForm.value.password)
       .subscribe(
         {
-          next: (response)=>{
+          next: (response) => {
             this.userService.userState$.next(response);
             this.userService.persistState();
-            this.router.navigate(['/', 'dashboard']);
+            this.userService.getUserState()?.role === 'admin' ? this.router.navigate(['/dashboard']) : this.userService.getUserState()?.role === 'admin' ? this.router.navigate(['/booking']) : this.router.navigate(['/login']);
           },
-          error:(err)=>{
+          error: (err) => {
             this.registration_faileds = true;
+            this.registration_failed_message = err.error.message;
             console.log(err);
           }
         }
