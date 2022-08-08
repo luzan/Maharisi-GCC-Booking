@@ -28,4 +28,4 @@ app.use((err, req, res, next) => {
     // default to 500 server error
     return res.status(500).json({ message: err.message })
 })
-app.listen(3000, () => { console.log(`Listening on 3000`); })
+app.listen(`${process.env.PORT}`, () => { console.log(`Listening on 3000`); })
