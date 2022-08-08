@@ -3,17 +3,11 @@
         <img src="../assets/images/miu-icon.png" class="img-log" />
         <span>Maharishi GCC Booking</span>
         <span class="example-spacers"></span>
-        <a href="/dashboard/list-booking" class="menu">
-            <button mat-stroked-button class="example-icon btn-menu">Bookings</button>
+        <a href="/booking/book-history" class="menu">
+            <button mat-stroked-button class="example-icon btn-menu">My Bookings</button>
         </a>
-        <a href="/dashboard/payment" class="menu">
+        <a href="/booking/make-payment-guest" class="menu">
             <button mat-stroked-button class="example-icon btn-menu">Payments</button>
-        </a>
-        <a href="/dashboard/room" class="menu">
-            <button mat-stroked-button class="example-icon btn-menu">Rooms</button>
-        </a>
-        <a href="/dashboard/user" class="menu">
-            <button mat-stroked-button class="example-icon btn-menu">Users</button>
         </a>
         <span class="example-spacer"></span>
         <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon"
@@ -23,7 +17,7 @@
     </mat-toolbar>
     <div class="dashbaord-body">
         <div class="book-box text-left">
-            <p class="book-list">Booking Lists</p>
+            <p class="book-list">Booking History</p>
             <table mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)"
                 class="mat-elevation-z8">
                 <ng-container matColumnDef="position">
@@ -31,12 +25,6 @@
                         No.
                     </th>
                     <td mat-cell *matCellDef="let element"> {{element.position}} </td>
-                </ng-container>
-                <ng-container matColumnDef="name">
-                    <th class="bg-th" mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name">
-                        Name
-                    </th>
-                    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
                 </ng-container>
                 <ng-container matColumnDef="checkInDate">
                     <th class="bg-th" mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Check In Date">
@@ -50,23 +38,17 @@
                     </th>
                     <td mat-cell *matCellDef="let element"> {{element.checkOutDate}} </td>
                 </ng-container>
-                <ng-container matColumnDef="purpose">
-                    <th class="bg-th" mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by purpose">
-                        Purpose
+                <ng-container matColumnDef="bookingHistory">
+                    <th class="bg-th" mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by  Booking History">
+                        Booking History
                     </th>
-                    <td mat-cell *matCellDef="let element"> {{element.purpose}} </td>
+                    <td mat-cell *matCellDef="let element"> {{element.bookingHistory}} </td>
                 </ng-container>
-                <ng-container matColumnDef="room">
-                    <th class="bg-th" mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Room">
-                        Room
+                <ng-container matColumnDef="paymentStatus">
+                    <th class="bg-th" mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Payment Status">
+                        Payment Status
                     </th>
-                    <td mat-cell *matCellDef="let element"> {{element.room}} </td>
-                </ng-container>
-                <ng-container matColumnDef="amount">
-                    <th class="bg-th" mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by amount">
-                        Nmount
-                    </th>
-                    <td mat-cell *matCellDef="let element"> {{element.amount}} </td>
+                    <td mat-cell *matCellDef="let element"> {{element.paymentStatus}} </td>
                 </ng-container>
                 <ng-container matColumnDef="action">
                     <th class="bg-th" mat-header-cell *matHeaderCellDef>
@@ -78,16 +60,8 @@
                             <mat-icon>edit</mat-icon>
                         </button>
                         <button mat-icon-button class="example-icon" aria-label="Example icon-button"
-                            (click)="pay()">
-                            <mat-icon>attach_money</mat-icon>
-                        </button>
-                        <button mat-icon-button class="example-icon" aria-label="Example icon-button"
                             (click)="cancel()">
                             <mat-icon>cancel</mat-icon>
-                        </button>
-                        <button mat-icon-button class="example-icon" aria-label="Example icon-button"
-                            (click)="view()">
-                            <mat-icon>library_books</mat-icon>
                         </button>
                     </td>
                 </ng-container>

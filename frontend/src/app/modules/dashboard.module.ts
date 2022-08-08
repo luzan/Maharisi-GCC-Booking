@@ -9,6 +9,7 @@ import { AddDashboardComponent } from '../components/dashboard/add-dashboard/add
 import { EditDashboardComponent } from '../components/dashboard/edit-dashboard/edit-dashboard.component';
 
 import { PaymentComponent } from '../components/dashboard/payment/payment.component';
+import { MakePaymentComponent } from '../components/dashboard/payment/make-payment/make-payment.component';
 import { RoomComponent } from '../components/dashboard/room/room.component';
 import { AddRoomComponent } from '../components/dashboard/room/add-room/add-room.component';
 import { EditRoomComponent } from '../components/dashboard/room/edit-room/edit-room.component';
@@ -29,6 +30,7 @@ import { ListBookingComponent } from '../components/dashboard/list-booking/list-
     EditRoomComponent,
     ViewRoomComponent,
     UserComponent,
+    MakePaymentComponent
   ],
   imports: [
     CommonModule,
@@ -36,6 +38,7 @@ import { ListBookingComponent } from '../components/dashboard/list-booking/list-
       { path: '', component: DashboardComponent },
       { path: 'list-booking', component: ListBookingComponent },
       { path: 'payment', component: PaymentComponent },
+      { path: 'make-payment', component: MakePaymentComponent },
       { path: 'room', component: RoomComponent },
       { path: 'view-room', component: ViewRoomComponent },
       { path: 'add-room', component: AddRoomComponent },

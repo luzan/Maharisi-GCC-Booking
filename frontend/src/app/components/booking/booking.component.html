@@ -1,7 +1,14 @@
 <div class="container">
     <mat-toolbar class="header">
         <img src="../assets/images/miu-icon.png" class="img-log" />
-        <span>Maharisi GCC Booking</span>
+        <span>Maharishi GCC Booking</span>
+        <span class="example-spacers"></span>
+        <a href="/booking/book-history" class="menu">
+            <button mat-stroked-button class="example-icon btn-menu">My Bookings</button>
+        </a>
+        <a href="/booking/make-payment-guest" class="menu">
+            <button mat-stroked-button class="example-icon btn-menu">Payments</button>
+        </a>
         <span class="example-spacer"></span>
         <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon"
             (click)="logout()">
