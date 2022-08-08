@@ -12,12 +12,12 @@
         <div class="book-box">
             <button mat-stroked-button class="bg-btn-booked">
                 <p class="box-img"></p>
-                <p class="p-txt"> Single Bed </p> 
+                <p class="p-txt"> Single Bed </p>
                 <p class="p-txt"> $35/night </p>
             </button>
             <button mat-stroked-button class="bg-btn-booked m4 b-yellow">
                 <p class="box-img"></p>
-                <p class="p-txt"> Double Bed </p> 
+                <p class="p-txt"> Double Bed </p>
                 <p class="p-txt"> $45/night </p>
             </button>
             <button mat-stroked-button class="bg-btn-booked b-green">
@@ -28,7 +28,7 @@
         </div>
         <div class="book-box">
             <!-- <p class="red" *ngIf="registration_faileds">{{registration_failed_message}}</p> -->
-            
+
             <!-- body left  -->
             <div class="main-book">
                 <p class="title-book">New Booking</p>
@@ -58,11 +58,14 @@
 
                         <div class="input-style-100">
                             <mat-label>Booking for :</mat-label>
-                            <section class="example-section">
-                                <mat-checkbox class="mg-checkbox" formControlName="staff">Staff</mat-checkbox>
-                                <mat-checkbox class="mg-checkbox" formControlName="student">Student</mat-checkbox>
-                                <mat-checkbox class="mg-checkbox" formControlName="guest">Guest</mat-checkbox>
-                            </section>
+                            <mat-radio-group aria-label="Select an option" formControlName="bookingFor">
+                                <section class="example-section">
+                                    <mat-radio-button class="mg-checkbox" value="staff" [checked]="true">Staff
+                                    </mat-radio-button>
+                                    <mat-radio-button class="mg-checkbox" value="student">Student</mat-radio-button>
+                                    <mat-radio-button class="mg-checkbox" value="guest">Guest</mat-radio-button>
+                                </section>
+                            </mat-radio-group>
                         </div>
 
                         <mat-form-field color="accent" appearance="fill" class="input-style-45">
@@ -82,30 +85,35 @@
                     <mat-form-field appearance="fill" class="input-style-45">
                         <mat-label>Enter Arrival Time</mat-label>
                         <!-- <input type="number" matInput placeholder="Arrival Time" required> -->
-                        <input matInput formControlName="arrivalTime" type="datetime-local" placeholder="start date" required>
+                        <input matInput formControlName="arrivalTime" type="datetime-local" placeholder="start date">
                     </mat-form-field>
                     <mat-form-field appearance="fill" class="input-style-45">
                         <mat-label>Number Of Guests</mat-label>
-                        <input type="number" formControlName="numberOfGuests" matInput placeholder="Number Of Guests" required>
+                        <input type="number" formControlName="numberOfGuests" matInput placeholder="Number Of Guests"
+                            required>
                     </mat-form-field>
 
                     <mat-form-field appearance="fill" class="input-style-60 float-left">
                         <mat-label>Enter Purpose of Stay</mat-label>
                         <input matInput placeholder="Purpose of Stay" formControlName="purposeOfStay">
                     </mat-form-field>
-                    <div class="input-style-30 float-right">
+                    <div class="input-style-100">
                         <mat-label>Accessibility</mat-label>
-                        <section class="example-section">
-                            <mat-checkbox class="mg-checkbox" formControlName="accessibleRequired">Required</mat-checkbox>
-                        </section>
+                        <mat-radio-group aria-label="Select an Option" formControlName="accessibleRequired">
+                            <section class="example-section">
+                                <mat-radio-button class="mg-checkbox" value="true">Yes</mat-radio-button>
+                                <mat-radio-button class="mg-checkbox" value="false" [checked]="true">No
+                                </mat-radio-button>
+                            </section>
+                        </mat-radio-group>
                     </div>
 
                     <mat-form-field appearance="fill" class="input-style-45">
                         <mat-label>Choose an room</mat-label>
-                        <mat-select>
-                            <mat-option value="Single">Single Bed</mat-option>
-                            <mat-option value="Double">Double Bed</mat-option>
-                            <mat-option value="Delux">Delux Bed</mat-option>
+                        <mat-select formControlName="roomType">
+                            <mat-option value="single">Single Bed</mat-option>
+                            <mat-option value="double">Double Bed</mat-option>
+                            <mat-option value="delux">Delux Bed</mat-option>
                         </mat-select>
                     </mat-form-field>
                     <mat-form-field appearance="fill" class="input-style-45">
@@ -113,8 +121,10 @@
                         <input matInput formControlName="occcupants" placeholder="Occupants">
                     </mat-form-field>
                     <div>
-                        <button mat-stroked-button class="bg-btn-book" type="submit">Book</button>
-                        <button mat-stroked-button class="bg-btn-color" type="submit">Clear</button>
+                        <button mat-stroked-button class="bg-btn-book" [disabled]="!bookAdminForm.valid"
+                            type="submit">Book</button>
+                        <button mat-stroked-button type="button" class="bg-btn-color"
+                            (click)="resetForm()">Clear</button>
                     </div>
                 </form>
             </div>

@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { UserService } from '../../services/user/user.service';
 import { BookingsService } from 'src/app/services/booking/bookings.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-booking',
@@ -13,78 +14,88 @@ import { BookingsService } from 'src/app/services/booking/bookings.service';
 export class BookingComponent implements OnInit {
   bookAdminForm!: FormGroup;
 
-  constructor(private fb: FormBuilder, 
+
+  constructor(private fb: FormBuilder,
     private userService: UserService,
     private bookingService: BookingsService,
-    private router: Router) { 
+    private router: Router, private snackBar: MatSnackBar) {
 
-      this.bookAdminForm = this.fb.group({
-        firstName: new FormControl(),
-        middleName: new FormControl(), 
-        lastName: new FormControl(), 
-        phoneNumber: new FormControl(),
-        email: new FormControl(), 
-        staff: new FormControl(), 
-        student: new FormControl(),
-        guest: new FormControl(), 
-        checkOutDate: new FormControl(),
-        checkInDate: new FormControl(),
-        purposeOfStay: new FormControl(),
-        accessibleRequired: new FormControl(),
-        occcupants: new FormControl(),
-        arrivalTime: new FormControl(),
-        numberOfGuests: new FormControl()
-      })
+    this.bookAdminForm = this.fb.group({
+      userId: new FormControl(),
+      firstName: new FormControl(null, Validators.required),
+      middleName: new FormControl(),
+      lastName: new FormControl(null, Validators.required),
+      phoneNumber: new FormControl(null, Validators.required),
+      email: new FormControl(null, [Validators.required, Validators.email]),
+      bookingFor: new FormControl(null, [Validators.required]),
+      checkOutDate: new FormControl(null, [Validators.required]),
+      checkInDate: new FormControl(null, [Validators.required]),
+      purposeOfStay: new FormControl(),
+      accessibleRequired: new FormControl(),
+      occcupants: new FormControl(),
+      arrivalTime: new FormControl(),
+      numberOfGuests: new FormControl(),
+      roomType: new FormControl(null, [Validators.required]),
+    })
   }
 
   ngOnInit(): void {
   }
 
-  addBookAdmin(): void{
+  addBookAdmin(): void {
     const checkInDate = new Date(this.bookAdminForm.value.checkInDate).getTime();
     const checkOutDate = new Date(this.bookAdminForm.value.checkOutDate).getTime();
+    const arrivalTime = new Date(this.bookAdminForm.value.arrivalTime).getTime();
     const middleName = this.bookAdminForm.value.middleName ? this.bookAdminForm.value.middleName : '';
-    const guest = this.bookAdminForm.value.guest ? this.bookAdminForm.value.guest : '';
-    const staff = this.bookAdminForm.value.staff ? this.bookAdminForm.value.staff : '';
-    const student = this.bookAdminForm.value.student ? this.bookAdminForm.value.student : '';
+    const userState = this.userService.getUserState();
     const body = {
+      userId: userState?.user_id,
       firstName: this.bookAdminForm.value.firstName,
-      middleName: middleName, 
-      lastName: this.bookAdminForm.value.lastName, 
+      middleName: middleName,
+      lastName: this.bookAdminForm.value.lastName,
       phoneNumber: this.bookAdminForm.value.phoneNumber,
-      email: this.bookAdminForm.value.email, 
-      guest: guest, 
-      staff: staff,  
-      student: student,
+      email: this.bookAdminForm.value.email,
+      bookingFor: this.bookAdminForm.value.bookingFor,
       checkOutDate: checkInDate,
       checkInDate: checkOutDate,
       purposeOfStay: this.bookAdminForm.value.purposeOfStay,
-      accessibleRequired: this.bookAdminForm.value.accessibleRequired,
+      accessibleRequired: this.bookAdminForm.value.accessibleRequired === "true" ? true : false,
       occcupants: this.bookAdminForm.value.occcupants,
-      arrivalTime: this.bookAdminForm.value.arrivalTime,
-      numberOfGuests: this.bookAdminForm.value.numberOfGuests
+      arrivalTime: arrivalTime,
+      numberOfGuests: this.bookAdminForm.value.numberOfGuests,
+      roomType: this.bookAdminForm.value.roomType
     }
     console.log("---body---", body);
 
     this.bookingService.addBookUser(body)
       .subscribe(
         {
-          next: (response)=>{
-            this.userService.userState$.next(response);
-            this.userService.persistState();
-            this.router.navigate(['/', 'booking']);
+          next: (response) => {
+            this.openSnackBar(response.message, 'Close');
+            this.resetForm();
           },
-          error:(err)=>{
-            // this.registration_faileds = true;
+          error: (err) => {
+            this.openSnackBar(err.error.message, 'Close');
             console.log(err);
           }
         }
       );
   }
 
-  logout(): void{
+  logout(): void {
     this.userService.logout();
     this.router.navigate(['/', 'login']);
   }
+
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 5000,
+    });
+  }
+
+  resetForm(): void {
+    this.bookAdminForm.reset();
+  }
+
 
 }
