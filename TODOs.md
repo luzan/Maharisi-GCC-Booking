@@ -65,7 +65,7 @@
       - [ ] Payments
       - [ ] Room
     - [ ] User
-      - [ ] Bookings
+      - [x] Bookings
       - [ ] Payments
   - [ ] Admin
     - [x] booking UI CRUD for Admin

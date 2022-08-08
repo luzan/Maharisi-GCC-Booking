@@ -14,6 +14,7 @@ const bookingModel = new Schema({
         firstName: String,
         lastName: String,
         email: String,
+        phoneNumber: String,
     },
     numberOfGuests: Number,
     bookingFor: {
