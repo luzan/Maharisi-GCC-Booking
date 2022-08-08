@@ -1,7 +1,7 @@
 const User = require('../models/userModels');
 const jwt = require('jsonwebtoken');
 const Role = require('../_helpers/roles');
-
+const UserService = require('../services/userService');
 async function getAllUsers(req, res, next) {
     try {
         const users = await User.find().select({ password: 0 });
@@ -34,10 +34,23 @@ async function getUserById(req, res, next) {
 // Todo: parse the req.body only allow roles to be added by admin
 async function createUser(req, res, next) {
     try {
-        const user = await User.create(req.body);
-        res.status(201).json({
-            message: `User created successfully`,
-            data: user
+        const { firstName, middelName, lastName, email, phone, password, gender } = req.body;
+        const userData = {
+            firstName: firstName,
+            middelName: middelName,
+            lastName: lastName,
+            email: email,
+            phone: phone,
+            password: password,
+            gender: gender
+        }
+        await UserService.addNewUser(userData).then(user => {
+            res.status(201).json({
+                message: `User created successfully`,
+                data: user
+            });
+        }).catch(err => {
+            throw err;
         });
     } catch (err) {
         next(err);

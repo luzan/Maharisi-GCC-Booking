@@ -3,9 +3,9 @@ const { createArrayOfDays } = require('../utils/dateUtils');
 // api/v1/rooms/?available=true&accessible=true&building=B&floor=1&checkInDate=1659589200000&checkOutDate=1659589200000
 async function getAllRooms(req, res, next) {
     try {
-        const { accessible, available, building, floor, checkInDate, checkOutDate } = req.query;
+        const { template, accessible, available, building, floor, checkInDate, checkOutDate, roomType } = req.query;
+        let project = {}, filter = {};
 
-        let filter = {};
         if (accessible) {
             filter.isAccessible = accessible == "true" ? true : false;
         }
@@ -15,18 +15,32 @@ async function getAllRooms(req, res, next) {
         if (floor) {
             filter.floor = parseInt(floor);
         }
+        if (roomType) {
+            filter.roomType = roomType;
+        }
+        let projectBy = (template) ? template : "";
+        switch (projectBy) {
+            case "summary":
+                project = { _id: 1, roomType: 1, building: 1, floor: 1, roomNumber: 1, isAccessible: 1, pricePerNight: 1, maxOccupancy: 1 };
+                break;
+            default:
+                project = { _id: 1, roomType: 1, building: 1, floor: 1, roomNumber: 1, isAccessible: 1, pricePerNight: 1, pictureUrl: 1, bookingDates: 1 };
+        }
+
+
         if (available) {
             let daysToSearch = createArrayOfDays(parseInt(checkInDate), parseInt(checkOutDate));
             filter.bookingDates = { $nin: daysToSearch };
         }
 
-        const rooms = await Room.aggregate([{
-            $match: filter
-        }]);
-        res.status(200).json({
-            message: `Rooms found successfully`,
-            data: rooms
+        await Room.aggregate().match(filter).project(project).exec((err, rooms) => {
+            res.status(200).json({
+                message: `Rooms found successfully`,
+                docs: rooms.length,
+                data: rooms
+            });
         });
+
     } catch (err) {
         next(err);
     }
