@@ -2,6 +2,19 @@
     <mat-toolbar class="header">
         <img src="../assets/images/miu-icon.png" class="img-log" />
         <span>Maharishi GCC Booking</span>
+        <span class="example-spacers"></span>
+            <a href="/dashboard/list-booking" class="menu">
+                <button mat-stroked-button class="example-icon btn-menu">Bookings</button>
+            </a>
+            <a href="/dashboard/payment" class="menu">
+                <button mat-stroked-button class="example-icon btn-menu">Payments</button>
+            </a>
+            <a href="/dashboard/room" class="menu">
+                <button mat-stroked-button class="example-icon btn-menu">Rooms</button>
+            </a>
+            <a href="/dashboard/user" class="menu">
+                <button mat-stroked-button class="example-icon btn-menu">Users</button>
+            </a>
         <span class="example-spacer"></span>
         <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon"
             (click)="logout()">
@@ -75,9 +88,10 @@
                         <div class="input-style-100">
                             <mat-label>Booking for :</mat-label>
                             <section class="example-section">
-                                <mat-checkbox class="mg-checkbox" formControlName="staff">Staff</mat-checkbox>
-                                <mat-checkbox class="mg-checkbox" formControlName="student">Student</mat-checkbox>
-                                <mat-checkbox class="mg-checkbox" formControlName="guest">Guest</mat-checkbox>
+                                <mat-radio-button class="mg-checkbox" value="staff" [checked]="true">Staff
+                                </mat-radio-button>
+                                <mat-radio-button class="mg-checkbox" value="student">Student</mat-radio-button>
+                                <mat-radio-button class="mg-checkbox" value="guest">Guest</mat-radio-button>
                             </section>
                         </div>
 
@@ -95,36 +109,42 @@
                         </mat-form-field>
                     </div>
 
-                    <mat-form-field appearance="fill" class="input-style-60 float-left">
+                    <mat-form-field appearance="fill" class="input-style-45 float-left">
                         <mat-label>Enter Purpose of Stay</mat-label>
                         <input matInput placeholder="Purpose of Stay" formControlName="purposeOfStay">
                     </mat-form-field>
-                    <div class="input-style-30 float-right">
-                        <mat-label>Accessibility</mat-label>
-                        <section class="example-section">
-                            <mat-checkbox class="mg-checkbox" formControlName="accessibleRequired">Required
-                            </mat-checkbox>
-                        </section>
+                    <div class="input-style-45 float-right">
+                        <mat-label>Accessibility : </mat-label>
+                        <mat-radio-group aria-label="Select an Option" formControlName="accessibleRequired">
+                            <section class="example-section">
+                                <mat-radio-button class="mg-checkbox" value="true">Yes</mat-radio-button>
+                                <mat-radio-button class="mg-checkbox" value="false" [checked]="true">No
+                                </mat-radio-button>
+                            </section>
+                        </mat-radio-group>
                     </div>
 
-                    <div class="input-style-45 float-left">
+                    <div class="input-style-45 float-right">
                         <mat-label>Discount Type :</mat-label>
-                        <section class="example-section">
-                            <mat-radio-button class="mg-checkbox" value="flat">Flat</mat-radio-button>
-                            <mat-radio-button class="mg-checkbox" value="percentage">Percentage</mat-radio-button>
-                        </section>
+                        <mat-radio-group aria-label="Select an Option" formControlName="discountType">
+                            <section class="example-section">
+                                <mat-radio-button class="mg-checkbox" value="flat">Flat</mat-radio-button>
+                                <mat-radio-button class="mg-checkbox" value="percentage">Percentage</mat-radio-button>
+                            </section>
+                        </mat-radio-group>
                     </div>
-                    <mat-form-field appearance="fill" class="input-style-45">
+
+                    <mat-form-field appearance="fill" class="input-style-100">
                         <mat-label>Enter Discount Of</mat-label>
                         <input matInput formControlName="discountOf" placeholder="Discount Of" required>
                     </mat-form-field>
 
                     <mat-form-field appearance="fill" class="input-style-30">
                         <mat-label>Choose an room</mat-label>
-                        <mat-select>
-                            <mat-option value="Single">Single Bed</mat-option>
-                            <mat-option value="Double">Double Bed</mat-option>
-                            <mat-option value="Delux">Delux Bed</mat-option>
+                        <mat-select formControlName="roomType">
+                            <mat-option value="single">Single Bed</mat-option>
+                            <mat-option value="double">Double Bed</mat-option>
+                            <mat-option value="delux">Delux Bed</mat-option>
                         </mat-select>
                     </mat-form-field>
                     <mat-form-field appearance="fill" class="input-style-30">

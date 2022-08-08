@@ -18,14 +18,12 @@ import { LoginComponent } from './components/login/login.component';
 import { RouterModule } from '@angular/router';
 import { BookingsModule } from './modules/bookings.module';
 import { DashboardModule } from './modules/dashboard.module';
-import { ListBookingComponent } from './components/booking/list-booking/list-booking.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RegisterComponent,
-    LoginComponent,
-    ListBookingComponent
+    LoginComponent
   ],
   imports: [
     BrowserModule,
