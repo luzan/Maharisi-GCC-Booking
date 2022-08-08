@@ -3,26 +3,27 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 
-import { AddBookingComponent } from '../components/booking/add-booking/add-booking.component';
 import { EditBookingComponent } from '../components/booking/edit-booking/edit-booking.component';
 import { BookingComponent } from '../components/booking/booking.component';
 import { MaterialModule } from '../material/material.module';
-
-
+import { PaymentGuestComponent } from '../components/booking/payment-guest/payment-guest.component';
+import { BookingHistoryComponent } from '../components/booking/booking-history/booking-history.component';
 
 @NgModule({
   declarations: [
     BookingComponent,
-    AddBookingComponent,
+    BookingHistoryComponent,
     EditBookingComponent,
+    PaymentGuestComponent,
   ],
   imports: [
     CommonModule,
     // todos
     RouterModule.forChild([
       { path: '', component: BookingComponent },
-      { path: 'add', component: AddBookingComponent },
-      { path: 'edit/:todo_id', component: EditBookingComponent },
+      { path: 'make-payment-guest', component: PaymentGuestComponent },
+      { path: 'book-history', component: BookingHistoryComponent },
+      { path: 'edit', component: EditBookingComponent },
     ]),
     ReactiveFormsModule,
     MaterialModule

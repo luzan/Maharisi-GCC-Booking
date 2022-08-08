@@ -1,5 +1,72 @@
 /* ======= dashbaord-body ======= */
+.bg-btn-booked {
+    background-color: #8aa771;
+    width: 30%;
+    font-size: 30px;
+    color: #fff;
+    margin: 0 0.2%;
+    border-radius: 0;
+    padding: 15px 0;
+    font-weight: bold;
+}
 
+.b-green {
+    background-color: #647754;
+}
+
+.b-yellow {
+    background-color: #fcb806;
+}
+
+.m4 {
+    margin: 0px 4.5%;
+}
+
+.box-img {
+    height: 60px;
+}
+
+.p-txt {
+    font-size: 22px;
+    font-weight: 200;
+    margin: -5px;
+}
+
+.float-left {
+    float: left;
+}
+
+.float-right {
+    float: right;
+}
+
+.bg-btn-color,
+.bg-btn-book {
+    background-color: #fcb806;
+    color: #fff;
+    padding: 10px 0;
+    width: 40%;
+    font-size: 20px;
+    font-weight: 100;
+    margin: 10px 5px 30px 5px;
+    border-radius: 0;
+}
+
+.bg-btn-book {
+    background-color: #8aa771;
+}
+
+.red {
+    color: red;
+}
+
+
+
+
+
+/* */
+
+/* ======= dashbaord-body ======= */
 .example-spacer {
     flex: 1 1 auto;
 }
@@ -7,7 +74,12 @@
 .header {
     color: #fff;
     font-size: 26px;
+    min-height: 63px;
     background-color: #8aa771;
+}
+
+.p10 {
+    padding: 10px 0;
 }
 
 .container {
@@ -53,9 +125,12 @@
     margin: 0 auto;
 }
 
-.bg-btn-booked {        
+.bg-btn-booked,
+.bg-btn-available,
+.bg-btn-checkIns,
+.bg-btn-checkOuts {
     background-color: #8aa771;
-    width: 30%;
+    width: 24.5%;
     font-size: 30px;
     color: #fff;
     margin: 0 0.2%;
@@ -63,56 +138,73 @@
     padding: 15px 0;
     font-weight: bold;
 }
-.b-green{
-    background-color: #647754;
-}
-.b-yellow{
+
+.btn-checkout {
     background-color: #fcb806;
+    color: #fff;
+    padding: 8px 0;
+    width: 98%;
+    font-size: 18px;
+    font-weight: 600;
+    margin: 10px 5px 30px 5px;
+    border-radius: 0;
 }
 
-.m4{    
-    margin: 0px 4.5%;
-}
-
-.box-img{
-    height: 60px;
-}
-
-.p-txt {    
-    font-size: 22px;
-    font-weight: 200;
-    margin: -5px;
-}
-
-.title-book{
+.title-book {
     font-size: 25px;
     font-weight: 200;
     padding-left: 5px;
     padding-bottom: 20px;
+    padding-top: 20px;
+    text-align: left;
 }
 
-.main-list-book {
+.main-list-book, .main-list-room {
     width: 31%;
     margin: 20px auto;
+    margin-left: 0.5%;
+    margin-right: 1.5%;
     font-weight: 100;
     background-color: #f4f7f2;
     float: left;
     padding: 20px;
     text-align: left;
-    min-height: 645px;
+    /* min-height: 645px; */
+    min-height: 700px;
 }
 
-.main-book {
+.main-list-room {
+    background-color: #f4f4f4;
+    min-height: 400px;
+}
+
+.main-list-bg-payment {
+    background-color: #fff;
+    padding: 0;
+}
+
+.main-list-payment {
+    background-color: #f4f4f4;
+    min-height: 280px;
+    margin-bottom: 30px;
+    padding: 20px;
+}
+
+.main-book,
+.main-room {
     width: 60.5%;
     margin: 20px auto;
-    margin-left: 0.5%;
-    margin-right: 1.5%;
     font-weight: 100;
     background-color: #f4f4f4;
     float: left;
     padding: 20px;
     text-align: left;
     min-height: 645px;
+}
+
+.main-room {
+    min-height: 400px;
+    background-color: #fff;
 }
 
 .input-style-30 {
@@ -125,22 +217,23 @@
     margin: 0 5px;
 }
 
-.input-style-100{
+.input-style-100 {
     width: 97.5%;
     margin: 0 5px;
 }
-.input-style-45{
+
+.input-style-45 {
     width: 48%;
     margin: 0 5px;
 }
 
-.box-next-visit{
+.box-next-visit {
     position: relative;
     background: #eaeaea;
     margin-bottom: 15px;
 }
 
-.box-nub-visit{
+.box-nub-visit {
     width: 25%;
     float: left;
     text-align: center;
@@ -153,25 +246,25 @@
     margin-right: 15px;
 }
 
-.number{
+.number {
     vertical-align: middle;
     display: table-cell;
 }
 
-.box-name{
+.box-name {
     margin: 0;
     font-size: 18px;
     font-weight: 400;
     padding: 5px 0;
 }
 
-.box-checkin{
+.box-checkin {
     margin: 0;
     font-size: 16px;
     font-style: italic;
 }
 
-.box-phone{
+.box-phone {
     margin: 0;
     font-size: 16px;
     font-weight: 400;
@@ -179,15 +272,7 @@
     font-style: italic;
 }
 
-.float-left{
-    float: left;
-}
-
-.float-right{
-    float: right;
-}
-
-.mg-checkbox{
+.mg-checkbox {
     margin: 5px 90px 20px 0px
 }
 
@@ -211,8 +296,97 @@
     color: red;
 }
 
-@media only screen and (max-width: 1367)  {
-    .main-book, .main-list-book{
+/* ==== menu ==== */
+.btn-menu {
+    padding: 15px 25px;
+    font-size: 20px;
+    border: none;
+    background-color: #8aa771;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.example-spacers {
+    margin-left: 60px;
+}
+
+.menu {
+    position: relative;
+    min-height: 63px;
+}
+
+/* a:hover, */
+.menu:hover,
+.btn-menu:hover {
+    background-color: #8aa771d6;
+    border-bottom: #818283;
+}
+
+/* ===== table ===== */
+table {
+    width: 100%;
+}
+
+th.mat-sort-header-sorted {
+    color: black;
+}
+
+.text-left {
+    text-align: left;
+}
+.text-center{
+    text-align:center;
+}
+.text-right{
+    text-align:right;
+}
+
+/* === bookig list === */
+.book-list {
+    font-size: 26px;
+    margin: 30px 0;
+}
+
+.bg-th {
+    background-color: #eaeaea;
+    font-size: 18px;
+    font-weight: 100;
+    text-align: center;
+}
+
+.make-payment {
+    float: right;
+    position: absolute;
+    right: 0;
+    top: -15px;
+    padding: 7px 30px;
+    font-size: 18px;
+}
+
+.header-make {
+    padding-left: 2%;
+    padding-right: 5%;
+}
+
+.table-make {
+    margin-bottom: 40px;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+/* end */
+
+
+
+
+
+
+
+@media only screen and (max-width: 1367) {
+
+    .main-book,
+    .main-list-book {
         width: 100%;
     }
 }

@@ -1,4 +1,3 @@
-// import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -17,19 +16,19 @@ export interface PeriodicElement {
   purpose: string;
   room: number;
   amount: string;
-  action:string;
+  action: string;
 }
 const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Hydrogen', checkInDate: 'H', checkOutDate: 'H', purpose: 'H', room:1, amount: 'H', action:''},
-  {position: 2, name: 'Helium', checkInDate: 'H', checkOutDate: 'H', purpose: 'H', room:1, amount: 'H', action:''},
-  {position: 3, name: 'Lithium', checkInDate: 'H', checkOutDate: 'H', purpose: 'H', room:1, amount: 'H', action:''},
-  {position: 4, name: 'Beryllium', checkInDate: 'H', checkOutDate: 'H', purpose: 'H', room:1, amount: 'H', action:''},
-  {position: 5, name: 'Boron', checkInDate: 'H', checkOutDate: 'H', purpose: 'H', room:1, amount: 'H', action:''},
-  {position: 6, name: 'Carbon', checkInDate: 'H', checkOutDate: 'H', purpose: 'H', room:1, amount: 'H', action:''},
-  {position: 7, name: 'Nitrogen', checkInDate: 'H', checkOutDate: 'H', purpose: 'H', room:1, amount: 'H', action:''},
-  {position: 8, name: 'Oxygen', checkInDate: 'H', checkOutDate: 'H', purpose: 'H', room:1, amount: 'H', action:''},
-  {position: 9, name: 'Fluorine', checkInDate: 'H', checkOutDate: 'H', purpose: 'H', room:1, amount: 'H', action:''},
-  {position: 10, name: 'Neon', checkInDate: 'H', checkOutDate: 'H', purpose: 'H', room:1, amount: 'H', action:''},
+  { position: 1, name: 'Hydrogen', checkInDate: 'H', checkOutDate: 'H', purpose: 'H', room: 1, amount: 'H', action: '' },
+  { position: 2, name: 'Helium', checkInDate: 'H', checkOutDate: 'H', purpose: 'H', room: 1, amount: 'H', action: '' },
+  { position: 3, name: 'Lithium', checkInDate: 'H', checkOutDate: 'H', purpose: 'H', room: 1, amount: 'H', action: '' },
+  { position: 4, name: 'Beryllium', checkInDate: 'H', checkOutDate: 'H', purpose: 'H', room: 1, amount: 'H', action: '' },
+  { position: 5, name: 'Boron', checkInDate: 'H', checkOutDate: 'H', purpose: 'H', room: 1, amount: 'H', action: '' },
+  { position: 6, name: 'Carbon', checkInDate: 'H', checkOutDate: 'H', purpose: 'H', room: 1, amount: 'H', action: '' },
+  { position: 7, name: 'Nitrogen', checkInDate: 'H', checkOutDate: 'H', purpose: 'H', room: 1, amount: 'H', action: '' },
+  { position: 8, name: 'Oxygen', checkInDate: 'H', checkOutDate: 'H', purpose: 'H', room: 1, amount: 'H', action: '' },
+  { position: 9, name: 'Fluorine', checkInDate: 'H', checkOutDate: 'H', purpose: 'H', room: 1, amount: 'H', action: '' },
+  { position: 10, name: 'Neon', checkInDate: 'H', checkOutDate: 'H', purpose: 'H', room: 1, amount: 'H', action: '' },
 ];
 @Component({
   selector: 'app-list-booking',
@@ -38,7 +37,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 
 export class ListBookingComponent implements AfterViewInit {
-  displayedColumns: string[] = ['position', 'name', 'checkInDate', 'checkOutDate', 'purpose', 'room','amount', 'action' ];
+  displayedColumns: string[] = ['position', 'name', 'checkInDate', 'checkOutDate', 'purpose', 'room', 'amount', 'action'];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
   constructor(private userService: UserService, private router: Router, private _liveAnnouncer: LiveAnnouncer) { }
   

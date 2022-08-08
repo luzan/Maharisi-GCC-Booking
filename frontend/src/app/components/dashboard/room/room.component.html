@@ -65,22 +65,22 @@
                     <th class="bg-th" mat-header-cell *matHeaderCellDef>
                         Actions
                     </th>
-                    <td mat-cell *matCellDef="let element">
+                    <td mat-cell *matCellDef="let element" class="text-center">
                         <a href="/dashboard/edit-room">
-                            <button mat-icon-button class="example-icon" aria-label="Example icon-button"
+                            <button mat-raised-button matTooltip="edit" mat-icon-button class="example-icon" aria-label="Example icon-button"
                                 (click)="edit()">
                                 <mat-icon>edit</mat-icon>
                             </button>
-                        </a>
+                        </a> &nbsp;
                         <a href="/dashboard/view-room">
-                            <button mat-icon-button class="example-icon" aria-label="Example icon-button"
+                            <button mat-raised-button matTooltip="view" mat-icon-button class="example-icon" aria-label="Example icon-button"
                                 (click)="view()">
                                 <mat-icon>library_books</mat-icon>
                             </button>
-                        </a>
-                        <button mat-icon-button class="example-icon" aria-label="Example icon-button"
-                            (click)="cancel()">
-                            <mat-icon>cancel</mat-icon>
+                        </a> &nbsp;
+                        <button mat-raised-button matTooltip="disable" mat-icon-button class="example-icon" aria-label="Example icon-button"
+                            (click)="disable()">
+                            <mat-icon>sync_disabled</mat-icon>
                         </button>
                     </td>
                 </ng-container>
