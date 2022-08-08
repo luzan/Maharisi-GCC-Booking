@@ -13,13 +13,13 @@ export class AppComponent {
   constructor(private userService: UserService, private router: Router) {
     this.userService.refreshState();
     const userState = this.userService.getUserState();
-    if (userState?.role === 'admin') {
-      this.router.navigate(['/dashboard']);
-    } else if (userState?.role === 'user') {
-      this.router.navigate(['/booking']);
-    } else {
-      this.userService.logout();
-      this.router.navigate(['/login']);
-    }
+    // if (userState?.role === 'admin') {
+    //   this.router.navigate(['/dashboard']);
+    // } else if (userState?.role === 'user') {
+    //   this.router.navigate(['/booking']);
+    // } else {
+    //   this.userService.logout();
+    //   this.router.navigate(['/login']);
+    // }
   }
 }

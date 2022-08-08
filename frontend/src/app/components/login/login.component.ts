@@ -31,7 +31,15 @@ export class LoginComponent {
           next: (response) => {
             this.userService.userState$.next(response);
             this.userService.persistState();
-            this.userService.getUserState()?.role === 'admin' ? this.router.navigate(['/dashboard']) : this.userService.getUserState()?.role === 'admin' ? this.router.navigate(['/booking']) : this.router.navigate(['/login']);
+            const userState = this.userService.getUserState();
+            if (userState?.role === 'admin') {
+              this.router.navigate(['/dashboard']);
+            } else if (userState?.role === 'user') {
+              this.router.navigate(['/booking']);
+            } else {
+              this.userService.logout();
+              this.router.navigate(['/login']);
+            }
           },
           error: (err) => {
             this.registration_faileds = true;
