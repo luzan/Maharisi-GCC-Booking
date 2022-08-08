@@ -22,25 +22,7 @@ export class AddRoomComponent implements OnInit {
         isAccessible: new FormControl(), 
         maxOccupancy: new FormControl(),
         floor: new FormControl(),
-        image: new FormControl(),
-        
-      firstName: new FormControl(),
-      middleName: new FormControl(), 
-      lastName: new FormControl(), 
-      phoneNumber: new FormControl(),
-      email: new FormControl(), 
-      staff: new FormControl(), 
-      student: new FormControl(),
-      guest: new FormControl(), 
-      checkOutDate: new FormControl(),
-      checkInDate: new FormControl(),
-      purposeOfStay: new FormControl(),
-      accessibleRequired: new FormControl(),
-      discountOf: new FormControl(),
-      occcupants: new FormControl(),
-      paidInCash: new FormControl(),
-      discountType: new FormControl(),
-      roomType: new FormControl(),
+        image: new FormControl()
       })
   }
 
