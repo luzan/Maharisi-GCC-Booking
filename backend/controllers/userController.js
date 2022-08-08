@@ -46,6 +46,7 @@ async function createUser(req, res, next) {
 
 async function updateUser(req, res, next) {
     try {
+        const currentUser = req.user;
         const userID = req.params.id;
         if (userID !== currentUser.user_id && currentUser.role !== Role.Admin) {
             return res.status(401).json({ message: 'Unauthorized' });
@@ -62,6 +63,7 @@ async function updateUser(req, res, next) {
 
 async function deleteUser(req, res, next) {
     try {
+        const currentUser = req.user;
         const userID = req.params.id;
         if (userID !== currentUser.user_id && currentUser.role !== Role.Admin) {
             return res.status(401).json({ message: 'Unauthorized' });
