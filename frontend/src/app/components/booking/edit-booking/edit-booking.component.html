@@ -1,26 +1,187 @@
-<p>edit booking works!</p>
 <div class="container">
-    <img src="../assets/images/logo.png" class="img-log"/>
-    <p class="title-txt">Guest and Conference Center</p>
-    <!-- <p class="red" *ngIf="registration_faileds">{{registration_failed_message}}</p> -->
-    <!-- <form [formGroup]="loginForm" (ngSubmit)="login()"> -->
-        <p>
-            <mat-form-field appearance="fill" class="input-style">
-                <mat-label>Enter your email</mat-label>
-                <input matInput placeholder="abc@example.com" formControlName="email" required>
-                <!-- <div *ngIf="loginForm.get('email')?.touched && !loginForm.get('email')?.valid">{{email_required}}</div> -->
-            </mat-form-field>
-        </p>
-        <p>
-            <mat-form-field appearance="fill" class="input-style">
-                <mat-label>Password</mat-label>
-                <input type="password" matInput placeholder="******" formControlName="password" required>
-                <!-- <div *ngIf="loginForm.get('password')?.touched && !loginForm.get('password')?.valid">{{password_required}}</div> -->
-            </mat-form-field>
-        </p>
-        <button mat-stroked-button class="bg-btn-color" type="submit">Login</button>
-    <!-- </form> -->
-    <a href="/register">
-        <p class="regis-txt">Register New User</p>
-    </a>
+    <mat-toolbar class="header">
+        <img src="../assets/images/miu-icon.png" class="img-log" />
+        <span>Maharishi GCC Booking</span>
+        <span class="example-spacers"></span>
+        <a href="/booking/book-history" class="menu">
+            <button mat-stroked-button class="example-icon btn-menu">My Bookings</button>
+        </a>
+        <a href="/booking/make-payment-guest" class="menu">
+            <button mat-stroked-button class="example-icon btn-menu">Payments</button>
+        </a>
+        <span class="example-spacer"></span>
+        <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon"
+            (click)="logout()">
+            <mat-icon>logout</mat-icon>
+        </button>
+    </mat-toolbar>
+    <div class="dashbaord-body">
+        <div class="book-box">
+            <button mat-stroked-button class="bg-btn-booked">
+                <p class="box-img"></p>
+                <p class="p-txt"> Single Bed </p>
+                <p class="p-txt"> $35/night </p>
+            </button>
+            <button mat-stroked-button class="bg-btn-booked m4 b-yellow">
+                <p class="box-img"></p>
+                <p class="p-txt"> Double Bed </p>
+                <p class="p-txt"> $45/night </p>
+            </button>
+            <button mat-stroked-button class="bg-btn-booked b-green">
+                <p class="box-img"></p>
+                <p class="p-txt"> Delux Bed </p>
+                <p class="p-txt"> $50/night </p>
+            </button>
+        </div>
+        <div class="book-box">
+            <!-- <p class="red" *ngIf="registration_faileds">{{registration_failed_message}}</p> -->
+
+            <!-- body left  -->
+            <div class="main-book">
+                <p class="title-book">Edit Booking</p>
+                <form [formGroup]="bookAdminForm" (ngSubmit)="editBookAdmin()">
+                    <div>
+                        <mat-form-field appearance="fill" class="input-style-30">
+                            <mat-label>Enter your first name</mat-label>
+                            <input matInput placeholder="First Name" formControlName="firstName" required>
+                        </mat-form-field>
+                        <mat-form-field appearance="fill" class="input-style-30">
+                            <mat-label>Enter your middle name</mat-label>
+                            <input matInput formControlName="middleName" placeholder="Middle name">
+                        </mat-form-field>
+                        <mat-form-field appearance="fill" class="input-style-30">
+                            <mat-label>Enter your last name</mat-label>
+                            <input matInput formControlName="lastName" placeholder="Last name" required>
+                        </mat-form-field>
+
+                        <mat-form-field appearance="fill" class="input-style-30">
+                            <mat-label>Enter your phone</mat-label>
+                            <input type="number" formControlName="phoneNumber" matInput placeholder="phone">
+                        </mat-form-field>
+                        <mat-form-field appearance="fill" class="input-style-60">
+                            <mat-label>Enter your email</mat-label>
+                            <input type="email" formControlName="email" matInput placeholder="Email" required>
+                        </mat-form-field>
+
+                        <div class="input-style-100">
+                            <mat-label>Booking for :</mat-label>
+                            <mat-radio-group aria-label="Select an option" formControlName="bookingFor">
+                                <section class="example-section">
+                                    <mat-radio-button class="mg-checkbox" value="staff" [checked]="true">Staff
+                                    </mat-radio-button>
+                                    <mat-radio-button class="mg-checkbox" value="student">Student</mat-radio-button>
+                                    <mat-radio-button class="mg-checkbox" value="guest">Guest</mat-radio-button>
+                                </section>
+                            </mat-radio-group>
+                        </div>
+
+                        <mat-form-field color="accent" appearance="fill" class="input-style-45">
+                            <mat-label>CheckIn Date (MM/DD/YYYY)</mat-label>
+                            <input matInput [matDatepicker]="checkInDate" formControlName="checkInDate">
+                            <mat-datepicker-toggle matSuffix [for]="checkInDate"></mat-datepicker-toggle>
+                            <mat-datepicker #checkInDate color="primary"></mat-datepicker>
+                        </mat-form-field>
+                        <mat-form-field color="accent" appearance="fill" class="input-style-45">
+                            <mat-label>CheckIn Date (MM/DD/YYYY)</mat-label>
+                            <input matInput [matDatepicker]="checkOutDate" formControlName="checkOutDate">
+                            <mat-datepicker-toggle matSuffix [for]="checkOutDate"></mat-datepicker-toggle>
+                            <mat-datepicker #checkOutDate color="primary"></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+
+                    <mat-form-field appearance="fill" class="input-style-45">
+                        <mat-label>Enter Arrival Time</mat-label>
+                        <!-- <input type="number" matInput placeholder="Arrival Time" required> -->
+                        <input matInput formControlName="arrivalTime" type="datetime-local" placeholder="start date">
+                    </mat-form-field>
+                    <mat-form-field appearance="fill" class="input-style-45">
+                        <mat-label>Number Of Guests</mat-label>
+                        <input type="number" formControlName="numberOfGuests" matInput placeholder="Number Of Guests"
+                            required>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="fill" class="input-style-60 float-left">
+                        <mat-label>Enter Purpose of Stay</mat-label>
+                        <input matInput placeholder="Purpose of Stay" formControlName="purposeOfStay">
+                    </mat-form-field>
+                    <div class="input-style-100">
+                        <mat-label>Accessibility</mat-label>
+                        <mat-radio-group aria-label="Select an Option" formControlName="accessibleRequired">
+                            <section class="example-section">
+                                <mat-radio-button class="mg-checkbox" value="true">Yes</mat-radio-button>
+                                <mat-radio-button class="mg-checkbox" value="false" [checked]="true">No
+                                </mat-radio-button>
+                            </section>
+                        </mat-radio-group>
+                    </div>
+
+                    <mat-form-field appearance="fill" class="input-style-45">
+                        <mat-label>Choose an room</mat-label>
+                        <mat-select formControlName="roomType">
+                            <mat-option value="single">Single Bed</mat-option>
+                            <mat-option value="double">Double Bed</mat-option>
+                            <mat-option value="delux">Delux Bed</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field appearance="fill" class="input-style-45">
+                        <mat-label>Enter Occupants</mat-label>
+                        <input matInput formControlName="occcupants" placeholder="Occupants">
+                    </mat-form-field>
+                    <div>
+                        <button mat-stroked-button class="bg-btn-book" [disabled]="!bookAdminForm.valid"
+                            type="submit">Book</button>
+                        <button mat-stroked-button type="button" class="bg-btn-color"
+                            (click)="resetForm()">Clear</button>
+                    </div>
+                </form>
+            </div>
+            <!-- end body left  -->
+
+            <!-- body right  -->
+            <div class="main-list-book">
+                <p class="title-book">Next Visits</p>
+                <div class="box-next-visit">
+                    <div class="box-nub-visit">
+                        <p class="number"> 8 </p>
+                    </div>
+                    <div class="box-title-right">
+                        <p class="box-name">Luzan Baral</p>
+                        <p class="box-checkin">CheckIn: Aug 3, 2022</p>
+                        <p class="box-phone">(641)-123-1234</p>
+                    </div>
+                </div>
+                <div class="box-next-visit">
+                    <div class="box-nub-visit">
+                        <p class="number"> 8 </p>
+                    </div>
+                    <div class="box-title-right">
+                        <p class="box-name">Luzan Baral</p>
+                        <p class="box-checkin">CheckIn: Aug 3, 2022</p>
+                        <p class="box-phone">(641)-123-1234</p>
+                    </div>
+                </div>
+                <div class="box-next-visit">
+                    <div class="box-nub-visit">
+                        <p class="number"> 8 </p>
+                    </div>
+                    <div class="box-title-right">
+                        <p class="box-name">Luzan Baral</p>
+                        <p class="box-checkin">CheckIn: Aug 3, 2022</p>
+                        <p class="box-phone">(641)-123-1234</p>
+                    </div>
+                </div>
+                <div class="box-next-visit">
+                    <div class="box-nub-visit">
+                        <p class="number"> 8 </p>
+                    </div>
+                    <div class="box-title-right">
+                        <p class="box-name">Luzan Baral</p>
+                        <p class="box-checkin">CheckIn: Aug 3, 2022</p>
+                        <p class="box-phone">(641)-123-1234</p>
+                    </div>
+                </div>
+            </div>
+            <!-- end body right -->
+        </div>
+    </div>
 </div>

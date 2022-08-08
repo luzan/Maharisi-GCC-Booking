@@ -64,11 +64,11 @@
                         Actions
                     </th>
                     <td mat-cell *matCellDef="let element" class="text-center">
-                        <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon"
+                        <button mat-raised-button matTooltip="change role" mat-icon-button class="example-icon" aria-label="Example icon-button with share icon"
                             (click)="edit()">
                             <mat-icon>edit</mat-icon>
-                        </button>
-                        <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon"
+                        </button> &nbsp;
+                        <button mat-raised-button matTooltip="delete" mat-icon-button class="example-icon" aria-label="Example icon-button with share icon"
                             (click)="cancel()">
                             <mat-icon>cancel</mat-icon>
                         </button>

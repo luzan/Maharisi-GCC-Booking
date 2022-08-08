@@ -14,7 +14,7 @@ import { BookingHistoryComponent } from '../components/booking/booking-history/b
     BookingComponent,
     BookingHistoryComponent,
     EditBookingComponent,
-    PaymentGuestComponent
+    PaymentGuestComponent,
   ],
   imports: [
     CommonModule,
@@ -23,6 +23,7 @@ import { BookingHistoryComponent } from '../components/booking/booking-history/b
       { path: '', component: BookingComponent },
       { path: 'make-payment-guest', component: PaymentGuestComponent },
       { path: 'book-history', component: BookingHistoryComponent },
+      { path: 'edit', component: EditBookingComponent },
     ]),
     ReactiveFormsModule,
     MaterialModule

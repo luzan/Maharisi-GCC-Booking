@@ -66,9 +66,7 @@ export class RoomComponent implements AfterViewInit {
 
   edit(): void{}
 
-  pay(): void{}
-
-  cancel(): void{}
+  disable(): void{}
 
   view(): void{}
 
