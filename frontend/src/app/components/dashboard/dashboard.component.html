@@ -1,7 +1,7 @@
 <div class="container">
     <mat-toolbar class="header">
         <img src="../assets/images/miu-icon.png" class="img-log" />
-        <span>Maharisi GCC Booking</span>
+        <span>Maharishi GCC Booking</span>
         <span class="example-spacer"></span>
         <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon"
             (click)="logout()">
@@ -35,8 +35,8 @@
                     </div>
                     <div class="box-title-right">
                         <p class="box-name">
-                            {{dash.user.firstName ? dash.user.firstName : "Empty"}} 
-                            {{dash.user.lastName ? dash.user.lastName : "Empty"}} 
+                            {{dash.user.firstName ? dash.user.firstName : "Empty"}}
+                            {{dash.user.lastName ? dash.user.lastName : "Empty"}}
                         </p>
                         <p class="box-checkin">CheckIn: {{dash.checkInDate ? dash.checkInDate : "Aug 3, 2022"}}</p>
                         <p class="box-phone">{{dash.phoneNumber ? dash.phoneNumber : "Empty"}} </p>
@@ -80,7 +80,7 @@
                                 <mat-checkbox class="mg-checkbox" formControlName="guest">Guest</mat-checkbox>
                             </section>
                         </div>
-                        
+
                         <mat-form-field color="accent" appearance="fill" class="input-style-45">
                             <mat-label>CheckIn Date (MM/DD/YYYY)</mat-label>
                             <input matInput [matDatepicker]="checkInDate" formControlName="checkInDate">
@@ -98,11 +98,12 @@
                     <mat-form-field appearance="fill" class="input-style-60 float-left">
                         <mat-label>Enter Purpose of Stay</mat-label>
                         <input matInput placeholder="Purpose of Stay" formControlName="purposeOfStay">
-                    </mat-form-field> 
+                    </mat-form-field>
                     <div class="input-style-30 float-right">
                         <mat-label>Accessibility</mat-label>
                         <section class="example-section">
-                            <mat-checkbox class="mg-checkbox" formControlName="accessibleRequired">Required</mat-checkbox>
+                            <mat-checkbox class="mg-checkbox" formControlName="accessibleRequired">Required
+                            </mat-checkbox>
                         </section>
                     </div>
 
@@ -116,7 +117,7 @@
                     <mat-form-field appearance="fill" class="input-style-45">
                         <mat-label>Enter Discount Of</mat-label>
                         <input matInput formControlName="discountOf" placeholder="Discount Of" required>
-                    </mat-form-field> 
+                    </mat-form-field>
 
                     <mat-form-field appearance="fill" class="input-style-30">
                         <mat-label>Choose an room</mat-label>
