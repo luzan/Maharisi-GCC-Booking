@@ -10,9 +10,10 @@ function createArrayOfDays(startDate, endDate) {
     let allDays = [];
     startDate = sanitizeDate(startDate);
     endDate = sanitizeDate(endDate);
-    for (let i = startDate; i <= endDate; i = i + MILLISECONDS_IN_DAY) {
-        allDays.push(i);
-    }
+    do {
+        allDays.push(startDate);
+        startDate += MILLISECONDS_IN_DAY;
+    } while (startDate <= endDate);
     return allDays;
 }
 
