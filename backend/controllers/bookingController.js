@@ -33,12 +33,11 @@ async function createBooking(req, res, next) {
     try {
         const currentUser = req.user;
         const {
-            roomId, roomType, userId, firstName, lastName, email,
+            roomId, roomType, userId, firstName, lastName, email, phoneNumber,
             numberOfGuests, accessibleRequired,
             checkInDate, checkOutDate, arrivalTime, departureTime,
             purposeOfStay, bookingFor
         } = req.body;
-
         if (userId !== currentUser.user_id && currentUser.role !== Role.Admin) {
             return res.status(401).json({ message: 'Unauthorized' });
         }
@@ -71,6 +70,7 @@ async function createBooking(req, res, next) {
                     firstName: firstName,
                     lastName: lastName,
                     email: email,
+                    phoneNumber: phoneNumber
                 },
                 numberOfGuests: numberOfGuests,
                 accessibleRequired: accessibleRequired,
