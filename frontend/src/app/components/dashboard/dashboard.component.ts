@@ -36,6 +36,8 @@ export class DashboardComponent implements OnInit {
       accessibleRequired: new FormControl(),
       discountOf: new FormControl(),
       occcupants: new FormControl(),
+      discountType: new FormControl(),
+      roomType: new FormControl(),
       paidInCash: new FormControl()
     })
 
