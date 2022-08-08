@@ -8,7 +8,8 @@ const roomModel = new Schema({
     },
     roomType: {
         type: String,
-        required: true
+        enum: ['single', 'double', 'deluxe'],
+        default: 'single',
     },
     isAccessible: {
         type: Boolean,

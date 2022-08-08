@@ -46,7 +46,16 @@ async function getRoomById(req, res, next) {
 
 async function createRoom(req, res, next) {
     try {
-        const room = await Room.create(req.body);
+        const { roomNumber, building, floor, isAccessible, roomType, pricePerNight, pictureUrl } = req.body;
+        const room = await Room.create({
+            building: building,
+            roomNumber: roomNumber,
+            floor: floor,
+            isAccessible: isAccessible,
+            roomType: roomType,
+            pricePerNight: pricePerNight,
+
+        });
         res.status(201).json({
             message: `Room created successfully`,
             data: room
