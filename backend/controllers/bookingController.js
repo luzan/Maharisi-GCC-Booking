@@ -3,11 +3,14 @@ const RoomService = require('../services/roomService');
 const { createArrayOfDays, sanitizeDate } = require('../utils/dateUtils');
 const Utils = require('../utils/tools');
 const Role = require('../_helpers/roles');
+
 async function getAllBookings(req, res, next) {
     try {
+        const { limit } = req.query;
         const bookings = await Booking.find();
         res.status(200).json({
-            bookings: bookings
+            success: true,
+            data: bookings
         });
     } catch (err) {
         next(err);
@@ -22,7 +25,8 @@ async function getBookingById(req, res, next) {
             return res.status(401).json({ message: 'Unauthorized' });
         }
         res.status(200).json({
-            booking: booking
+            success: true,
+            data: booking
         });
     } catch (err) {
         next(err);
@@ -44,13 +48,7 @@ async function createBooking(req, res, next) {
 
         let daysToBook = createArrayOfDays(checkInDate, checkOutDate);
         let roomAvailable;
-        // Todo: move it to admin controller and also add discount logic
-        // if (roomId) {
-        //     roomAvailable = await RoomService.checkRoomAvailabilityForBooking(roomId, daysToBook);
-        // roomAvailable = roomAvailable[0];
-        // } else {
-        //     throw new Error(`Room ID is required`);
-        // }
+
         let query = {};
         accessibleRequired == true ? query.isAccessible = true : null;
         if (roomType) {
@@ -88,13 +86,66 @@ async function createBooking(req, res, next) {
             const bookingResponse = await Booking.create(booking);
 
             res.status(201).json({
-                message: `Booking created successfully`, booking: bookingResponse
+                success: true,
+                message: `Booking created successfully`,
+                data: bookingResponse
             });
         } else {
             res.status(400).json({
+                success: false,
                 message: `Room is already booked for that period`
             });
         }
+    } catch (err) {
+        next(err);
+    }
+}
+
+async function createBookingByAdmin(req, res, next) {
+    try {
+        const {
+            roomId, roomType, roomNumber, firstName, lastName, email, phoneNumber,
+            numberOfGuests, accessibleRequired,
+            checkInDate, checkOutDate, arrivalTime, departureTime,
+            purposeOfStay, bookingFor, discountType, discountOf, pricePerNight
+        } = req.body;
+
+        let daysToBook = createArrayOfDays(checkInDate, checkOutDate);
+        let totalAmount = parseInt(pricePerNight) * daysToBook.length;
+        let discountedAmount = Utils.applyDiscount(totalAmount, discountType, parseInt(discountOf));
+
+        const booking = {
+            room: {
+                room_id: roomId,
+                roomNumber: roomNumber,
+            },
+            user: {
+                firstName: firstName,
+                lastName: lastName,
+                email: email,
+                phoneNumber: phoneNumber
+            },
+            numberOfGuests: numberOfGuests,
+            accessibleRequired: accessibleRequired,
+            checkInDate: sanitizeDate(checkInDate),
+            checkOutDate: sanitizeDate(checkOutDate),
+            arrivalTime: arrivalTime ? arrivalTime : null,
+            departureTime: departureTime ? departureTime : null,
+            bookingFor: bookingFor,
+            purposeOfStay: purposeOfStay,
+            cost: {
+                regularPrice: totalAmount,
+                discountType: discountType,
+                discountOf: parseInt(discountOf),
+                totalPrice: discountedAmount,
+            }
+        }
+        const bookingResponse = await Booking.create(booking);
+
+        res.status(201).json({
+            message: `Booking created successfully`, data: bookingResponse
+        });
+
     } catch (err) {
         next(err);
     }
@@ -155,5 +206,6 @@ module.exports = {
     getBookingById,
     createBooking,
     updateBooking,
-    deleteBooking
+    deleteBooking,
+    createBookingByAdmin
 }

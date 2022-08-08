@@ -7,7 +7,9 @@ require('dotenv').config()
 mongoose.connect(`mongodb+srv://miuBooking:${process.env.MONGO_PWD}@cluster0.ujquu0n.mongodb.net/?retryWrites=true&w=majority`, { useNewUrlParser: true });
 
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+    origin: '*'
+}));
 
 app.use('/api/v1/users', require('./routers/users'));
 app.use('/api/v1/rooms', require('./routers/rooms'));
@@ -28,4 +30,4 @@ app.use((err, req, res, next) => {
     // default to 500 server error
     return res.status(500).json({ message: err.message })
 })
-app.listen(`${process.env.PORT}`, () => { console.log(`Listening on 3000`); })
+app.listen(`${process.env.PORT}`, () => { console.log(`Listening on ${process.env.PORT}`); })
