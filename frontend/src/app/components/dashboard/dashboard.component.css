@@ -10,6 +10,10 @@
     background-color: #8aa771;
 }
 
+.p10{
+    padding: 10px 0;
+}
+
 .container {
     margin: 0 auto;
 }
@@ -92,7 +96,7 @@
     padding-bottom: 20px;
 }
 
-.main-list-book {
+.main-list-book, main-list-room {
     width: 31%;
     margin: 20px auto;
     margin-left: 0.5%;
@@ -104,8 +108,12 @@
     text-align: left;
     min-height: 645px;
 }
+.main-list-room{
+    background-color: #f4f4f4;
+    min-height: 400px;
+}
 
-.main-book {
+.main-book, .main-room {
     width: 60.5%;
     margin: 20px auto;
     font-weight: 100;
@@ -114,6 +122,10 @@
     padding: 20px;
     text-align: left;
     min-height: 645px;
+}
+.main-room{
+    min-height: 400px;
+    background-color: #fff;
 }
 
 .input-style-30 {
@@ -233,7 +245,7 @@
     min-height: 63px;
 }
 
-a:hover,
+/* a:hover, */
 .menu:hover,
 .btn-menu:hover {
     background-color: #8aa771d6;

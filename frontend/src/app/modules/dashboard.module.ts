@@ -10,6 +10,10 @@ import { EditDashboardComponent } from '../components/dashboard/edit-dashboard/e
 
 import { PaymentComponent } from '../components/dashboard/payment/payment.component';
 import { RoomComponent } from '../components/dashboard/room/room.component';
+import { AddRoomComponent } from '../components/dashboard/room/add-room/add-room.component';
+import { EditRoomComponent } from '../components/dashboard/room/edit-room/edit-room.component';
+import { ViewRoomComponent } from '../components/dashboard/room/view-room/view-room.component';
+
 import { UserComponent } from '../components/dashboard/user/user.component';
 import { ListBookingComponent } from '../components/dashboard/list-booking/list-booking.component';
 
@@ -21,6 +25,9 @@ import { ListBookingComponent } from '../components/dashboard/list-booking/list-
     ListBookingComponent,
     PaymentComponent,
     RoomComponent,
+    AddRoomComponent,
+    EditRoomComponent,
+    ViewRoomComponent,
     UserComponent,
   ],
   imports: [
@@ -30,6 +37,9 @@ import { ListBookingComponent } from '../components/dashboard/list-booking/list-
       { path: 'list-booking', component: ListBookingComponent },
       { path: 'payment', component: PaymentComponent },
       { path: 'room', component: RoomComponent },
+      { path: 'view-room', component: ViewRoomComponent },
+      { path: 'add-room', component: AddRoomComponent },
+      { path: 'edit-room', component: EditRoomComponent },
       { path: 'user', component: UserComponent },
     ]),
     ReactiveFormsModule,
