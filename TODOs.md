@@ -8,6 +8,7 @@
   - [x] hash password
 - [x] Rooms Models
   - [x] number, storied(2), accessible, number of occupant (1-2)
+  - [ ] change roomType to enum
   - [x] add booking days as individual days in room
   - [ ] test booking days
     - [x] on start
@@ -35,6 +36,7 @@
   - [x] when payment is done, booking's Payment Flag to be changed to paid
   - [x] no delete operation on payment
 - [x] Room Crud
+  - [ ] Get Room by Room Type
 - [ ] Payment
   - [x] Add user information in payment
 
@@ -42,6 +44,10 @@
 - [x] Login using JWT
   - [x] Roles based authorization
 - [ ] Upload Image to S3
+
+### Needs Attention
+- [ ] Room with same room number can be added multiple times
+- [ ] User should be able to cancel their own booking (solve with flag)
 
 
 ### FrontEnd

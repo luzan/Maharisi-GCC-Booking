@@ -19,7 +19,7 @@ async function getPaymentById(req, res, next) {
         const currentUser = req.user;
         const payment = await Payment.findById(req.params.id);
         // only allow admins to access other user records
-        if (payment.user.user_id !== currentUser.user_id && currentUser.role !== Role.Admin) {
+        if (payment.user.user_id.toString() !== currentUser.user_id && currentUser.role !== Role.Admin) {
             return res.status(401).json({ message: 'Unauthorized' });
         }
         res.status(200).json({

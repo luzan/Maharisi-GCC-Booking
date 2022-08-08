@@ -31,6 +31,7 @@ async function getUserById(req, res, next) {
     }
 }
 
+// Todo: parse the req.body only allow roles to be added by admin
 async function createUser(req, res, next) {
     try {
         const user = await User.create(req.body);
@@ -45,6 +46,7 @@ async function createUser(req, res, next) {
 
 async function updateUser(req, res, next) {
     try {
+        const currentUser = req.user;
         const userID = req.params.id;
         if (userID !== currentUser.user_id && currentUser.role !== Role.Admin) {
             return res.status(401).json({ message: 'Unauthorized' });
@@ -61,6 +63,7 @@ async function updateUser(req, res, next) {
 
 async function deleteUser(req, res, next) {
     try {
+        const currentUser = req.user;
         const userID = req.params.id;
         if (userID !== currentUser.user_id && currentUser.role !== Role.Admin) {
             return res.status(401).json({ message: 'Unauthorized' });
