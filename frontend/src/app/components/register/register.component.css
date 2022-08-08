@@ -1,0 +1,58 @@
+.example-container .mat-form-field+.mat-form-field {
+    margin-left: 80px;
+}
+
+.container {
+    font-family: sans-serif;
+    width: 500px;
+    margin: 0 auto;
+    text-align: center;
+    font-weight: 100;
+}
+.container {
+    font-family: sans-serif;
+    width: 500px;
+    margin: 0 auto;
+    text-align: center;
+    font-weight: 100;
+}
+
+.img-log {
+    margin-top: 100px;
+    width: 400px;
+}
+
+.input-style {
+    width: 75%;
+}
+
+.mat-form-field-appearance-fill .mat-form-field-underline::before {
+    background-color: #fcb806;
+}
+
+.bg-btn-color {
+    background-color: #fcb806;
+    color: #fff;
+    padding: 10px 0;
+    width: 75%;
+    font-size: 20px;
+    font-weight: 100;
+    margin: 10px 0 30px 0;
+}
+
+.title-txt {
+    padding: 20px 0;
+    color: #818283;
+    font-size: 30px;
+}
+
+a,
+.regis-txt {
+    color: #8aa771;
+    font-size: 18px;
+    font-weight: 10;
+}
+
+.red{
+    color: red;
+}
