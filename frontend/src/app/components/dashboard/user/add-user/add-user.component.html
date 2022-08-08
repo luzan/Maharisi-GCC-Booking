@@ -1,0 +1,100 @@
+<div class="container">
+    <mat-toolbar class="header">
+        <img src="../assets/images/miu-icon.png" class="img-log" />
+        <span>Maharishi GCC Booking</span>
+        <span class="example-spacers"></span>
+            <a href="/dashboard/list-booking" class="menu">
+                <button mat-stroked-button class="example-icon btn-menu">Bookings</button>
+            </a>
+            <a href="/dashboard/payment" class="menu">
+                <button mat-stroked-button class="example-icon btn-menu">Payments</button>
+            </a>
+            <a href="/dashboard/room" class="menu">
+                <button mat-stroked-button class="example-icon btn-menu">Rooms</button>
+            </a>
+            <a href="/dashboard/user" class="menu">
+                <button mat-stroked-button class="example-icon btn-menu">Users</button>
+            </a>
+        <span class="example-spacer"></span>
+        <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon"
+            (click)="logout()">
+            <mat-icon>logout</mat-icon>
+        </button>
+    </mat-toolbar>
+    <div class="dashbaord-body">
+        <div class="book-box">
+            <!-- <p class="red" *ngIf="registration_faileds">{{registration_failed_message}}</p> -->
+
+            <!-- body left  -->
+            <div class="main-book main-room">
+                <p class="title-book">Add New User</p>
+                <form [formGroup]="addUserForm" (ngSubmit)="addUser()">
+                    <div>
+                        <mat-form-field appearance="fill" class="input-style-30">
+                            <mat-label>Enter your first name</mat-label>
+                            <input matInput placeholder="First Name" formControlName="firstName" required>
+                        </mat-form-field>
+                        <mat-form-field appearance="fill" class="input-style-30">
+                            <mat-label>Enter your middle name</mat-label>
+                            <input matInput formControlName="middleName" placeholder="Middle name">
+                        </mat-form-field>
+                        <mat-form-field appearance="fill" class="input-style-30">
+                            <mat-label>Enter your last name</mat-label>
+                            <input matInput formControlName="lastName" placeholder="Last name" required>
+                        </mat-form-field>
+
+                        <mat-form-field appearance="fill" class="input-style-30">
+                            <mat-label>Enter your phone</mat-label>
+                            <input type="number" formControlName="phoneNumber" matInput placeholder="phone">
+                        </mat-form-field>
+                        <mat-form-field appearance="fill" class="input-style-60">
+                            <mat-label>Enter your email</mat-label>
+                            <input type="email" formControlName="email" matInput placeholder="Email" required>
+                        </mat-form-field>
+                    </div>
+                    
+                    <div class="input-style-100">
+                        <mat-label>Role :</mat-label>
+                        <section class="example-section">
+                            <mat-radio-button class="mg-checkbox" value="staff" [checked]="true">Staff
+                            </mat-radio-button>
+                            <mat-radio-button class="mg-checkbox" value="student">Student</mat-radio-button>
+                            <mat-radio-button class="mg-checkbox" value="guest">Guest</mat-radio-button>
+                        </section>
+                    </div>
+
+                    <div>
+                        <button mat-stroked-button class="bg-btn-book" type="submit">Add User</button>
+                        <button mat-stroked-button class="bg-btn-color" type="submit">Clear</button>
+                    </div>
+                </form>
+            </div>
+            <!-- end body left -->
+
+             <!-- body right  -->
+             <div class="main-list-book main-list-room">
+                <p class="title-book">Profile</p>
+                <div class="">
+                    <!-- <div class="p10">
+                        <span class="">Building </span>
+                        <span class="float-right">Rooms </span>
+                    </div>
+                    <div class="p10">
+                        <span class="">R41 </span>
+                        <span class="float-right">20 </span>
+                    </div>
+                    <div class="p10">
+                        <span class="">R31 </span>
+                        <span class="float-right">30 </span>
+                    </div>
+                    <div class="p10">
+                        <hr/>
+                        <span class=""><b>Total Rooms</b></span>
+                        <span class="float-right"><b>50</b></span>
+                    </div> -->
+                </div>
+            </div>
+            <!-- end body right -->
+        </div>
+    </div>
+</div>

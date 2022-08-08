@@ -17,6 +17,8 @@ import { ViewRoomComponent } from '../components/dashboard/room/view-room/view-r
 
 import { UserComponent } from '../components/dashboard/user/user.component';
 import { ListBookingComponent } from '../components/dashboard/list-booking/list-booking.component';
+import { AddUserComponent } from '../components/dashboard/user/add-user/add-user.component';
+import { EditUserComponent } from '../components/dashboard/user/edit-user/edit-user.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { ListBookingComponent } from '../components/dashboard/list-booking/list-
     EditRoomComponent,
     ViewRoomComponent,
     UserComponent,
-    MakePaymentComponent
+    MakePaymentComponent,
+    AddUserComponent,
+    EditUserComponent
   ],
   imports: [
     CommonModule,
@@ -44,6 +48,8 @@ import { ListBookingComponent } from '../components/dashboard/list-booking/list-
       { path: 'add-room', component: AddRoomComponent },
       { path: 'edit-room', component: EditRoomComponent },
       { path: 'user', component: UserComponent },
+      { path: 'add-user', component: AddUserComponent },
+      { path: 'edit-user', component: EditUserComponent },
     ]),
     ReactiveFormsModule,
     MaterialModule

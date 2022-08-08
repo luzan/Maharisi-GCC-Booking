@@ -24,6 +24,11 @@
     <div class="dashbaord-body">
         <div class="book-box text-left">
             <p class="book-list">Booking Lists</p>
+            <a href="/dashboard">
+                <button mat-stroked-button class="example-icon btn-menu make-payment">
+                    Add New Booking
+                </button>
+            </a>
             <table mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)"
                 class="mat-elevation-z8">
                 <ng-container matColumnDef="position">
