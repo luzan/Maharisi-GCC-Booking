@@ -61,6 +61,18 @@
                     </th>
                     <td mat-cell *matCellDef="let element" class=""> {{element.floor}} </td>
                 </ng-container>
+                <ng-container matColumnDef="maxOccupancy">
+                    <th class="bg-th" mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Max Occupancy">
+                        Max Occupancy
+                    </th>
+                    <td mat-cell *matCellDef="let element" class=""> {{element.maxOccupancy}} </td>
+                </ng-container>
+                <ng-container matColumnDef="pricePerNight">
+                    <th class="bg-th" mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Price PerNight">
+                        Price PerNight
+                    </th>
+                    <td mat-cell *matCellDef="let element" class=""> {{element.pricePerNight}} </td>
+                </ng-container>
                 <ng-container matColumnDef="action">
                     <th class="bg-th" mat-header-cell *matHeaderCellDef>
                         Actions
