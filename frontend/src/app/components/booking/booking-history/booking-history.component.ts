@@ -83,11 +83,12 @@ export class BookingHistoryComponent implements AfterViewInit {
   }
 
   edit(booking_id: string): void {
-    // console.log(booking_id);
     this.router.navigate(['/', 'booking', 'edit', booking_id]);
   }
 
-  pay(): void { }
+  pay(booking_id: string): void {
+    this.router.navigate(['/', 'booking', 'make-payment', booking_id]);
+  }
 
   cancel(): void { }
 

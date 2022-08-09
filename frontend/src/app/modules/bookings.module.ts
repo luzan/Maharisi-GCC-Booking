@@ -18,10 +18,9 @@ import { BookingHistoryComponent } from '../components/booking/booking-history/b
   ],
   imports: [
     CommonModule,
-    // todos
     RouterModule.forChild([
       { path: '', component: BookingComponent },
-      { path: 'make-payment-guest', component: PaymentGuestComponent },
+      { path: 'make-payment/:booking_id', component: PaymentGuestComponent },
       { path: 'book-history', component: BookingHistoryComponent },
       { path: 'edit/:booking_id', component: EditBookingComponent },
     ]),
