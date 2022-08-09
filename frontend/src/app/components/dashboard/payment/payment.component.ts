@@ -69,15 +69,11 @@ export class PaymentComponent implements AfterViewInit {
         paymentDate: payment.paymentDate,
         forBooking: payment.booking_id,
         paymentOf: payment.paymentAmount,
-        method: payment.method,
+        method: payment.paymentMethod,
         status: payment.status,
         action: ''
       };
     });
-  }
-
-  makePayment(payment_id: string): void {
-    this.router.navigate(['/', 'dashboard', 'make-payment', payment_id]);
   }
 
   logout(): void {

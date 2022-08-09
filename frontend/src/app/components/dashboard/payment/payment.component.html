@@ -49,7 +49,7 @@
                         sortActionDescription="Sort by payment date">
                         Payment Date
                     </th>
-                    <td mat-cell *matCellDef="let element"> {{element.paymentDate}} </td>
+                    <td mat-cell *matCellDef="let element"> {{element.paymentDate | date:'MM/dd/yyyy'}} </td>
                 </ng-container>
                 <ng-container matColumnDef="forBooking">
                     <th class="bg-th" mat-header-cell *matHeaderCellDef mat-sort-header
