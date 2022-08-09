@@ -155,6 +155,7 @@ async function createBookingByAdmin(req, res, next) {
             room: {
                 room_id: roomId,
                 roomNumber: roomNumber,
+                roomType: roomType
             },
             user: {
                 firstName: firstName,
@@ -227,6 +228,7 @@ async function updateBooking(req, res, next) {
             checkInDate ? data.checkInDate = sanitizeDate(checkInDate) : null;
             checkOutDate ? data.checkOutDate = sanitizeDate(checkOutDate) : null;
             purposeOfStay ? data.purposeOfStay = purposeOfStay : null;
+            numberOfGuests ? data.numberOfGuests = numberOfGuests : null;
             data.bookingStatus = "revised";
             data.cost = {
                 regularPrice: totalPrice,
