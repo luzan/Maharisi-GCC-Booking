@@ -82,7 +82,7 @@
                             <mat-datepicker #checkInDate color="primary"></mat-datepicker>
                         </mat-form-field>
                         <mat-form-field color="accent" appearance="fill" class="input-style-45">
-                            <mat-label>CheckIn Date (MM/DD/YYYY)</mat-label>
+                            <mat-label>CheckOut Date (MM/DD/YYYY)</mat-label>
                             <input matInput [matDatepicker]="checkOutDate" formControlName="checkOutDate">
                             <mat-datepicker-toggle matSuffix [for]="checkOutDate"></mat-datepicker-toggle>
                             <mat-datepicker #checkOutDate color="primary"></mat-datepicker>
@@ -99,7 +99,7 @@
                         <input type="number" formControlName="numberOfGuests" matInput placeholder="Number Of Guests"
                             required>
                     </mat-form-field>
-                    
+
                     <div class="input-style-100">
                         <mat-label>Accessibility</mat-label>
                         <mat-radio-group aria-label="Select an Option" formControlName="accessibleRequired">
@@ -140,7 +140,7 @@
 
             <!-- body right  -->
             <div class="main-list-book">
-                <p class="title-book">Next Visits</p>
+                <p class="title-book">My Bookings</p>
                 <div class="box-next-visit">
                     <div class="box-nub-visit">
                         <p class="number"> 8 </p>
