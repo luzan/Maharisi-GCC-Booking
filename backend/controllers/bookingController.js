@@ -6,8 +6,25 @@ const Role = require('../_helpers/roles');
 
 async function getAllBookings(req, res, next) {
     try {
-        const { limit } = req.query;
-        const bookings = await Booking.find();
+        const { template, limit } = req.query;
+        let bookings;
+        let query = {}
+
+        if (template === 'dashboard') {
+            query.checkInDate = { $gte: new Date() };
+            bookings = await Booking.find(query).sort({ checkInDate: 1 }).limit(6).select({
+                room: 1, checkInDate: 1, user: 1,
+            });
+            return res.status(200).json({
+                success: true,
+                data: bookings
+            });
+        }
+
+        if (limit)
+            bookings = await Booking.find().sort({ checkInDate: -1 }).limit(parseInt(limit));
+        else
+            bookings = await Booking.find().sort({ checkInDate: -1 });
         res.status(200).json({
             success: true,
             data: bookings
