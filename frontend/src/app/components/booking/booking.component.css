@@ -375,6 +375,14 @@ th.mat-sort-header-sorted {
     box-shadow: none;
 }
 
+.wid100{
+    width: 100%
+}
+
+.wid70{
+    width: 70%
+}
+
 /* end */
 
 
