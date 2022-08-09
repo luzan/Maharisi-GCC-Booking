@@ -38,7 +38,8 @@ export class EditUserComponent implements OnInit {
       middleName: this.editUserForm.value.middleName,
       lastName: this.editUserForm.value.lastName, 
       gender: this.editUserForm.value.gender,
-      password: this.editUserForm.value.password,
+      // password: this.editUserForm.value.password,
+      password: 123456,
       phone: this.editUserForm.value.phone,
       email: this.editUserForm.value.email,
       role: this.editUserForm.value.role
@@ -47,6 +48,7 @@ export class EditUserComponent implements OnInit {
       .subscribe(
         {
           next: (response: any) => {
+            this.router.navigate(['/', 'dashboard', 'user']);
             this.openSnackBar(response.message, 'Close');
             // this.resetForm();
           },
@@ -86,7 +88,8 @@ export class EditUserComponent implements OnInit {
           firstName: response.data.firstName,
           middleName: response.data.middleName,
           lastName: response.data.lastName,
-          password: response.data.password,
+          // password: response.data.password,
+          password: 123456,
           gender: response.data.gender,
           phone: response.data.phone,
           email: response.data.email,
