@@ -87,20 +87,6 @@ export class MakePaymentComponent implements OnInit {
     }];
   }
 
-  getAddressData(): any {
-    return {
-      firstName: this.addPaymentForm.get('firstName')?.value,
-      middleName: this.addPaymentForm.get('middleName')?.value,
-      lastName: this.addPaymentForm.get('lastName')?.value,
-      phoneNumber: this.addPaymentForm.get('phoneNumber')?.value,
-      email: this.addPaymentForm.get('email')?.value,
-      address: this.addPaymentForm.get('address')?.value,
-      country: this.addPaymentForm.get('country')?.value,
-      state: this.addPaymentForm.get('state')?.value,
-      zipCode: this.addPaymentForm.get('zipCode')?.value,
-    }
-  }
-
   getPaymentData(paymentMethod: string): any {
     return {
       firstName: this.addPaymentForm.get('firstName')?.value,
