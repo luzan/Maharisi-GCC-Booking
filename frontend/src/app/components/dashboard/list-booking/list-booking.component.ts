@@ -52,7 +52,7 @@ export class ListBookingComponent implements OnInit, AfterViewInit {
   bookingDataParser(data: any[]): any[] {
     return data.map((booking: any, index) => {
       return {
-        position: index,
+        position: ++index,
         name: booking.user.firstName + ' ' + booking.user.lastName,
         checkInDate: booking.checkInDate,
         checkOutDate: booking.checkOutDate,

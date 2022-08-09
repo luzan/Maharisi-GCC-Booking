@@ -24,14 +24,21 @@ export class BookingsService {
     return this.http.get<any>(`${environment.apiUrl}/bookings`);
   }
 
+  getAllBookingDataOfUser(userId?: string): any {
+    return this.http.get<any>(`${environment.apiUrl}/bookings/users/${userId}`);
+  }
+
   getBookingDataForDashboard(): any {
     return this.http.get<any>(`${environment.apiUrl}/bookings?template=dashboard`);
   }
 
-  // getBookigById(book_id: string) {
-  //   return this.http.get<Booking>('http://localhost:3000/api/v1/book/' + book_id);
-  // }
+  getBookingById(booking_id?: string): any {
+    return this.http.get<any>(`${environment.apiUrl}/bookings/${booking_id}`);
+  }
 
+  updateUserBooking(booking: Booking, booking_id?: string, user_id?: string): any {
+    return this.http.put(`${environment.apiUrl}/bookings/${user_id}/${booking_id}`, booking);
+  }
   // deleteBookigById(book_id: string) {
   //   return this.http.delete('http://localhost:3000/api/v1/book/' + book_id);
   // }
@@ -40,9 +47,5 @@ export class BookingsService {
   //   return this.http.post('http://localhost:3000/api/v1/book', bookig);
   // }
 
-  // updateBookig(bookig: Booking) {
-  //   return this.http.put('http://localhost:3000/api/v1/book/' + bookig._id, bookig);
-
-  // }
 
 }
