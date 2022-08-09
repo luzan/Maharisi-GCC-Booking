@@ -43,7 +43,7 @@ import { ViewBookingAdminComponent } from '../components/dashboard/view-booking-
       { path: 'edit-booking/:booking_id', component: EditBookingAdminComponent },
       { path: 'view-booking-admin', component: ViewBookingAdminComponent },
       { path: 'payment', component: PaymentComponent },
-      { path: 'make-payment', component: MakePaymentComponent },
+      { path: 'make-payment/:booking_id', component: MakePaymentComponent },
       { path: 'room', component: RoomComponent },
       { path: 'view-room', component: ViewRoomComponent },
       { path: 'add-room', component: AddRoomComponent },
