@@ -16,8 +16,9 @@ import { PaymentService } from '../../../../services/payment/payment.service';
   styleUrls: ['../../booking.component.css']
 })
 export class ListPaymentsComponent implements AfterViewInit {
-  displayedColumns: string[] = ['position', 'name', 'paymentDate', 'forBooking', 'paymentOf', 'method', 'status', 'action'];
+  displayedColumns: string[] = ['position', 'name', 'paymentDate', 'forBooking', 'paymentOf', 'method', 'status'];
   dataSource = new MatTableDataSource();
+  user_id?: string;
   constructor(
     private userService: UserService,
     private paymentService: PaymentService,
@@ -43,11 +44,12 @@ export class ListPaymentsComponent implements AfterViewInit {
   }
 
   ngOnInit(): void {
+    this.user_id = this.userService.getUserState()?.user_id;
     this.getAllPaymentData();
   }
 
   getAllPaymentData(): void {
-    this.paymentService.getAllPaymentData().subscribe({
+    this.paymentService.getAllPaymentDataForUser(this.user_id).subscribe({
       next: (response: any) => {
         this.dataSource.data = this.paymentDataParser(response.data);
       }, error: (err: any) => {

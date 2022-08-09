@@ -37,9 +37,10 @@ async function getAllPaymentByUserId(req, res, next) {
     try {
         const currentUser = req.user;
         const { user_id } = req.params;
+
         const payment = await Payment.find({ 'user.user_id': ObjectId(user_id) });
         // only allow admins to access other user records
-        if (payment.user.user_id.toString() !== currentUser.user_id && currentUser.role !== Role.Admin) {
+        if (user_id !== currentUser.user_id && currentUser.role !== Role.Admin) {
             return res.status(401).json({ message: 'Unauthorized' });
         }
         res.status(200).json({
@@ -51,62 +52,19 @@ async function getAllPaymentByUserId(req, res, next) {
     }
 }
 
-
-
-async function createPaymentForBookingByUser(req, res, next) {
+async function createPaymentForBooking(req, res, next) {
     try {
         const { booking_id } = req.params;
-
-        const { userId, firstName, lastName, email, address, country, state, zipCode,
+        const currentUser = req.user;
+        const { user_id, firstName, lastName, email, address, country, state, zipCode,
             paymentMethod, paymentAmount, paymentRef
         } = req.body;
         const bookingCostInfo = await BookingService.getCostInformationFromBooking(booking_id);
-
-        if (!bookingCostInfo) {
-            res.status(401).json({
-                message: `Invalid booking id: ${booking_id}`
-            });
-        } else {
-            let totalAmountToPay = bookingCostInfo.totalPrice;
-            let status = (paymentAmount < totalAmountToPay) ? 'partial' : (paymentAmount === totalAmountToPay) ? 'paid' : 'needs_attention'
-
-            const payment = await Payment.create({
-                user: {
-                    user_id: userId,
-                    firstName: firstName,
-                    lastName: lastName,
-                    email: email,
-                    address: address,
-                    country: country,
-                    state: state,
-                    zipCode: zipCode,
-                },
-                booking_id: booking_id,
-                paymentMethod: paymentMethod,
-                amount: bookingCostInfo.totalPrice,
-                paymentAmount: paymentAmount,
-                paymentRef: paymentRef,
-                status: status
-            });
-            res.status(200).json({
-                message: 'Payment created successfully',
-                data: payment
-            });
+        console.log(user_id, currentUser.user_id);
+        // only allow admins to access other user records
+        if (user_id !== currentUser.user_id && currentUser.role !== Role.Admin) {
+            return res.status(401).json({ message: 'Unauthorized' });
         }
-
-    } catch (err) {
-        next(err);
-    }
-}
-async function createPaymentForBookingByAdmin(req, res, next) {
-    try {
-        const { booking_id } = req.params;
-
-        const { userId, firstName, lastName, email, address, country, state, zipCode,
-            paymentMethod, paymentAmount, paymentRef
-        } = req.body;
-        const bookingCostInfo = await BookingService.getCostInformationFromBooking(booking_id);
-
         if (!bookingCostInfo) {
             res.status(401).json({
                 message: `Invalid booking id: ${booking_id}`
@@ -117,7 +75,7 @@ async function createPaymentForBookingByAdmin(req, res, next) {
 
             const payment = await Payment.create({
                 user: {
-                    user_id: userId,
+                    user_id: user_id,
                     firstName: firstName,
                     lastName: lastName,
                     email: email,
@@ -148,6 +106,5 @@ module.exports = {
     getAllPayments,
     getPaymentById,
     getAllPaymentByUserId,
-    createPaymentForBookingByAdmin,
-    createPaymentForBookingByUser,
+    createPaymentForBooking,
 }
