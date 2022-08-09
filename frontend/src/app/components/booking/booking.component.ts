@@ -13,7 +13,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class BookingComponent implements OnInit {
   bookAdminForm!: FormGroup;
-
+  user_id?: string;
+  listOfDashboard: any;
 
   constructor(private fb: FormBuilder,
     private userService: UserService,
@@ -40,8 +41,17 @@ export class BookingComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.user_id = this.userService.getUserState()?.user_id;
+    this.getBookingHistory();
   }
-
+  getBookingHistory(): void {
+    this.bookingService.getAllBookingDataOfUser(this.user_id).subscribe({
+      next: (response: any) => {
+        this.listOfDashboard = response.data;
+      },
+      error: (err: any) => { }
+    })
+  }
   addBookAdmin(): void {
     const checkInDate = new Date(this.bookAdminForm.value.checkInDate).getTime();
     const checkOutDate = new Date(this.bookAdminForm.value.checkOutDate).getTime();
