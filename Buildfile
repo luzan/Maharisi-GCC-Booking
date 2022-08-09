@@ -1,1 +1,1 @@
-install: cd backend && npm install
+install: npm install
