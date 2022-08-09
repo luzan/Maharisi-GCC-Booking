@@ -1,7 +1,4 @@
-
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-
 import {LiveAnnouncer} from '@angular/cdk/a11y';
 import {AfterViewInit, Component, ViewChild, OnInit} from '@angular/core';
 import {MatSort, Sort} from '@angular/material/sort';
@@ -11,26 +8,16 @@ import {MatTableDataSource} from '@angular/material/table';
 import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 
 import { UserService } from '../../../services/user/user.service';
+
 export interface PeriodicElement {
   position: number;
   name: string;
   email: string;
+  gender: string;
   phone: string;
-  room: number;
+  role: number;
   action: string;
 }
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Hydrogen', email: 'H', phone: 'H',room:1, action: ''},
-  {position: 2, name: 'Helium', email: 'H', phone: 'H',room:1, action: ''},
-  {position: 3, name: 'Lithium', email: 'H', phone: 'H',room:1, action: ''},
-  {position: 4, name: 'Beryllium', email: 'H', phone: 'H',room:1, action: ''},
-  {position: 5, name: 'Boron', email: 'H', phone: 'H',room:1, action: ''},
-  {position: 6, name: 'Carbon', email: 'H', phone: 'H',room:1, action: ''},
-  {position: 7, name: 'Nitrogen', email: 'H', phone: 'H',room:1, action: ''},
-  {position: 8, name: 'Oxygen', email: 'H', phone: 'H',room:1, action: ''},
-  {position: 9, name: 'Fluorine', email: 'H', phone: 'H',room:1, action: ''},
-  {position: 10, name: 'Neon', email: 'H', phone: 'H',room:1, action: ''},
-];
 
 @Component({
   selector: 'app-user',
@@ -38,8 +25,8 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['../dashboard.component.css']
 })
 export class UserComponent implements AfterViewInit {
-  displayedColumns: string[] = ['position', 'name', 'email', 'phone', 'room', 'action'];
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
+  displayedColumns: string[] = ['position', 'name', 'email', 'gender', 'phone', 'role', 'action'];
+  dataSource = new MatTableDataSource();
   constructor(
     public dialog: MatDialog, 
     private userService: UserService, 
@@ -54,6 +41,33 @@ export class UserComponent implements AfterViewInit {
     this.dataSource.paginator = this.paginator;
   }
 
+  getAllUserData(): void {
+    this.userService.getAllUsers().subscribe({
+      next: (response: any) => {
+        // console.log("--response.data--", response.data)
+        this.dataSource.data = this.userDataParser(response.data);
+      },
+      error: (err: any) => {
+        console.log(err);
+      }
+    });
+  }
+
+  userDataParser(data: any[]): any[] {
+    return data.map((room: any, index) => {
+      return {
+        position: ++index,
+        user_id: room._id,
+        name: room.firstName + ' ' + room.middleName + ' ' + room.lastName,
+        gender: room.gender,
+        email: room.email,
+        phone: room.phone,
+        role: room.role,
+        action: ''
+      };
+    });
+  }
+
   /** Announce the change in sort state for assistive technology. */
   announceSortChange(sortState: Sort) {
     if (sortState.direction) {
@@ -63,6 +77,7 @@ export class UserComponent implements AfterViewInit {
     }
   }
   ngOnInit(): void {
+    this.getAllUserData();
   }
 
   logout(): void{
@@ -70,11 +85,14 @@ export class UserComponent implements AfterViewInit {
     this.router.navigate(['/', 'login']);
   }
 
-  edit(): void{}
+  edit(user_id: string): void {
+    this.router.navigate(['/', 'dashboard', 'edit-user', user_id]);
+  }
+
+  cancel(user_id: string): void {
+  }
 
   pay(): void{}
-
-  cancel(): void{}
 
   view(): void{}
 

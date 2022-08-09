@@ -47,10 +47,10 @@ import { ViewBookingAdminComponent } from '../components/dashboard/view-booking-
       { path: 'room', component: RoomComponent },
       { path: 'view-room', component: ViewRoomComponent },
       { path: 'add-room', component: AddRoomComponent },
-      { path: 'edit-room', component: EditRoomComponent },
+      { path: 'edit-room/:room_id', component: EditRoomComponent },
       { path: 'user', component: UserComponent },
       { path: 'add-user', component: AddUserComponent },
-      { path: 'edit-user', component: EditUserComponent },
+      { path: 'edit-user/:user_id', component: EditUserComponent },
     ]),
     ReactiveFormsModule,
     MaterialModule

@@ -376,3 +376,7 @@ th.mat-sort-header-sorted {
 .wid70{
     width: 70%
 }
+
+.bg-disable{
+    background: radial-gradient(#0000004a, #00000096);
+}

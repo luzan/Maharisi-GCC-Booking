@@ -32,7 +32,7 @@
                     <div>
                         <mat-form-field appearance="fill" class="input-style-30">
                             <mat-label>Enter Building Number</mat-label>
-                            <input matInput placeholder="Building Number" formControlName="buildingNumber" required>
+                            <input matInput placeholder="Building Number" formControlName="building" required>
                         </mat-form-field>
                         <mat-form-field appearance="fill" class="input-style-30">
                             <mat-label>Enter Floor</mat-label>
@@ -43,25 +43,38 @@
                             <input matInput formControlName="roomNumber" placeholder="Room Number" required>
                         </mat-form-field>
 
-                        <div class="input-style-45 float-right">
-                            <mat-label>Accessibility : </mat-label>
-                            <mat-radio-group aria-label="Select an Option" formControlName="isAccessible">
-                                <section class="example-section">
-                                    <mat-radio-button class="mg-checkbox" value="true">Yes</mat-radio-button>
-                                    <mat-radio-button class="mg-checkbox" value="false" [checked]="true">No
-                                    </mat-radio-button>
-                                </section>
-                            </mat-radio-group>
-                        </div>
                         <mat-form-field appearance="fill" class="input-style-45">
                             <mat-label>Enter Maximum Occupancy</mat-label>
                             <input formControlName="maxOccupancy" matInput placeholder="Maximum Occupancy" required>
                         </mat-form-field> 
+                        <mat-form-field appearance="fill" class="input-style-45">
+                            <mat-label>Choose a Room Type</mat-label>
+                            <mat-select formControlName="roomType">
+                                <mat-option value="single">Single Bed</mat-option>
+                                <mat-option value="double">Double Bed</mat-option>
+                                <mat-option value="delux">Delux Bed</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <mat-form-field appearance="fill" class="input-style-45">
+                            <mat-label>Enter Price PerNight</mat-label>
+                            <input type="number" formControlName="pricePerNight" matInput placeholder=" Price PerNight">
+                        </mat-form-field> 
+                        <div class="input-style-45 float-right">
+                            <mat-label>Accessibility : </mat-label>
+                            <mat-radio-group aria-label="Select an Option" formControlName="isAccessible">
+                                <section class="example-section">
+                                    <mat-radio-button class="mg-checkbox" value="true" [checked]="false">Yes</mat-radio-button>
+                                    <mat-radio-button class="mg-checkbox" value="false" [checked]="false">No
+                                    </mat-radio-button>
+                                </section>
+                            </mat-radio-group>
+                        </div> 
 
                         <mat-form-field appearance="fill" class="input-style-100">
                             <mat-label>Select Image</mat-label>
                             <mat-toolbar class="h30">
-                                <input matInput formControlName="selectImage" readonly name="name" />
+                                <input matInput formControlName="pictureUrls" readonly #img_n/>
                                 <button mat-flat-button class="bg-green-img">Browse File</button>
                             </mat-toolbar>
                             <input
@@ -69,7 +82,6 @@
                                 #fileInput
                                 id="uploadFile"
                                 (change)="uploadFileEvt($event)"
-                                name="uploadFile"
                                 multiple="multiple"
                                 accept="image/*"
                             />
@@ -78,7 +90,7 @@
 
                     <div>
                         <button mat-stroked-button class="bg-btn-book" type="submit">Edit Room</button>
-                        <button mat-stroked-button class="bg-btn-color" type="submit">Clear</button>
+                        <button mat-stroked-button class="bg-btn-color" type="button">Clear</button>
                     </div>
                 </form>
             </div>

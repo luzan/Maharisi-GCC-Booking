@@ -17,6 +17,10 @@ export class RoomService {
     return this.http.get<any>(`${environment.apiUrl}/rooms/?${query}`);
   }
 
+  getAllRooms(): any {
+    return this.http.get<any>(`${environment.apiUrl}/rooms`); 
+  }
+
   getRoomById(room_id?: string): any {
     return this.http.get<any>(`${environment.apiUrl}/rooms/${room_id}`);
   }
