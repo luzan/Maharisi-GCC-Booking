@@ -127,8 +127,7 @@
     float: left;
     padding: 20px;
     text-align: left;
-    /* min-height: 645px; */
-    min-height: 720px;
+    min-height: 580px;
 }
 
 .main-list-room {
@@ -157,7 +156,7 @@
     float: left;
     padding: 20px;
     text-align: left;
-    min-height: 645px;
+    min-height: 580px;
 }
 
 .main-room {
