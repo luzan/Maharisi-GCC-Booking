@@ -72,7 +72,7 @@ export class RoomComponent implements AfterViewInit {
     return data.map((room: any, index) => {
       return {
         position: ++index,
-        // room_id: room._id,
+        room_id: room._id,
         building: room.building,
         roomNumber: room.roomNumber,
         isAccessible: room.isAccessible,
@@ -102,11 +102,12 @@ export class RoomComponent implements AfterViewInit {
   }
 
   edit(room_id: string): void {
-    console.log("roosdfsdf----", room_id)
     this.router.navigate(['/', 'dashboard', 'edit-room', room_id]);
   }
 
-  disable(): void{}
+  disable(room_id: string): void{
+    
+  }
 
   view(): void{}
 

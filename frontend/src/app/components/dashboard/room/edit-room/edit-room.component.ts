@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { RoomService } from '../../../../services/room/room.service';
@@ -13,12 +13,14 @@ import { UserService } from '../../../../services/user/user.service';
 })
 export class EditRoomComponent implements OnInit {
   editRoomForm!: FormGroup;
+  room_id?: string;
 
   imgname = 'Choose file';
   @ViewChild('img_n') img_n!: ElementRef;
   constructor(private fb: FormBuilder,
     private userService: UserService,
     private roomService: RoomService,
+    private route: ActivatedRoute,
     private router: Router,
     private snackBar: MatSnackBar) {
 
@@ -73,14 +75,14 @@ export class EditRoomComponent implements OnInit {
       pictureUrls: img,
       pricePerNight: this.editRoomForm.value.pricePerNight
     }
-    this.roomService.addRoom(roomData)
+    this.roomService.updateRoomBooking(roomData, this.room_id)
       .subscribe(
         {
           next: (response: any) => {
             this.openSnackBar(response.message, 'Close');
             this.resetForm();
           },
-          error: (err) => {
+          error: (err: any) => {
             this.openSnackBar(err.error.message, 'Close');
             console.log(err);
           }
@@ -104,6 +106,30 @@ export class EditRoomComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.room_id = this.route.snapshot.params['room_id'];
+    this.getRoomsById(this.room_id);
   }
+
+  getRoomsById(room_id?: string): void {
+    this.roomService.getRoomById(room_id).subscribe({
+      next: (response: any) => {
+        console.log("--response--", response);
+        this.editRoomForm.patchValue({
+          building: response.data.building,
+          roomNumber: response.data.roomNumber,
+          isAccessible: response.data.isAccessible,
+          maxOccupancy: response.data.maxOccupancy,
+          floor: response.data.floor,
+          roomType: response.data.roomType,
+          pictureUrls: response.data.pictureUrls,
+          pricePerNight: response.data.pricePerNight
+        });
+      },
+      error: (err: any) => {
+        console.log("--err getting booking by ID--", err);
+      }
+    })
+  }
+  
 
 }
