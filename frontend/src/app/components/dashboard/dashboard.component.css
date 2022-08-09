@@ -367,3 +367,12 @@ th.mat-sort-header-sorted {
 .p-t20{
     padding-top: 15px;
 }
+
+.wid100{
+    width: 100%;
+    min-height: 500px;
+}
+
+.wid70{
+    width: 70%
+}
