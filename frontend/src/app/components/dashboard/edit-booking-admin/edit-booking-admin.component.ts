@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { UserService } from '../../../services/user/user.service';
 import { Dashboard } from '../../../services/dashbaord/DashboardInterface';
@@ -17,7 +17,9 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class EditBookingAdminComponent implements OnInit {
   editBookForm!: FormGroup;
-  
+  booking_id?: string;
+  user_id?: string;
+
   checkInCheckOutForm!: FormGroup;
   contactForm!: FormGroup;
   isLinear = true;
@@ -29,6 +31,7 @@ export class EditBookingAdminComponent implements OnInit {
     private roomService: RoomService,
     private bookingService: BookingsService,
     private dashboardService: DashboardsService,
+    private route: ActivatedRoute,
     private router: Router,
     private snackBar: MatSnackBar) {
 
@@ -58,6 +61,7 @@ export class EditBookingAdminComponent implements OnInit {
       roomType: new FormControl(),
       roomId: new FormControl(),
       roomNumber: new FormControl(),
+      building: new FormControl(),
       paidInCash: new FormControl()
     })
 
@@ -65,25 +69,46 @@ export class EditBookingAdminComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.dashboardService.getAllBookings().subscribe(
-      (response) => {
-        console.log("--response--", response.bookings);
-        this.listOfDashboard = response.bookings;
-      }
-    );
-    this.getUpcomingBookings();
+    this.booking_id = this.route.snapshot.params['booking_id'];
+    this.user_id = this.userService.getUserState()?.user_id;
+    this.getBookingById(this.booking_id);
   }
 
-  getUpcomingBookings(): void {
-    this.bookingService.getBookingDataForDashboard().subscribe({
+  getBookingById(booking_id?: string): void {
+    this.bookingService.getBookingById(booking_id).subscribe({
       next: (response: any) => {
         console.log("--response--", response);
-        this.listOfDashboard = response.data;
+        this.editBookForm.patchValue({
+          discountType: response.data.discountType,
+          discountOf: response.data.discountOf,
+          totalPrice: response.data.totalPrice,
+          occcupants: response.data.occcupants,
+          roomType: response.data.room.roomType,
+          roomId: response.data.room.roomId,
+          roomNumber: response.data.room.roomNumber,
+          paidInCash: response.data.paidInCash
+        });
+        this.contactForm.patchValue({
+          firstName: response.data.user.firstName,
+          middleName: response.data.user.middleName,
+          lastName: response.data.user.lastName,
+          phoneNumber: response.data.user.phoneNumber,
+          email: response.data.user.email,
+          bookingFor: response.data.bookingFor,
+          purposeOfStay: response.data.purposeOfStay
+        });
+        this.checkInCheckOutForm.patchValue({
+          checkInDate: response.data.checkInDate,
+          checkOutDate: response.data.checkOutDate,
+          accessibleRequired: response.data.accessibleRequired,
+          roomType: response.data.room.roomType
+        });
       },
       error: (err: any) => {
-        console.log(err);
+        console.log("--err getting booking by ID--", err);
       }
     });
+
   }
 
   getRoomDetails(): void {
@@ -94,6 +119,7 @@ export class EditBookingAdminComponent implements OnInit {
     let roomData = e.source.triggerValue.split(' - ');
     this.editBookForm.patchValue({
       roomId: e.value,
+      building: roomData[0],
       roomNumber: roomData[1],
       totalPrice: roomData[2]
     });
@@ -124,7 +150,6 @@ export class EditBookingAdminComponent implements OnInit {
   }
 
   editBooking(): void {
-    console.log("--this.loginForm.value--", this.editBookForm.value);
     const checkInDate = new Date(this.checkInCheckOutForm.value.checkInDate).getTime();
     const checkOutDate = new Date(this.checkInCheckOutForm.value.checkOutDate).getTime();
     const middleName = this.contactForm.value.middleName ? this.contactForm.value.middleName : '';
@@ -143,20 +168,23 @@ export class EditBookingAdminComponent implements OnInit {
       discountOf: this.editBookForm.value.discountOf,
       occcupants: this.editBookForm.value.occcupants,
       paidInCash: this.editBookForm.value.paidInCash,
+      roomNumber: this.editBookForm.value.roomNumber,
+      building: this.editBookForm.value.building,
       roomType: this.checkInCheckOutForm.value.roomType,
       roomId: this.editBookForm.value.roomId,
       pricePerNight: this.editBookForm.value.totalPrice,
     }
     console.log("---bookingData---", bookingData);
 
-    this.bookingService.addBookingAdmin(bookingData)
+    this.bookingService.updateAdminBooking(bookingData, this.booking_id)
       .subscribe(
         {
           next: (response: any) => {
             this.openSnackBar(response.message, 'Close');
             this.resetForm();
+            this.router.navigate(['/dashboard/list-booking']);
           },
-          error: (err) => {
+          error: (err: any) => {
             this.openSnackBar(err.error.message, 'Close');
             console.log(err);
           }

@@ -18,7 +18,7 @@
     - [ ] on complete
 - [x] Booking Models 
   - [x] (Payment can be a part of Booking Model)
-  - [ ] room -> bring only necessary data from room models
+  - [x] room -> bring only necessary data from room models
 - [x] Payment Models
 
 #### User Controllers
@@ -27,8 +27,8 @@
   - [x] Hide User password on response
 - [x] User Login
   - [ ] Logout
-- [ ] Booking CRUD
-  - [ ] room reservation needs to be verified by admin
+- [x] Booking CRUD
+  - [x] room reservation needs to be verified by admin
   - [x] once booking is made booking days needs to be stored in room
     - [ ] check if this works for revised, cancelled
 - [ ] Payment CRUD
@@ -53,15 +53,15 @@
 ### FrontEnd
 - [x] User Login UI
   - [x] Login integate with API
-  - [ ] Register UI
-  - [ ] Register integate with API
-  - [ ] Logout
-- [ ] Guest User Registration
-  - [ ] Redirect to login after registration
+  - [x] Register UI
+  - [x] Register integate with API
+  - [x] Logout
+- [x] Guest User Registration
+  - [x] Redirect to login after registration
 - [ ] Dashbaord
   - [ ] Menu
-    - [ ] For Admin
-      - [ ] Bookings
+    - [x] For Admin
+      - [x] Bookings
       - [ ] Payments
       - [ ] Room
     - [ ] User
@@ -72,11 +72,11 @@
       - [ ] booking integate with API CRUD
     - [ ] Add and view rooms
     - [ ] See all user -> change role
-    - [ ] See all bookings
+    - [x] See all bookings
       - [ ] Make payment for indivdual booking  
     - [ ] See all payments
   - [ ] User
     - [x] Booking for User  
-    - [ ] View Previous Booking
+    - [] View Previous Bookings
     - [ ] Make Payment
 

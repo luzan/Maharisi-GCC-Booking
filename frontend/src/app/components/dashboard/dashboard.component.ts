@@ -57,6 +57,7 @@ export class DashboardComponent implements OnInit {
       roomType: new FormControl(),
       roomId: new FormControl(),
       roomNumber: new FormControl(),
+      building: new FormControl(),
       paidInCash: new FormControl()
     })
 
@@ -93,6 +94,7 @@ export class DashboardComponent implements OnInit {
     let roomData = e.source.triggerValue.split(' - ');
     this.bookForm.patchValue({
       roomId: e.value,
+      building: roomData[0],
       roomNumber: roomData[1],
       totalPrice: roomData[2]
     });
@@ -142,6 +144,8 @@ export class DashboardComponent implements OnInit {
       discountOf: this.bookForm.value.discountOf,
       occcupants: this.bookForm.value.occcupants,
       paidInCash: this.bookForm.value.paidInCash,
+      roomNumber: this.bookForm.value.roomNumber,
+      building: this.bookForm.value.building,
       roomType: this.checkInCheckOutForm.value.roomType,
       roomId: this.bookForm.value.roomId,
       pricePerNight: this.bookForm.value.totalPrice,
