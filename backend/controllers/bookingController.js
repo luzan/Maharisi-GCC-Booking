@@ -39,7 +39,7 @@ async function getBookingById(req, res, next) {
     try {
         const currentUser = req.user;
         const booking = await Booking.findById(req.params.id);
-        if (booking.user.user_id !== currentUser.user_id && currentUser.role !== Role.Admin) {
+        if (booking.user.user_id.toString() !== currentUser.user_id && currentUser.role !== Role.Admin) {
             return res.status(401).json({ message: 'Unauthorized' });
         }
         res.status(200).json({
@@ -190,34 +190,64 @@ async function updateBooking(req, res, next) {
     try {
         const currentUser = req.user;
         const { booking_id, user_id } = req.params;
-
+        const {
+            numberOfGuests, accessibleRequired,
+            checkInDate, checkOutDate, arrivalTime, departureTime,
+            purposeOfStay, phoneNumber, email, roomType, occupants
+        } = req.body;
         if (user_id !== currentUser.user_id && currentUser.role !== Role.Admin) {
             return res.status(401).json({ message: 'Unauthorized' });
         }
+        let daysToBook = createArrayOfDays(checkInDate, checkOutDate);
+        let roomAvailable;
 
-        const {
-            numberOfGuests, accessibleRequired,
-            checkInDate, checkOutDate, arrivalTime, departureTime
-        } = req.body;
-        let data = {};
-        numberOfGuests ? data.numberOfGuests = numberOfGuests : null;
-        accessibleRequired ? data.accessibleRequired = accessibleRequired : null;
-        arrivalTime ? data.arrivalTime = arrivalTime : null;
-        departureTime ? data.departureTime = departureTime : null;
-        checkInDate ? data.checkInDate = sanitizeDate(checkInDate) : null;
-        checkOutDate ? data.checkOutDate = sanitizeDate(checkOutDate) : null;
-        data.status = "revised";
+        let query = {};
+        accessibleRequired == true ? query.isAccessible = true : null;
+        if (roomType) {
+            query.bookingDates = { $nin: daysToBook };
+            roomAvailable = await RoomService.getRoomsByRoomType(roomType, query, { $limit: 1 });
+        }
 
-        const booking = await Booking.findByIdAndUpdate(booking_id, data, { new: true });
+        if (roomAvailable && roomAvailable.length > 0) {
+            (roomAvailable.length > 0) ? roomAvailable = roomAvailable[0] : null;
+            const totalPrice = roomAvailable.pricePerNight * daysToBook.length;
 
-        // if (checkInDate && checkOutDate) {
-        //     const newBookingDates = createArrayOfDays(data.checkInDate, data.checkOutDate);
-        //     const previousBookingDates = createArrayOfDays(booking.checkInDate, booking.checkOutDate);
-        //     RoomService.resetRoomBookingDatesForGivenDays(booking.room.room_id, previousBookingDates, newBookingDates);
-        // }
-        res.status(200).json({
-            message: `Booking updated successfully`
-        });
+            let data = {};
+            data.room = {
+                room_id: roomAvailable._id,
+                roomNumber: roomAvailable.roomNumber,
+                building: roomAvailable.building
+            }
+            occupants ? data.numberOfGuests = occupants : null;
+            accessibleRequired ? data.accessibleRequired = accessibleRequired : null;
+            arrivalTime ? data.arrivalTime = arrivalTime : null;
+            departureTime ? data.departureTime = departureTime : null;
+            checkInDate ? data.checkInDate = sanitizeDate(checkInDate) : null;
+            checkOutDate ? data.checkOutDate = sanitizeDate(checkOutDate) : null;
+            purposeOfStay ? data.purposeOfStay = purposeOfStay : null;
+            data.status = "revised";
+            data.cost = {
+                regularPrice: totalPrice,
+                totalPrice: totalPrice,
+            }
+            data.user = {
+                user_id: user_id,
+                firstName: currentUser.firstName,
+                lastName: currentUser.lastName,
+                phoneNumber: phoneNumber,
+                email: email
+            }
+
+            const booking = await Booking.findByIdAndUpdate(booking_id, data);
+            res.status(200).json({
+                message: `Booking updated successfully`
+            });
+        } else {
+            res.status(400).json({
+                success: false,
+                message: `No rooms are available for that period`
+            });
+        }
     } catch (err) {
         next(err);
     }
