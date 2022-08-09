@@ -59,8 +59,8 @@ export class UserComponent implements AfterViewInit {
       return {
         position: ++index,
         user_id: room._id,
-        // name: room.firstName + ' ' + room.middleName + ' ' + room.lastName,
-        name: room.firstName + ' ' + room.lastName,
+        name: room.firstName + ' ' + room.middleName + ' ' + room.lastName,
+        // name: room.firstName + ' ' + room.lastName,
         gender: room.gender,
         email: room.email,
         phone: room.phone,
