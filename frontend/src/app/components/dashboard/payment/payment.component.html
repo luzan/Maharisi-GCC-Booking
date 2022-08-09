@@ -16,8 +16,7 @@
             <button mat-stroked-button class="example-icon btn-menu">Users</button>
         </a>
         <span class="example-spacer"></span>
-        <button mat-icon-button class="example-icon" aria-label="Example icon-button"
-            (click)="logout()">
+        <button mat-icon-button class="example-icon" aria-label="Example icon-button" (click)="logout()">
             <mat-icon>logout</mat-icon>
         </button>
     </mat-toolbar>
@@ -32,37 +31,50 @@
             <table mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)"
                 class="mat-elevation-z8">
                 <ng-container matColumnDef="position">
-                    <th class="bg-th" mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by number">
+                    <th class="bg-th" mat-header-cell *matHeaderCellDef mat-sort-header
+                        sortActionDescription="Sort by number">
                         No.
                     </th>
                     <td mat-cell *matCellDef="let element"> {{element.position}} </td>
                 </ng-container>
                 <ng-container matColumnDef="name">
-                    <th class="bg-th" mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name">
+                    <th class="bg-th" mat-header-cell *matHeaderCellDef mat-sort-header
+                        sortActionDescription="Sort by name">
                         Name
                     </th>
                     <td mat-cell *matCellDef="let element"> {{element.name}} </td>
                 </ng-container>
                 <ng-container matColumnDef="paymentDate">
-                    <th class="bg-th" mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by payment date">
+                    <th class="bg-th" mat-header-cell *matHeaderCellDef mat-sort-header
+                        sortActionDescription="Sort by payment date">
                         Payment Date
                     </th>
-                    <td mat-cell *matCellDef="let element"> {{element.paymentDate}} </td>
+                    <td mat-cell *matCellDef="let element"> {{element.paymentDate | date:'MM/dd/yyyy'}} </td>
                 </ng-container>
                 <ng-container matColumnDef="forBooking">
-                    <th class="bg-th" mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by for booking">
+                    <th class="bg-th" mat-header-cell *matHeaderCellDef mat-sort-header
+                        sortActionDescription="Sort by for booking">
                         For Booking
                     </th>
                     <td mat-cell *matCellDef="let element"> {{element.forBooking}} </td>
                 </ng-container>
+                <ng-container matColumnDef="paymentOf">
+                    <th class="bg-th" mat-header-cell *matHeaderCellDef mat-sort-header
+                        sortActionDescription="Sort by paymentOf">
+                        Amount
+                    </th>
+                    <td mat-cell *matCellDef="let element"> {{element.paymentOf | currency:'USD' }} </td>
+                </ng-container>
                 <ng-container matColumnDef="method">
-                    <th class="bg-th" mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by method">
+                    <th class="bg-th" mat-header-cell *matHeaderCellDef mat-sort-header
+                        sortActionDescription="Sort by method">
                         Method
                     </th>
                     <td mat-cell *matCellDef="let element"> {{element.method}} </td>
                 </ng-container>
                 <ng-container matColumnDef="status">
-                    <th class="bg-th" mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by status">
+                    <th class="bg-th" mat-header-cell *matHeaderCellDef mat-sort-header
+                        sortActionDescription="Sort by status">
                         Status
                     </th>
                     <td mat-cell *matCellDef="let element"> {{element.status}} </td>
