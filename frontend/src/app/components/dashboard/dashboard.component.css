@@ -351,6 +351,7 @@ th.mat-sort-header-sorted {
 /* img */
 .h30 {
     height: 30px;
+    font-size: 14px;
 }
 
 #uploadFile {
