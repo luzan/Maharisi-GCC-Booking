@@ -1,4 +1,8 @@
 const Room = require('../models/roomModels');
+const { uploadFile } = require("../middlewares/s3");
+const fs = require("fs");
+const util = require("util");
+const unlinkFile = util.promisify(fs.unlink);
 const { createArrayOfDays } = require('../utils/dateUtils');
 // api/v1/rooms/?available=true&accessible=true&building=B&floor=1&checkInDate=1659589200000&checkOutDate=1659589200000
 async function getAllRooms(req, res, next) {
@@ -61,18 +65,27 @@ async function getRoomById(req, res, next) {
 async function createRoom(req, res, next) {
     try {
         const { roomNumber, building, floor, isAccessible, roomType, pricePerNight, pictureUrl } = req.body;
-        const room = await Room.create({
-            building: building,
-            roomNumber: roomNumber,
-            floor: floor,
-            isAccessible: isAccessible,
-            roomType: roomType,
-            pricePerNight: pricePerNight,
-
-        });
-        res.status(201).json({
-            message: `Room created successfully`,
-            data: room
+        await uploadFile(req.file).then(async (result) => {
+            const room = await Room.create({
+                building: building,
+                roomNumber: roomNumber,
+                floor: floor,
+                isAccessible: isAccessible,
+                roomType: roomType,
+                pricePerNight: pricePerNight,
+                pictureUrls: [result.Location]
+            });
+            // Deleting from local if uploaded in S3 bucket
+            await unlinkFile(req.file.path);
+            res.status(201).json({
+                message: `Room created successfully`,
+                data: room
+            });
+        }).catch(err => {
+            res.status(201).json({
+                message: `Problem uploading file`,
+                error: true
+            });
         });
     } catch (err) {
         next(err);
