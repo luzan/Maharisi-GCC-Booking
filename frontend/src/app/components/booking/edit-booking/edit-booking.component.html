@@ -6,7 +6,7 @@
         <a href="/booking/book-history" class="menu">
             <button mat-stroked-button class="example-icon btn-menu">My Bookings</button>
         </a>
-        <a href="/booking/make-payment-guest" class="menu">
+        <a href="/booking/make-payment" class="menu">
             <button mat-stroked-button class="example-icon btn-menu">Payments</button>
         </a>
         <span class="example-spacer"></span>
@@ -111,7 +111,7 @@
                         <input matInput formControlName="occcupants" placeholder="Occupants">
                     </mat-form-field>
                     <div class="text-center">
-                        <br/>
+                        <br />
                         <button mat-stroked-button class="bg-btn-book" [disabled]="!bookAdminForm.valid"
                             type="submit">Book</button>
                         <button mat-stroked-button type="button" class="bg-btn-color"
