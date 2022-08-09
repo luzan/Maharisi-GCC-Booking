@@ -15,10 +15,14 @@ export class PaymentService {
     return this.http.get(`${environment.apiUrl}/payments`);
   }
 
+  getAllPaymentDataForUser(user_id?: string): any {
+    return this.http.get(`${environment.apiUrl}/payments/users/${user_id}`);
+  }
+
   addPaymentFromAdmin(payment: any, booking_id?: string): any {
-    return this.http.post(`${environment.apiUrl}/payments/bookings/${booking_id}/admin`, payment);
+    return this.http.post(`${environment.apiUrl}/payments/bookings/${booking_id}`, payment);
   }
   addPaymentFromUser(payment: any, booking_id?: string): any {
-    return this.http.post(`${environment.apiUrl}/payments/bookings/${booking_id}/user`, payment);
+    return this.http.post(`${environment.apiUrl}/payments/user/bookings/${booking_id}`, payment);
   }
 }

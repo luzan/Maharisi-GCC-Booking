@@ -34,7 +34,14 @@ export class PaymentGuestComponent implements OnInit {
     private router: Router,
     private snackBar: MatSnackBar) {
 
+
+  }
+
+  ngOnInit(): void {
+    this.booking_id = this.route.snapshot.params['booking_id'];
+    this.user_id = this.userService.getUserState()?.user_id;
     this.addPaymentForm = this.fb.group({
+      userId: new FormControl(this.user_id),
       firstName: new FormControl(),
       middleName: new FormControl(),
       lastName: new FormControl(),
@@ -50,11 +57,6 @@ export class PaymentGuestComponent implements OnInit {
       cvc: new FormControl(),
       expiryDate: new FormControl(),
     })
-  }
-
-  ngOnInit(): void {
-    this.booking_id = this.route.snapshot.params['booking_id'];
-    this.user_id = this.userService.getUserState()?.user_id;
     this.getBookingInformation();
   }
 
@@ -85,8 +87,10 @@ export class PaymentGuestComponent implements OnInit {
 
   makePayment(): void {
     const paymentData = this.getPaymentData();
-    this.paymentService.addPaymentFromUser(paymentData, this.booking_id).subscribe({
+    console.log('--paymentData--', paymentData);
+    this.paymentService.addPaymentFromAdmin(paymentData, this.booking_id).subscribe({
       next: (response: any) => {
+        console.log('--response--', response);
         this.openSnackBar(response.message, 'Close');
         this.resetForm();
         this.router.navigate(['/', 'booking', 'book-history']);
@@ -100,7 +104,7 @@ export class PaymentGuestComponent implements OnInit {
 
   getPaymentData(): any {
     return {
-      user_id: this.user_id,
+      user_id: this.addPaymentForm.get('userId')?.value,
       firstName: this.addPaymentForm.get('firstName')?.value,
       middleName: this.addPaymentForm.get('middleName')?.value,
       lastName: this.addPaymentForm.get('lastName')?.value,
