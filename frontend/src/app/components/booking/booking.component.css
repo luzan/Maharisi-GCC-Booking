@@ -71,6 +71,11 @@
     flex: 1 1 auto;
 }
 
+.a-login {
+    color: #fff;
+    text-decoration: none;
+}
+
 .header {
     color: #fff;
     font-size: 26px;
@@ -159,7 +164,8 @@
     text-align: left;
 }
 
-.main-list-book, .main-list-room {
+.main-list-book,
+.main-list-room {
     width: 31%;
     margin: 20px auto;
     margin-left: 0.5%;
@@ -335,11 +341,13 @@ th.mat-sort-header-sorted {
 .text-left {
     text-align: left;
 }
-.text-center{
-    text-align:center;
+
+.text-center {
+    text-align: center;
 }
-.text-right{
-    text-align:right;
+
+.text-right {
+    text-align: right;
 }
 
 /* === bookig list === */
@@ -375,21 +383,15 @@ th.mat-sort-header-sorted {
     box-shadow: none;
 }
 
-.wid100{
+.wid100 {
     width: 100%
 }
 
-.wid70{
+.wid70 {
     width: 70%
 }
 
 /* end */
-
-
-
-
-
-
 
 @media only screen and (max-width: 1367) {
 
