@@ -21,4 +21,8 @@ export class DashboardsService {
     console.log("--dashbaord-new--", booking);
     return this.http.post<{ token: string }>(`${environment.apiUrl}/bookings/admin`, booking);
   }
+
+  getSummaryReport(): any {
+    return this.http.get<any>(`${environment.apiUrl}/dashboard/summary`);
+  }
 }

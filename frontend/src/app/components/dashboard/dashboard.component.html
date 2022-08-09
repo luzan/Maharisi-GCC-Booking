@@ -28,16 +28,16 @@
     <div class="dashbaord-body">
         <div class="book-box">
             <button mat-stroked-button class="bg-btn-booked">
-                20 <p class="p-txt">Booked</p>
+                {{ summary.roomCount }} <p class="p-txt">Rooms</p>
             </button>
             <button mat-stroked-button class="bg-btn-available">
-                20 <p class="p-txt">Available</p>
+                {{ summary.bookingCount }} <p class="p-txt">Bookings</p>
             </button>
             <button mat-stroked-button class="bg-btn-checkIns">
-                10 <p class="p-txt">CheckIns</p>
+                {{ summary.checkinCount }} <p class="p-txt">New CheckIns</p>
             </button>
             <button mat-stroked-button class="bg-btn-checkOuts">
-                4 <p class="p-txt">CheckOuts</p>
+                {{ summary.userCount }} <p class="p-txt">Users</p>
             </button>
         </div>
         <div class="book-box">
@@ -89,7 +89,7 @@
                                 <mat-select formControlName="roomType">
                                     <mat-option value="single">Single Bed</mat-option>
                                     <mat-option value="double">Double Bed</mat-option>
-                                    <mat-option value="delux">Delux Bed</mat-option>
+                                    <mat-option value="deluxe">Deluxe Bed</mat-option>
                                 </mat-select>
                             </mat-form-field>
                             <div class="input-style-45 float-right">

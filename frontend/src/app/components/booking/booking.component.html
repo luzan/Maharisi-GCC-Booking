@@ -33,7 +33,7 @@
             </button>
             <button mat-stroked-button class="bg-btn-booked b-green">
                 <p class="box-img"></p>
-                <p class="p-txt"> Delux Bed </p>
+                <p class="p-txt"> Deluxe Bed </p>
                 <p class="p-txt"> $50/night </p>
             </button>
         </div>
@@ -125,7 +125,7 @@
                         <mat-select formControlName="roomType">
                             <mat-option value="single">Single Bed</mat-option>
                             <mat-option value="double">Double Bed</mat-option>
-                            <mat-option value="delux">Delux Bed</mat-option>
+                            <mat-option value="deluxe">Deluxe Bed</mat-option>
                         </mat-select>
                     </mat-form-field>
                     <mat-form-field appearance="fill" class="input-style-45">
@@ -145,44 +145,16 @@
             <!-- body right  -->
             <div class="main-list-book">
                 <p class="title-book">My Bookings</p>
-                <div class="box-next-visit">
+                <div class="box-next-visit" *ngFor="let dash of listOfDashboard">
                     <div class="box-nub-visit">
-                        <p class="number"> 8 </p>
+                        <p class="number"> {{dash.room.roomNumber}} </p>
                     </div>
                     <div class="box-title-right">
-                        <p class="box-name">Luzan Baral</p>
-                        <p class="box-checkin">CheckIn: Aug 3, 2022</p>
-                        <p class="box-phone">(641)-123-1234</p>
-                    </div>
-                </div>
-                <div class="box-next-visit">
-                    <div class="box-nub-visit">
-                        <p class="number"> 8 </p>
-                    </div>
-                    <div class="box-title-right">
-                        <p class="box-name">Luzan Baral</p>
-                        <p class="box-checkin">CheckIn: Aug 3, 2022</p>
-                        <p class="box-phone">(641)-123-1234</p>
-                    </div>
-                </div>
-                <div class="box-next-visit">
-                    <div class="box-nub-visit">
-                        <p class="number"> 8 </p>
-                    </div>
-                    <div class="box-title-right">
-                        <p class="box-name">Luzan Baral</p>
-                        <p class="box-checkin">CheckIn: Aug 3, 2022</p>
-                        <p class="box-phone">(641)-123-1234</p>
-                    </div>
-                </div>
-                <div class="box-next-visit">
-                    <div class="box-nub-visit">
-                        <p class="number"> 8 </p>
-                    </div>
-                    <div class="box-title-right">
-                        <p class="box-name">Luzan Baral</p>
-                        <p class="box-checkin">CheckIn: Aug 3, 2022</p>
-                        <p class="box-phone">(641)-123-1234</p>
+                        <p class="box-name">
+                            {{dash.user.firstName + ' ' + dash.user.lastName}}
+                        </p>
+                        <p class="box-checkin">CheckIn Date: {{dash.checkInDate | date}}</p>
+                        <p class="box-phone">{{ dash.user.phoneNumber ? dash.user.phoneNumber : dash.user.email}} </p>
                     </div>
                 </div>
             </div>

@@ -7,18 +7,18 @@
             <span>Maharishi GCC Booking</span>
         </a>
         <span class="example-spacers"></span>
-            <a href="/dashboard/list-booking" class="menu">
-                <button mat-stroked-button class="example-icon btn-menu">Bookings</button>
-            </a>
-            <a href="/dashboard/payment" class="menu">
-                <button mat-stroked-button class="example-icon btn-menu">Payments</button>
-            </a>
-            <a href="/dashboard/room" class="menu">
-                <button mat-stroked-button class="example-icon btn-menu">Rooms</button>
-            </a>
-            <a href="/dashboard/user" class="menu">
-                <button mat-stroked-button class="example-icon btn-menu">Users</button>
-            </a>
+        <a href="/dashboard/list-booking" class="menu">
+            <button mat-stroked-button class="example-icon btn-menu">Bookings</button>
+        </a>
+        <a href="/dashboard/payment" class="menu">
+            <button mat-stroked-button class="example-icon btn-menu">Payments</button>
+        </a>
+        <a href="/dashboard/room" class="menu">
+            <button mat-stroked-button class="example-icon btn-menu">Rooms</button>
+        </a>
+        <a href="/dashboard/user" class="menu">
+            <button mat-stroked-button class="example-icon btn-menu">Users</button>
+        </a>
         <span class="example-spacer"></span>
         <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon"
             (click)="logout()">
@@ -50,20 +50,20 @@
                         <mat-form-field appearance="fill" class="input-style-45">
                             <mat-label>Enter Maximum Occupancy</mat-label>
                             <input formControlName="maxOccupancy" matInput placeholder="Maximum Occupancy" required>
-                        </mat-form-field> 
+                        </mat-form-field>
                         <mat-form-field appearance="fill" class="input-style-45">
                             <mat-label>Choose a Room Type</mat-label>
                             <mat-select formControlName="roomType">
                                 <mat-option value="single">Single Bed</mat-option>
                                 <mat-option value="double">Double Bed</mat-option>
-                                <mat-option value="delux">Delux Bed</mat-option>
+                                <mat-option value="deluxe">Deluxe Bed</mat-option>
                             </mat-select>
                         </mat-form-field>
 
                         <mat-form-field appearance="fill" class="input-style-45">
-                            <mat-label>Enter Price PerNight</mat-label>
+                            <mat-label>Enter Price/Night</mat-label>
                             <input type="number" formControlName="pricePerNight" matInput placeholder=" Price PerNight">
-                        </mat-form-field> 
+                        </mat-form-field>
                         <div class="input-style-45 float-right">
                             <mat-label>Accessibility : </mat-label>
                             <mat-radio-group aria-label="Select an Option" formControlName="isAccessible">
@@ -73,22 +73,16 @@
                                     </mat-radio-button>
                                 </section>
                             </mat-radio-group>
-                        </div> 
+                        </div>
 
                         <mat-form-field appearance="fill" class="input-style-100">
                             <mat-label>Select Image</mat-label>
                             <mat-toolbar class="h30">
-                                <input matInput formControlName="pictureUrls" readonly #img_n/>
+                                <input matInput formControlName="pictureUrls" readonly #img_n />
                                 <button mat-flat-button class="bg-green-img">Browse File</button>
                             </mat-toolbar>
-                            <input
-                                type="file"
-                                #fileInput
-                                id="uploadFile"
-                                (change)="uploadFileEvt($event)"
-                                multiple="multiple"
-                                accept="image/*"
-                            />
+                            <input type="file" #fileInput id="uploadFile" (change)="uploadFileEvt($event)"
+                                accept="image/*" />
                         </mat-form-field>
                     </div>
 
@@ -100,8 +94,8 @@
             </div>
             <!-- end body left -->
 
-             <!-- body right  -->
-             <div class="main-list-book main-list-room">
+            <!-- body right  -->
+            <div class="main-list-book main-list-room">
                 <p class="title-book">Summary</p>
                 <div class="">
                     <div class="p10">
@@ -117,7 +111,7 @@
                         <span class="float-right">30 </span>
                     </div>
                     <div class="p10">
-                        <hr/>
+                        <hr />
                         <span class=""><b>Total Rooms</b></span>
                         <span class="float-right"><b>50</b></span>
                     </div>

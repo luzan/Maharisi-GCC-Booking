@@ -13,74 +13,61 @@ import { UserService } from '../../../../services/user/user.service';
 })
 export class AddRoomComponent implements OnInit {
   addRoomForm!: FormGroup;
+  imgname = 'Choose file';
+  image?: File;
 
-  imgname='Choose file';
-  @ViewChild('img_n') img_n!:ElementRef; 
-  constructor(private fb: FormBuilder, 
+  @ViewChild('img_n') img_n!: ElementRef;
+  constructor(private fb: FormBuilder,
     private userService: UserService,
     private roomService: RoomService,
     private router: Router,
     private snackBar: MatSnackBar) {
-      
-      this.addRoomForm = this.fb.group({
-        building: new FormControl(),
-        roomNumber: new FormControl(), 
-        isAccessible: new FormControl(), 
-        maxOccupancy: new FormControl(),
-        floor: new FormControl(),
-        roomType: new FormControl(),
-        pictureUrls: new FormControl("Choose file"),
-        pricePerNight: new FormControl(),
-      });
+
+    this.addRoomForm = this.fb.group({
+      building: new FormControl(),
+      roomNumber: new FormControl(),
+      isAccessible: new FormControl(),
+      maxOccupancy: new FormControl(),
+      floor: new FormControl(),
+      roomType: new FormControl(),
+      pictureUrls: new FormControl("Choose file"),
+      pricePerNight: new FormControl(),
+      image: new FormControl(),
+    });
   }
 
   @ViewChild('fileInput') fileInput!: ElementRef;
   uploadFileEvt(imgFile: any) {
     if (imgFile.target.files && imgFile.target.files[0]) {
-     
-   this.imgname='';
-      Array.from(imgFile.target.files).forEach((file: any) => {
-        this.imgname += file.name + ' - ';
-      });
-
-      this.img_n.nativeElement.value = this.imgname;
-      // HTML5 FileReader API
-      let reader = new FileReader();
-      reader.onload = (e: any) => {
-        let image = new Image();
-        image.src = e.target.result;
-        image.onload = () => {
-        };
-      };
-      reader.readAsDataURL(imgFile.target.files[0]);
-      // Reset if duplicate image uploaded again
-      this.fileInput.nativeElement.value = '';
-    } else {
-      this.imgname = 'Choose File';
+      this.image = <File>imgFile.target.files[0];
+      this.imgname = imgFile.target.files[0].name;
+      this.addRoomForm.get('image')?.setValue(this.image);
     }
   }
 
   addRoom(): void {
     const img = this.addRoomForm.value.pictureUrls == "Choose file" ? [] : this.addRoomForm.value.pictureUrls;
-    // console.log("--this.addRoomForm.value--", this.addRoomForm.value);
-    const roomData = {
-      building: this.addRoomForm.value.building,
-      roomNumber: this.addRoomForm.value.roomNumber,
-      isAccessible: this.addRoomForm.value.isAccessible, 
-      maxOccupancy: this.addRoomForm.value.maxOccupancy,
-      floor: this.addRoomForm.value.floor,
-      roomType: this.addRoomForm.value.roomType,
-      pictureUrls: img,
-      pricePerNight: this.addRoomForm.value.pricePerNight
-    }
-    this.roomService.addRoom(roomData)
+
+    const roomFormData = new FormData();
+    roomFormData.append('building', this.addRoomForm.value.building);
+    roomFormData.append('roomNumber', this.addRoomForm.value.roomNumber);
+    roomFormData.append('isAccessible', this.addRoomForm.value.isAccessible);
+    roomFormData.append('maxOccupancy', this.addRoomForm.value.maxOccupancy);
+    roomFormData.append('floor', this.addRoomForm.value.floor);
+    roomFormData.append('roomType', this.addRoomForm.value.roomType);
+    roomFormData.append('pricePerNight', this.addRoomForm.value.pricePerNight);
+    roomFormData.append('image', this.addRoomForm.get('image')?.value, this.imgname);
+
+    this.roomService.addRoom(roomFormData)
       .subscribe(
         {
           next: (response: any) => {
             this.openSnackBar(response.message, 'Close');
             this.resetForm();
+            this.router.navigate(['/', 'dashboard', 'room']);
           },
           error: (err) => {
+            this.fileInput.nativeElement.value = '';
             this.openSnackBar(err.error.message, 'Close');
             console.log(err);
           }
@@ -97,8 +84,8 @@ export class AddRoomComponent implements OnInit {
       duration: 5000,
     });
   }
-    
-  logout(): void{
+
+  logout(): void {
     this.userService.logout();
     this.router.navigate(['/', 'login']);
   }

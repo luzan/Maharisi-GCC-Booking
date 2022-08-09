@@ -17,14 +17,14 @@ export class RoomService {
   }
 
   getAllRooms(): any {
-    return this.http.get<any>(`${environment.apiUrl}/rooms`); 
+    return this.http.get<any>(`${environment.apiUrl}/rooms`);
   }
 
   getRoomById(room_id?: string): any {
     return this.http.get<any>(`${environment.apiUrl}/rooms/${room_id}`);
   }
 
-  addRoom(room: Room) {
+  addRoom(room: any) {
     return this.http.post<any>(`${environment.apiUrl}/rooms`, room);
   }
 

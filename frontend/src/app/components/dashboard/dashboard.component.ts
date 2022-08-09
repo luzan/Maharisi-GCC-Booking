@@ -22,6 +22,7 @@ export class DashboardComponent implements OnInit {
   isLinear = true;
   availableRooms?: any;
   listOfDashboard: any;
+  summary: any;
 
   constructor(private fb: FormBuilder,
     private userService: UserService,
@@ -66,6 +67,16 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUpcomingBookings();
+    this.getSummaryReport();
+  }
+
+  getSummaryReport(): void {
+    this.dashboardService.getSummaryReport().subscribe({
+      next: (response: any) => {
+        console.log("--response--", response);
+        this.summary = response.data;
+      }
+    });
   }
 
   getUpcomingBookings(): void {

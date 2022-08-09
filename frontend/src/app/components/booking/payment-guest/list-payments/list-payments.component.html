@@ -22,11 +22,6 @@
     <div class="dashbaord-body">
         <div class="book-box text-left">
             <p class="book-list">Payment Lists</p>
-            <!-- <a href="/booking/payment-guest">
-                <button mat-stroked-button class="example-icon btn-menu make-payment">
-                    Making Payment
-                </button>
-            </a> -->
             <table mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)"
                 class="mat-elevation-z8">
                 <ng-container matColumnDef="position">
@@ -78,17 +73,7 @@
                     </th>
                     <td mat-cell *matCellDef="let element"> {{element.status}} </td>
                 </ng-container>
-                <ng-container matColumnDef="action">
-                    <th class="bg-th" mat-header-cell *matHeaderCellDef>
-                        Actions
-                    </th>
-                    <td mat-cell *matCellDef="let element" class="text-center">
-                        <button mat-icon-button class="example-icon" aria-label="Example icon-button"
-                            (click)="refund()">
-                            Refund
-                        </button>
-                    </td>
-                </ng-container>
+
 
                 <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                 <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
