@@ -1,1 +1,161 @@
-<p>edit-booking-admin works!</p>
+<div class="container">
+    <mat-toolbar class="header">
+        <img src="../assets/images/miu-icon.png" class="img-log" />
+        <span>Maharishi GCC Booking</span>
+        <span class="example-spacers"></span>
+        <a href="/dashboard/list-booking" class="menu">
+            <button mat-stroked-button class="example-icon btn-menu">Bookings</button>
+        </a>
+        <a href="/dashboard/payment" class="menu">
+            <button mat-stroked-button class="example-icon btn-menu">Payments</button>
+        </a>
+        <a href="/dashboard/room" class="menu">
+            <button mat-stroked-button class="example-icon btn-menu">Rooms</button>
+        </a>
+        <a href="/dashboard/user" class="menu">
+            <button mat-stroked-button class="example-icon btn-menu">Users</button>
+        </a>
+        <span class="example-spacer"></span>
+        <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon"
+            (click)="logout()">
+            <mat-icon>logout</mat-icon>
+        </button>
+    </mat-toolbar>
+    <div class="dashbaord-body">
+        <div class="book-box wid70">
+            <!-- body right  -->
+            <div class="main-book wid100">
+                <p class="title-book">Edit Booking</p>
+                <mat-horizontal-stepper [linear]="isLinear" #stepper>
+                    <mat-step label="CheckIn/Out">
+                        <form [formGroup]="checkInCheckOutForm" class="p-t20">
+                            <mat-form-field color="accent" appearance="fill" class="input-style-45">
+                                <mat-label>CheckIn Date (MM/DD/YYYY)</mat-label>
+                                <input matInput [matDatepicker]="checkInDate" formControlName="checkInDate">
+                                <mat-datepicker-toggle matSuffix [for]="checkInDate"></mat-datepicker-toggle>
+                                <mat-datepicker #checkInDate color="primary"></mat-datepicker>
+                            </mat-form-field>
+                            <mat-form-field color="accent" appearance="fill" class="input-style-45">
+                                <mat-label>CheckOut Date (MM/DD/YYYY)</mat-label>
+                                <input matInput [matDatepicker]="checkOutDate" formControlName="checkOutDate">
+                                <mat-datepicker-toggle matSuffix [for]="checkOutDate"></mat-datepicker-toggle>
+                                <mat-datepicker #checkOutDate color="primary"></mat-datepicker>
+                            </mat-form-field>
+                            <mat-form-field appearance="fill" class="input-style-45">
+                                <mat-label>Choose a Room Type</mat-label>
+                                <mat-select formControlName="roomType">
+                                    <mat-option value="single">Single Bed</mat-option>
+                                    <mat-option value="double">Double Bed</mat-option>
+                                    <mat-option value="delux">Delux Bed</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            <div class="input-style-45 float-right">
+                                <mat-label>Accessibility</mat-label>
+                                <section class="example-section">
+                                    <mat-checkbox class="mg-checkbox" formControlName="accessibleRequired">Required
+                                    </mat-checkbox>
+                                </section>
+                            </div>
+                            <div>
+                                <button mat-stroked-button class="bg-btn-next" matStepperNext
+                                    (click)="checkInOutNext()">Next</button>
+                            </div>
+                        </form>
+                    </mat-step>
+                    <mat-step label="Contact">
+                        <form [formGroup]="contactForm" class="p-t20">
+                            <mat-form-field appearance="fill" class="input-style-30">
+                                <mat-label>Enter your first name</mat-label>
+                                <input matInput placeholder="First Name" formControlName="firstName" required>
+                            </mat-form-field>
+                            <mat-form-field appearance="fill" class="input-style-30">
+                                <mat-label>Enter your middle name</mat-label>
+                                <input matInput formControlName="middleName" placeholder="Middle name">
+                            </mat-form-field>
+                            <mat-form-field appearance="fill" class="input-style-30">
+                                <mat-label>Enter your last name</mat-label>
+                                <input matInput formControlName="lastName" placeholder="Last name" required>
+                            </mat-form-field>
+
+                            <mat-form-field appearance="fill" class="input-style-30">
+                                <mat-label>Enter your phone</mat-label>
+                                <input type="number" formControlName="phoneNumber" matInput placeholder="phone">
+                            </mat-form-field>
+                            <mat-form-field appearance="fill" class="input-style-60">
+                                <mat-label>Enter your email</mat-label>
+                                <input type="email" formControlName="email" matInput placeholder="Email" required>
+                            </mat-form-field>
+                            <div class="input-style-100">
+                                <mat-label>Booking for :</mat-label>
+                                <mat-radio-group formControlName="bookingFor">
+                                    <section class="example-section">
+                                        <mat-radio-button class="mg-checkbox" value="staff">Staff</mat-radio-button>
+                                        <mat-radio-button class="mg-checkbox" value="student">Student</mat-radio-button>
+                                        <mat-radio-button class="mg-checkbox" value="guest">Guest</mat-radio-button>
+                                    </section>
+                                </mat-radio-group>
+                            </div>
+                            <mat-form-field appearance="fill" class="input-style-100">
+                                <mat-label>Enter Purpose of Stay</mat-label>
+                                <input matInput placeholder="Purpose of Stay" formControlName="purposeOfStay">
+                            </mat-form-field>
+                            <div>
+                                <button mat-stroked-button class="bg-btn-next" matStepperPrevious>Previous</button>
+                                <button mat-stroked-button class="bg-btn-next" matStepperNext>Next</button>
+                            </div>
+                        </form>
+                    </mat-step>
+                    <mat-step label="Assign Room">
+                        <form [formGroup]="editBookForm" (ngSubmit)="editBooking()" class="p-t20">
+                            <mat-form-field appearance="fill" class="input-style-45">
+                                <mat-label>Choose a Room Type</mat-label>
+                                <mat-select formControlName="roomId" (selectionChange)="getSelectedRoom($event)">
+                                    <mat-option *ngFor="let room of availableRooms" [value]="room._id">
+                                        {{room.building}} - {{room.roomNumber}} - {{room.pricePerNight}} </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            <!-- Room Information -->
+                            <mat-form-field appearance="fill" class="input-style-45">
+                                <mat-label>Price Per Night</mat-label>
+                                <input matInput formControlName="totalPrice" placeholder="Price Per Night" required>
+                            </mat-form-field>
+                            <div class="input-style-100">
+                                <mat-label>Discount Type :</mat-label>
+                                <mat-radio-group formControlName="discountType">
+                                    <section class="example-section">
+                                        <mat-radio-button class="mg-checkbox" value="percentage">Percentage
+                                        </mat-radio-button>
+                                        <mat-radio-button class="mg-checkbox" value="fixed">Amount</mat-radio-button>
+                                        <mat-radio-button class="mg-checkbox" value="">None</mat-radio-button>
+                                    </section>
+                                </mat-radio-group>
+                            </div>
+
+                            <mat-form-field appearance="fill" class="input-style-30">
+                                <mat-label>Enter Discount Of</mat-label>
+                                <input matInput formControlName="discountOf" placeholder="Discount Of" required>
+                            </mat-form-field>
+                            <mat-form-field appearance="fill" class="input-style-30">
+                                <mat-label>Enter Occupants</mat-label>
+                                <input matInput formControlName="occcupants" placeholder="Occupants">
+                            </mat-form-field>
+                            <div class="input-style-30 float-right">
+                                <mat-label>Paid in Cash</mat-label>
+                                <section class="example-section">
+                                    <mat-checkbox formControlName="paidInCash" class="mg-checkbox">yes</mat-checkbox>
+                                </section>
+                            </div>
+
+                            <div>
+                                <button mat-stroked-button class="bg-btn-book" type="submit">Book</button>
+                                <button mat-stroked-button class="bg-btn-color" type="button">Clear</button>
+                            </div>
+                        </form>
+                    </mat-step>
+                </mat-horizontal-stepper>
+
+            </div>
+            <!-- end body right -->
+        </div>
+    </div>
+</div>

@@ -24,6 +24,7 @@ import { ViewBookingAdminComponent } from '../components/dashboard/view-booking-
   declarations: [
     DashboardComponent,
     ListBookingComponent,
+    EditBookingAdminComponent,
     PaymentComponent,
     RoomComponent,
     AddRoomComponent,
@@ -32,7 +33,7 @@ import { ViewBookingAdminComponent } from '../components/dashboard/view-booking-
     UserComponent,
     MakePaymentComponent,
     AddUserComponent,
-    EditUserComponent
+    EditUserComponent,
   ],
   imports: [
     CommonModule,

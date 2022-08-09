@@ -16,28 +16,11 @@
         </button>
     </mat-toolbar>
     <div class="dashbaord-body">
-        <div class="book-box">
-            <button mat-stroked-button class="bg-btn-booked">
-                <p class="box-img"></p>
-                <p class="p-txt"> Single Bed </p>
-                <p class="p-txt"> $35/night </p>
-            </button>
-            <button mat-stroked-button class="bg-btn-booked m4 b-yellow">
-                <p class="box-img"></p>
-                <p class="p-txt"> Double Bed </p>
-                <p class="p-txt"> $45/night </p>
-            </button>
-            <button mat-stroked-button class="bg-btn-booked b-green">
-                <p class="box-img"></p>
-                <p class="p-txt"> Delux Bed </p>
-                <p class="p-txt"> $50/night </p>
-            </button>
-        </div>
-        <div class="book-box">
+        <div class="book-box wid70">
             <!-- <p class="red" *ngIf="registration_faileds">{{registration_failed_message}}</p> -->
 
             <!-- body left  -->
-            <div class="main-book">
+            <div class="main-book wid100">
                 <p class="title-book">Edit Booking</p>
                 <form [formGroup]="bookAdminForm" (ngSubmit)="editBookAdmin()">
                     <div>
@@ -127,7 +110,8 @@
                         <mat-label>Enter Occupants</mat-label>
                         <input matInput formControlName="occcupants" placeholder="Occupants">
                     </mat-form-field>
-                    <div>
+                    <div class="text-center">
+                        <br/>
                         <button mat-stroked-button class="bg-btn-book" [disabled]="!bookAdminForm.valid"
                             type="submit">Book</button>
                         <button mat-stroked-button type="button" class="bg-btn-color"
@@ -136,52 +120,6 @@
                 </form>
             </div>
             <!-- end body left  -->
-
-            <!-- body right  -->
-            <div class="main-list-book">
-                <p class="title-book">Next Visits</p>
-                <div class="box-next-visit">
-                    <div class="box-nub-visit">
-                        <p class="number"> 8 </p>
-                    </div>
-                    <div class="box-title-right">
-                        <p class="box-name">Luzan Baral</p>
-                        <p class="box-checkin">CheckIn: Aug 3, 2022</p>
-                        <p class="box-phone">(641)-123-1234</p>
-                    </div>
-                </div>
-                <div class="box-next-visit">
-                    <div class="box-nub-visit">
-                        <p class="number"> 8 </p>
-                    </div>
-                    <div class="box-title-right">
-                        <p class="box-name">Luzan Baral</p>
-                        <p class="box-checkin">CheckIn: Aug 3, 2022</p>
-                        <p class="box-phone">(641)-123-1234</p>
-                    </div>
-                </div>
-                <div class="box-next-visit">
-                    <div class="box-nub-visit">
-                        <p class="number"> 8 </p>
-                    </div>
-                    <div class="box-title-right">
-                        <p class="box-name">Luzan Baral</p>
-                        <p class="box-checkin">CheckIn: Aug 3, 2022</p>
-                        <p class="box-phone">(641)-123-1234</p>
-                    </div>
-                </div>
-                <div class="box-next-visit">
-                    <div class="box-nub-visit">
-                        <p class="number"> 8 </p>
-                    </div>
-                    <div class="box-title-right">
-                        <p class="box-name">Luzan Baral</p>
-                        <p class="box-checkin">CheckIn: Aug 3, 2022</p>
-                        <p class="box-phone">(641)-123-1234</p>
-                    </div>
-                </div>
-            </div>
-            <!-- end body right -->
         </div>
     </div>
 </div>
