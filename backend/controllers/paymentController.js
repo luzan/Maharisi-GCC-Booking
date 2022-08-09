@@ -51,11 +51,15 @@ async function getAllPaymentByUserId(req, res, next) {
     }
 }
 
+
+
 async function createPaymentForBookingByUser(req, res, next) {
     try {
         const { booking_id } = req.params;
 
-        const { userId, firstName, lastName, email, paymentMethod, paymentAmount, paymentRef } = req.body;
+        const { userId, firstName, lastName, email, address, country, state, zipCode,
+            paymentMethod, paymentAmount, paymentRef
+        } = req.body;
         const bookingCostInfo = await BookingService.getCostInformationFromBooking(booking_id);
 
         if (!bookingCostInfo) {
@@ -71,7 +75,11 @@ async function createPaymentForBookingByUser(req, res, next) {
                     user_id: userId,
                     firstName: firstName,
                     lastName: lastName,
-                    email: email
+                    email: email,
+                    address: address,
+                    country: country,
+                    state: state,
+                    zipCode: zipCode,
                 },
                 booking_id: booking_id,
                 paymentMethod: paymentMethod,
@@ -90,7 +98,6 @@ async function createPaymentForBookingByUser(req, res, next) {
         next(err);
     }
 }
-
 async function createPaymentForBookingByAdmin(req, res, next) {
     try {
         const { booking_id } = req.params;

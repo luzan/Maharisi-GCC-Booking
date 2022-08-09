@@ -20,11 +20,11 @@ import { ListPaymentsComponent } from '../components/booking/payment-guest/list-
   ],
   imports: [
     CommonModule,
-    // todos
     RouterModule.forChild([
       { path: '', component: BookingComponent },
       { path: 'payment-guest', component: ListPaymentsComponent },
-      { path: 'make-payment-guest', component: PaymentGuestComponent },
+      // { path: 'make-payment-guest', component: PaymentGuestComponent },
+      { path: 'make-payment/:booking_id', component: PaymentGuestComponent },
       { path: 'book-history', component: BookingHistoryComponent },
       { path: 'edit/:booking_id', component: EditBookingComponent },
     ]),

@@ -18,4 +18,7 @@ export class PaymentService {
   addPaymentFromAdmin(payment: any, booking_id?: string): any {
     return this.http.post(`${environment.apiUrl}/payments/bookings/${booking_id}/admin`, payment);
   }
+  addPaymentFromUser(payment: any, booking_id?: string): any {
+    return this.http.post(`${environment.apiUrl}/payments/bookings/${booking_id}/user`, payment);
+  }
 }

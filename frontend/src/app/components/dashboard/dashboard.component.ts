@@ -65,12 +65,6 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.dashboardService.getAllBookings().subscribe(
-      (response) => {
-        console.log("--response--", response.bookings);
-        this.listOfDashboard = response.bookings;
-      }
-    );
     this.getUpcomingBookings();
   }
 
