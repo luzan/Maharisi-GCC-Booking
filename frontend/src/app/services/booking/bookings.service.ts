@@ -24,6 +24,10 @@ export class BookingsService {
     return this.http.get<any>(`${environment.apiUrl}/bookings`);
   }
 
+  getAllBookingDataOfUser(userId?: string): any {
+    return this.http.get<any>(`${environment.apiUrl}/bookings/users/${userId}`);
+  }
+
   getBookingDataForDashboard(): any {
     return this.http.get<any>(`${environment.apiUrl}/bookings?template=dashboard`);
   }
