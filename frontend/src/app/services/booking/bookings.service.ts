@@ -37,15 +37,11 @@ export class BookingsService {
   }
 
   updateUserBooking(booking: Booking, booking_id?: string, user_id?: string): any {
-    return this.http.put(`${environment.apiUrl}/bookings/${user_id}/${booking_id}`, booking);
+    return this.http.put(`${environment.apiUrl}/bookings/user/${user_id}/${booking_id}`, booking);
   }
-  // deleteBookigById(book_id: string) {
-  //   return this.http.delete('http://localhost:3000/api/v1/book/' + book_id);
-  // }
 
-  // addNewBookig(bookig: Booking) {
-  //   return this.http.post('http://localhost:3000/api/v1/book', bookig);
-  // }
-
+  updateAdminBooking(booking: Booking, booking_id?: string): any {
+    return this.http.put(`${environment.apiUrl}/bookings/admin/${booking_id}`, booking);
+  }
 
 }

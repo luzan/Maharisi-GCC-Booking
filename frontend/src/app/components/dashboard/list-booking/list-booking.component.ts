@@ -53,6 +53,7 @@ export class ListBookingComponent implements OnInit, AfterViewInit {
     return data.map((booking: any, index) => {
       return {
         position: ++index,
+        booking_id: booking._id,
         name: booking.user.firstName + ' ' + booking.user.lastName,
         checkInDate: booking.checkInDate,
         checkOutDate: booking.checkOutDate,
@@ -82,7 +83,9 @@ export class ListBookingComponent implements OnInit, AfterViewInit {
     this.router.navigate(['/', 'login']);
   }
 
-  edit(): void { }
+  edit(booking_id: string): void {
+    this.router.navigate(['/', 'dashboard', 'edit-booking', booking_id]);
+  }
 
   pay(): void { }
 
