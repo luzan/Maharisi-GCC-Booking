@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { User } from './userInterface';
+import { Users } from './usersInterface';
 import jwt_decode from "jwt-decode";
 import { environment } from 'src/environments/environment';
 
@@ -50,15 +51,15 @@ export class UserService {
     return this.http.get<any>(`${environment.apiUrl}/users/${user_id}`);
   }
 
-  addUser(user: User) {
+  addUser(user: Users) {
     return this.http.post<any>(`${environment.apiUrl}/users`, user);
   }
 
-  updateUserBooking(user: User, user_id?: string): any {
+  updateUser(user: Users, user_id?: string): any {
     return this.http.put(`${environment.apiUrl}/users/${user_id}`, user);
   }
 
-  deleteUserBooking(user_id?: string): any {
+  deleteUser(user_id?: string): any {
     return this.http.delete<any>(`${environment.apiUrl}/users/${user_id}`);
   }
 

@@ -22,11 +22,11 @@
         </button>
     </mat-toolbar>
     <div class="dashbaord-body">
-        <div class="book-box">
+        <div class="book-box wid70">
             <!-- <p class="red" *ngIf="registration_faileds">{{registration_failed_message}}</p> -->
 
             <!-- body left  -->
-            <div class="main-book main-room">
+            <div class="main-book main-room wid100">
                 <p class="title-book">Edit New User</p>
                 <form [formGroup]="editUserForm" (ngSubmit)="editUser()">
                     <div>
@@ -43,11 +43,26 @@
                             <input matInput formControlName="lastName" placeholder="Last name" required>
                         </mat-form-field>
 
-                        <mat-form-field appearance="fill" class="input-style-30">
-                            <mat-label>Enter your phone</mat-label>
-                            <input type="number" formControlName="phoneNumber" matInput placeholder="phone">
+
+                        <mat-form-field appearance="fill" class="input-style-45">
+                            <mat-label>Enter your password</mat-label>
+                            <input type="password" matInput formControlName="password" placeholder="password" required>
                         </mat-form-field>
-                        <mat-form-field appearance="fill" class="input-style-60">
+                        <div class="input-style-45 float-right">
+                            <mat-label>Gender :</mat-label>
+                            <mat-radio-group formControlName="gender">
+                                <section class="example-section">
+                                    <mat-radio-button class="mg-checkbox" value="female">Female</mat-radio-button>
+                                    <mat-radio-button class="mg-checkbox" value="male">Male</mat-radio-button>
+                                </section>
+                            </mat-radio-group>
+                        </div>
+
+                        <mat-form-field appearance="fill" class="input-style-45">
+                            <mat-label>Enter your phone</mat-label>
+                            <input type="number" formControlName="phone" matInput placeholder="phone">
+                        </mat-form-field>
+                        <mat-form-field appearance="fill" class="input-style-45">
                             <mat-label>Enter your email</mat-label>
                             <input type="email" formControlName="email" matInput placeholder="Email" required>
                         </mat-form-field>
@@ -55,46 +70,22 @@
                     
                     <div class="input-style-100">
                         <mat-label>Role :</mat-label>
-                        <section class="example-section">
-                            <mat-radio-button class="mg-checkbox" value="staff" [checked]="true">Staff
-                            </mat-radio-button>
-                            <mat-radio-button class="mg-checkbox" value="student">Student</mat-radio-button>
-                            <mat-radio-button class="mg-checkbox" value="guest">Guest</mat-radio-button>
-                        </section>
+                        <mat-radio-group formControlName="role">
+                            <section class="example-section">
+                                <mat-radio-button class="mg-checkbox" value="admin">Admin</mat-radio-button>
+                                <mat-radio-button class="mg-checkbox" value="user">User</mat-radio-button>
+                            </section>
+                        </mat-radio-group>
                     </div>
-
-                    <div>
+                    
+                    <br/>
+                    <div class="text-center">
                         <button mat-stroked-button class="bg-btn-book" type="submit">Edit User</button>
                         <button mat-stroked-button class="bg-btn-color" type="submit">Clear</button>
                     </div>
                 </form>
             </div>
             <!-- end body left -->
-
-             <!-- body right  -->
-             <div class="main-list-book main-list-room">
-                <p class="title-book">Profile</p>
-                <div class="">
-                    <!-- <div class="p10">
-                        <span class="">Building </span>
-                        <span class="float-right">Rooms </span>
-                    </div>
-                    <div class="p10">
-                        <span class="">R41 </span>
-                        <span class="float-right">20 </span>
-                    </div>
-                    <div class="p10">
-                        <span class="">R31 </span>
-                        <span class="float-right">30 </span>
-                    </div>
-                    <div class="p10">
-                        <hr/>
-                        <span class=""><b>Total Rooms</b></span>
-                        <span class="float-right"><b>50</b></span>
-                    </div> -->
-                </div>
-            </div>
-            <!-- end body right -->
         </div>
     </div>
 </div>

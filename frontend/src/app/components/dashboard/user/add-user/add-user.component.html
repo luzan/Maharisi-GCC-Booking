@@ -43,11 +43,26 @@
                             <input matInput formControlName="lastName" placeholder="Last name" required>
                         </mat-form-field>
 
-                        <mat-form-field appearance="fill" class="input-style-30">
-                            <mat-label>Enter your phone</mat-label>
-                            <input type="number" formControlName="phoneNumber" matInput placeholder="phone">
+
+                        <mat-form-field appearance="fill" class="input-style-45">
+                            <mat-label>Enter your password</mat-label>
+                            <input type="password" matInput formControlName="password" placeholder="password" required>
                         </mat-form-field>
-                        <mat-form-field appearance="fill" class="input-style-60">
+                        <div class="input-style-45 float-right">
+                            <mat-label>Gender :</mat-label>
+                            <mat-radio-group formControlName="gender">
+                                <section class="example-section">
+                                    <mat-radio-button class="mg-checkbox" value="female">Female</mat-radio-button>
+                                    <mat-radio-button class="mg-checkbox" value="male">Male</mat-radio-button>
+                                </section>
+                            </mat-radio-group>
+                        </div>
+
+                        <mat-form-field appearance="fill" class="input-style-45">
+                            <mat-label>Enter your phone</mat-label>
+                            <input type="number" formControlName="phone" matInput placeholder="phone">
+                        </mat-form-field>
+                        <mat-form-field appearance="fill" class="input-style-45">
                             <mat-label>Enter your email</mat-label>
                             <input type="email" formControlName="email" matInput placeholder="Email" required>
                         </mat-form-field>
@@ -55,12 +70,12 @@
                     
                     <div class="input-style-100">
                         <mat-label>Role :</mat-label>
-                        <section class="example-section">
-                            <mat-radio-button class="mg-checkbox" value="staff" [checked]="true">Staff
-                            </mat-radio-button>
-                            <mat-radio-button class="mg-checkbox" value="student">Student</mat-radio-button>
-                            <mat-radio-button class="mg-checkbox" value="guest">Guest</mat-radio-button>
-                        </section>
+                        <mat-radio-group formControlName="role">
+                            <section class="example-section">
+                                <mat-radio-button class="mg-checkbox" value="admin">Admin</mat-radio-button>
+                                <mat-radio-button class="mg-checkbox" value="user">User</mat-radio-button>
+                            </section>
+                        </mat-radio-group>
                     </div>
 
                     <div>
