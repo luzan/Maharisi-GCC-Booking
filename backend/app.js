@@ -15,6 +15,7 @@ app.use('/api/v1/users', require('./routers/users'));
 app.use('/api/v1/rooms', require('./routers/rooms'));
 app.use('/api/v1/bookings', require('./routers/bookings'));
 app.use('/api/v1/payments', require('./routers/payments'));
+app.use('/api/v1/dashboard', require('./routers/dashboard'));
 
 app.use((err, req, res, next) => {
     if (typeof (err) === 'string') {
