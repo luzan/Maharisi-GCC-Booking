@@ -82,7 +82,6 @@ export class RoomComponent implements AfterViewInit {
     });
   }
 
-
   /** Announce the change in sort state for assistive technology. */
   announceSortChange(sortState: Sort) {
     if (sortState.direction) {
@@ -106,7 +105,7 @@ export class RoomComponent implements AfterViewInit {
   }
 
   disable(room_id: string): void{
-    
+    console.log("--room_id--", room_id)
   }
 
   view(): void{}

@@ -35,39 +35,43 @@
                     <th class="bg-th" mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by number">
                         No.
                     </th>
-                    <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+                    <td mat-cell *matCellDef="let element" class=""> {{element.position}} </td>
                 </ng-container>
                 <ng-container matColumnDef="building">
                     <th class="bg-th" mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by building">
                         Building
                     </th>
-                    <td mat-cell *matCellDef="let element"> {{element.building}} </td>
+                    <td mat-cell *matCellDef="let element" class=""> {{element.building}} </td>
                 </ng-container>
                 <ng-container matColumnDef="roomNumber">
                     <th class="bg-th" mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Room Number">
                         Room Number
                     </th>
-                    <td mat-cell *matCellDef="let element"> {{element.roomNumber}} </td>
+                    <td mat-cell *matCellDef="let element" class=""> {{element.roomNumber}} </td>
                 </ng-container>
                 <ng-container matColumnDef="isAccessible">
                     <th class="bg-th" mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Is Accessible">
                         Is Accessible
                     </th>
-                    <td mat-cell *matCellDef="let element"> {{element.isAccessible}} </td>
+                    <td mat-cell *matCellDef="let element" class=""> {{element.isAccessible}} </td>
                 </ng-container>
                 <ng-container matColumnDef="floor">
                     <th class="bg-th" mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by floor">
                         Floor
                     </th>
-                    <td mat-cell *matCellDef="let element"> {{element.floor}} </td>
+                    <td mat-cell *matCellDef="let element" class=""> {{element.floor}} </td>
                 </ng-container>
                 <ng-container matColumnDef="action">
                     <th class="bg-th" mat-header-cell *matHeaderCellDef>
                         Actions
                     </th>
                     <td mat-cell *matCellDef="let element" class="text-center">
-                        <button mat-raised-button matTooltip="edit" mat-icon-button class="example-icon" aria-label="Example icon-button"
+                        <button *ngIf="element.room_id" mat-raised-button matTooltip="edit" mat-icon-button class="example-icon" aria-label="Example icon-button"
                             (click)="edit(element.room_id)">
+                            <mat-icon>edit</mat-icon>
+                        </button>
+                        <button *ngIf="!element.room_id" disabled mat-raised-button matTooltip="edit" mat-icon-button class="example-icon" aria-label="Example icon-button"
+                        (click)="edit(element.room_id)">
                             <mat-icon>edit</mat-icon>
                         </button> &nbsp;
                         <!-- <a href="/dashboard/view-room">
@@ -77,7 +81,7 @@
                             </button>
                         </a> &nbsp; -->
                         <button mat-raised-button matTooltip="disable" mat-icon-button class="example-icon" aria-label="Example icon-button"
-                            (click)="disable(element.room_id)">
+                            (click)="element.room_id = !element.room_id">
                             <mat-icon>sync_disabled</mat-icon>
                         </button>
                     </td>
