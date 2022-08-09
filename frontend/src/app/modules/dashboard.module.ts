@@ -13,8 +13,8 @@ import { AddRoomComponent } from '../components/dashboard/room/add-room/add-room
 import { EditRoomComponent } from '../components/dashboard/room/edit-room/edit-room.component';
 import { ViewRoomComponent } from '../components/dashboard/room/view-room/view-room.component';
 
-import { UserComponent } from '../components/dashboard/user/user.component';
-import { ListBookingComponent } from '../components/dashboard/list-booking/list-booking.component';
+import { UserComponent, DialogDeleteUser } from '../components/dashboard/user/user.component';
+import { ListBookingComponent, DialogDeleteBooking } from '../components/dashboard/list-booking/list-booking.component';
 import { AddUserComponent } from '../components/dashboard/user/add-user/add-user.component';
 import { EditUserComponent } from '../components/dashboard/user/edit-user/edit-user.component';
 import { EditBookingAdminComponent } from '../components/dashboard/edit-booking-admin/edit-booking-admin.component';
@@ -24,6 +24,7 @@ import { ViewBookingAdminComponent } from '../components/dashboard/view-booking-
   declarations: [
     DashboardComponent,
     ListBookingComponent,
+    DialogDeleteBooking,
     EditBookingAdminComponent,
     PaymentComponent,
     RoomComponent,
@@ -31,6 +32,7 @@ import { ViewBookingAdminComponent } from '../components/dashboard/view-booking-
     EditRoomComponent,
     ViewRoomComponent,
     UserComponent,
+    DialogDeleteUser,
     MakePaymentComponent,
     AddUserComponent,
     EditUserComponent,
@@ -54,6 +56,7 @@ import { ViewBookingAdminComponent } from '../components/dashboard/view-booking-
     ]),
     ReactiveFormsModule,
     MaterialModule
-  ]
+  ],
+  bootstrap: [DialogDeleteUser, DialogDeleteBooking],
 })
 export class DashboardModule { }

@@ -95,7 +95,7 @@ export class BookingHistoryComponent implements AfterViewInit {
   view(): void { }
 
   openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
-    this.dialog.open(DialogDeleteBooking, {
+    this.dialog.open(DialogDeleteBookingHistory, {
       width: '500px',
       height: '200px',
       enterAnimationDuration,
@@ -110,6 +110,6 @@ export class BookingHistoryComponent implements AfterViewInit {
   templateUrl: 'dialog-delete.html'
 })
 
-export class DialogDeleteBooking {
-  constructor(public dialogRef: MatDialogRef<DialogDeleteBooking>) { }
+export class DialogDeleteBookingHistory {
+  constructor(public dialogRef: MatDialogRef<DialogDeleteBookingHistory>) { }
 }
