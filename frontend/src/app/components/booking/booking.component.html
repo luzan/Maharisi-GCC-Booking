@@ -99,11 +99,7 @@
                         <input type="number" formControlName="numberOfGuests" matInput placeholder="Number Of Guests"
                             required>
                     </mat-form-field>
-
-                    <mat-form-field appearance="fill" class="input-style-60 float-left">
-                        <mat-label>Enter Purpose of Stay</mat-label>
-                        <input matInput placeholder="Purpose of Stay" formControlName="purposeOfStay">
-                    </mat-form-field>
+                    
                     <div class="input-style-100">
                         <mat-label>Accessibility</mat-label>
                         <mat-radio-group aria-label="Select an Option" formControlName="accessibleRequired">
@@ -114,6 +110,11 @@
                             </section>
                         </mat-radio-group>
                     </div>
+
+                    <mat-form-field appearance="fill" class="input-style-100">
+                        <mat-label>Enter Purpose of Stay</mat-label>
+                        <input matInput placeholder="Purpose of Stay" formControlName="purposeOfStay">
+                    </mat-form-field>
 
                     <mat-form-field appearance="fill" class="input-style-45">
                         <mat-label>Choose an room</mat-label>

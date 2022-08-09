@@ -10,7 +10,7 @@
     background-color: #8aa771;
 }
 
-.p10{
+.p10 {
     padding: 10px 0;
 }
 
@@ -60,7 +60,8 @@
 .bg-btn-booked,
 .bg-btn-available,
 .bg-btn-checkIns,
-.bg-btn-checkOuts {
+.bg-btn-checkOuts,
+.bg-green {
     background-color: #8aa771;
     width: 24.5%;
     font-size: 30px;
@@ -71,7 +72,7 @@
     font-weight: bold;
 }
 
-.btn-checkout{
+.btn-checkout {
     background-color: #fcb806;
     color: #fff;
     padding: 8px 0;
@@ -100,16 +101,23 @@
     background-color: #647754;
 }
 
+.bg-green-img {
+    color: #fff;
+    padding-right: 30px;
+    background-color: #8aa771;
+}
+
 .title-book {
     font-size: 25px;
     font-weight: 200;
     padding-left: 5px;
     padding-bottom: 20px;
-    padding-top: 20px;    
+    padding-top: 20px;
     text-align: left;
 }
 
-.main-list-book, .main-list-room {
+.main-list-book,
+.main-list-room {
     width: 31%;
     margin: 20px auto;
     margin-left: 0.5%;
@@ -123,24 +131,25 @@
     min-height: 720px;
 }
 
-.main-list-room{
+.main-list-room {
     background-color: #f4f4f4;
     min-height: 400px;
 }
 
-.main-list-bg-payment{
+.main-list-bg-payment {
     background-color: #fff;
     padding: 0;
 }
 
-.main-list-payment{
+.main-list-payment {
     background-color: #f4f4f4;
     min-height: 280px;
     margin-bottom: 30px;
     padding: 20px;
 }
 
-.main-book, .main-room {
+.main-book,
+.main-room {
     width: 60.5%;
     margin: 20px auto;
     font-weight: 100;
@@ -150,7 +159,8 @@
     text-align: left;
     min-height: 645px;
 }
-.main-room{
+
+.main-room {
     min-height: 400px;
     background-color: #fff;
 }
@@ -293,30 +303,32 @@ th.mat-sort-header-sorted {
     color: black;
 }
 
-.text-left{
-    text-align:left;
+.text-left {
+    text-align: left;
 }
-.text-center{
-    text-align:center;
+
+.text-center {
+    text-align: center;
 }
-.text-right{
-    text-align:right;
+
+.text-right {
+    text-align: right;
 }
 
 /* === bookig list === */
-.book-list{
+.book-list {
     font-size: 26px;
     margin: 30px 0;
 }
 
-.bg-th{    
+.bg-th {
     background-color: #eaeaea;
     font-size: 18px;
     font-weight: 100;
     text-align: center;
 }
 
-.make-payment{
+.make-payment {
     float: right;
     position: absolute;
     right: 0;
@@ -325,13 +337,33 @@ th.mat-sort-header-sorted {
     font-size: 18px;
 }
 
-.header-make{
+.header-make {
     padding-left: 2%;
     padding-right: 5%;
 }
 
-.table-make{
-    margin-bottom: 40px;
+.table-make {
+    margin-bottom: 20px;
     border-radius: 0;
     box-shadow: none;
+}
+
+/* img */
+.h30 {
+    height: 30px;
+}
+
+#uploadFile {
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    z-index: 9;
+    opacity: 0;
+    height: 100%;
+    cursor: pointer;
+    position: absolute;
+}
+
+.p-t20{
+    padding-top: 15px;
 }

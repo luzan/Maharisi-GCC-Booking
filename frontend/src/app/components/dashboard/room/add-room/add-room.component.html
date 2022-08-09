@@ -43,7 +43,7 @@
                             <input matInput formControlName="roomNumber" placeholder="Room Number" required>
                         </mat-form-field>
 
-                        <div class="input-style-30 float-right">
+                        <div class="input-style-45 float-right">
                             <mat-label>Accessibility : </mat-label>
                             <mat-radio-group aria-label="Select an Option" formControlName="isAccessible">
                                 <section class="example-section">
@@ -53,18 +53,26 @@
                                 </section>
                             </mat-radio-group>
                         </div>
-                        <mat-form-field appearance="fill" class="input-style-60">
+                        <mat-form-field appearance="fill" class="input-style-45">
                             <mat-label>Enter Maximum Occupancy</mat-label>
                             <input formControlName="maxOccupancy" matInput placeholder="Maximum Occupancy" required>
                         </mat-form-field> 
 
                         <mat-form-field appearance="fill" class="input-style-100">
-                            <mat-label>Choose an image</mat-label>
-                            <mat-select formControlName="image">
-                                <mat-option value="ima1ge">image1</mat-option>
-                                <mat-option value="imag2e">image2</mat-option>
-                                <mat-option value="image3">image3</mat-option>
-                            </mat-select>
+                            <mat-label>Select Image</mat-label>
+                            <mat-toolbar class="h30">
+                                <input matInput formControlName="selectImage" readonly name="name" />
+                                <button mat-flat-button class="bg-green-img">Browse File</button>
+                            </mat-toolbar>
+                            <input
+                                type="file"
+                                #fileInput
+                                id="uploadFile"
+                                (change)="uploadFileEvt($event)"
+                                name="uploadFile"
+                                multiple="multiple"
+                                accept="image/*"
+                            />
                         </mat-form-field>
                     </div>
 

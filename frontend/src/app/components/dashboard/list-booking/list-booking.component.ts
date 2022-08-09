@@ -7,6 +7,8 @@ import { MatSort, Sort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+
 import { UserService } from '../../../services/user/user.service';
 import { BookingsService } from 'src/app/services/booking/bookings.service';
 
@@ -22,6 +24,7 @@ export class ListBookingComponent implements OnInit, AfterViewInit {
   dataSource = new MatTableDataSource();
 
   constructor(
+    public dialog: MatDialog,
     private userService: UserService,
     private bookingService: BookingsService,
     private router: Router,
@@ -87,4 +90,25 @@ export class ListBookingComponent implements OnInit, AfterViewInit {
 
   view(): void { }
 
+
+
+  openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
+    this.dialog.open(DialogDeleteBooking, {
+      width: '500px',
+      height: '200px',
+      enterAnimationDuration,
+      exitAnimationDuration,
+    });
+  }
+
 }
+
+@Component({
+  selector: 'dialog-delete',
+  templateUrl: 'dialog-delete.html'
+})
+
+export class DialogDeleteBooking {
+  constructor(public dialogRef: MatDialogRef<DialogDeleteBooking>) { }
+}
+

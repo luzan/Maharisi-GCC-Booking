@@ -54,6 +54,11 @@
                         <p class="box-phone">{{ dash.user.phoneNumber ? dash.user.phoneNumber : dash.user.email}} </p>
                     </div>
                 </div>
+                <!-- <mat-paginator [length]="100"
+                    [pageSize]="10"
+                    [pageSizeOptions]="[5, 10, 25, 100]"
+                    aria-label="Select page">
+                </mat-paginator> -->
             </div>
             <!-- end body left -->
 
@@ -62,7 +67,7 @@
                 <p class="title-book">New Booking</p>
                 <mat-horizontal-stepper [linear]="isLinear" #stepper>
                     <mat-step label="CheckIn/Out">
-                        <form [formGroup]="checkInCheckOutForm">
+                        <form [formGroup]="checkInCheckOutForm" class="p-t20">
                             <mat-form-field color="accent" appearance="fill" class="input-style-45">
                                 <mat-label>CheckIn Date (MM/DD/YYYY)</mat-label>
                                 <input matInput [matDatepicker]="checkInDate" formControlName="checkInDate">
@@ -83,7 +88,7 @@
                                     <mat-option value="delux">Delux Bed</mat-option>
                                 </mat-select>
                             </mat-form-field>
-                            <div class="input-style-45">
+                            <div class="input-style-45 float-right">
                                 <mat-label>Accessibility</mat-label>
                                 <section class="example-section">
                                     <mat-checkbox class="mg-checkbox" formControlName="accessibleRequired">Required
@@ -97,7 +102,7 @@
                         </form>
                     </mat-step>
                     <mat-step label="Contact">
-                        <form [formGroup]="contactForm">
+                        <form [formGroup]="contactForm" class="p-t20">
                             <mat-form-field appearance="fill" class="input-style-30">
                                 <mat-label>Enter your first name</mat-label>
                                 <input matInput placeholder="First Name" formControlName="firstName" required>
@@ -129,7 +134,7 @@
                                     </section>
                                 </mat-radio-group>
                             </div>
-                            <mat-form-field appearance="fill" class="input-style-60">
+                            <mat-form-field appearance="fill" class="input-style-100">
                                 <mat-label>Enter Purpose of Stay</mat-label>
                                 <input matInput placeholder="Purpose of Stay" formControlName="purposeOfStay">
                             </mat-form-field>
@@ -140,7 +145,7 @@
                         </form>
                     </mat-step>
                     <mat-step label="Assign Room">
-                        <form [formGroup]="bookForm" (ngSubmit)="addBooking()">
+                        <form [formGroup]="bookForm" (ngSubmit)="addBooking()" class="p-t20">
                             <mat-form-field appearance="fill" class="input-style-45">
                                 <mat-label>Choose a Room Type</mat-label>
                                 <mat-select formControlName="roomId" (selectionChange)="getSelectedRoom($event)">
@@ -153,7 +158,7 @@
                                 <mat-label>Price Per Night</mat-label>
                                 <input matInput formControlName="totalPrice" placeholder="Price Per Night" required>
                             </mat-form-field>
-                            <div class="input-style-45 float-left">
+                            <div class="input-style-100">
                                 <mat-label>Discount Type :</mat-label>
                                 <mat-radio-group formControlName="discountType">
                                     <section class="example-section">
@@ -165,12 +170,10 @@
                                 </mat-radio-group>
                             </div>
 
-                            <mat-form-field appearance="fill" class="input-style-45">
+                            <mat-form-field appearance="fill" class="input-style-30">
                                 <mat-label>Enter Discount Of</mat-label>
                                 <input matInput formControlName="discountOf" placeholder="Discount Of" required>
                             </mat-form-field>
-
-
                             <mat-form-field appearance="fill" class="input-style-30">
                                 <mat-label>Enter Occupants</mat-label>
                                 <input matInput formControlName="occcupants" placeholder="Occupants">

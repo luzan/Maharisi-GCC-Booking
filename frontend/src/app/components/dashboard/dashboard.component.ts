@@ -54,6 +54,7 @@ export class DashboardComponent implements OnInit {
       discountOf: new FormControl(),
       totalPrice: new FormControl(),
       occcupants: new FormControl(),
+      roomType: new FormControl(),
       roomId: new FormControl(),
       roomNumber: new FormControl(),
       paidInCash: new FormControl()
