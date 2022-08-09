@@ -21,7 +21,7 @@ export class DashboardComponent implements OnInit {
   contactForm!: FormGroup;
   isLinear = true;
   availableRooms?: any;
-  listOfDashboard: GetDashboard[] = [];
+  listOfDashboard: any;
 
   constructor(private fb: FormBuilder,
     private userService: UserService,
@@ -70,6 +70,19 @@ export class DashboardComponent implements OnInit {
         this.listOfDashboard = response.bookings;
       }
     );
+    this.getUpcomingBookings();
+  }
+
+  getUpcomingBookings(): void {
+    this.bookingService.getBookingDataForDashboard().subscribe({
+      next: (response: any) => {
+        console.log("--response--", response);
+        this.listOfDashboard = response.data;
+      },
+      error: (err: any) => {
+        console.log(err);
+      }
+    });
   }
 
   getRoomDetails(): void {

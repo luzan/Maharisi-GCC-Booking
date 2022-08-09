@@ -20,9 +20,13 @@ export class BookingsService {
     return this.http.post<{ token: string }>(`${environment.apiUrl}/bookings/admin`, booking);
   }
 
-  // getBookigs() {
-  //   return this.http.get<Array<Booking>>('http://localhost:3000/api/v1/book');
-  // }
+  getAllBookingData(): any {
+    return this.http.get<any>(`${environment.apiUrl}/bookings`);
+  }
+
+  getBookingDataForDashboard(): any {
+    return this.http.get<any>(`${environment.apiUrl}/bookings?template=dashboard`);
+  }
 
   // getBookigById(book_id: string) {
   //   return this.http.get<Booking>('http://localhost:3000/api/v1/book/' + book_id);

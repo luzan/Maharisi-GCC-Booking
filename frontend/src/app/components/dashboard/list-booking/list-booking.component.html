@@ -32,46 +32,53 @@
             <table mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)"
                 class="mat-elevation-z8">
                 <ng-container matColumnDef="position">
-                    <th class="bg-th" mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by number">
+                    <th class="bg-th" mat-header-cell *matHeaderCellDef mat-sort-header
+                        sortActionDescription="Sort by number">
                         No.
                     </th>
                     <td mat-cell *matCellDef="let element"> {{element.position}} </td>
                 </ng-container>
                 <ng-container matColumnDef="name">
-                    <th class="bg-th" mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name">
+                    <th class="bg-th" mat-header-cell *matHeaderCellDef mat-sort-header
+                        sortActionDescription="Sort by name">
                         Name
                     </th>
                     <td mat-cell *matCellDef="let element"> {{element.name}} </td>
                 </ng-container>
                 <ng-container matColumnDef="checkInDate">
-                    <th class="bg-th" mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Check In Date">
+                    <th class="bg-th" mat-header-cell *matHeaderCellDef mat-sort-header
+                        sortActionDescription="Sort by Check In Date">
                         Check In Date
                     </th>
-                    <td mat-cell *matCellDef="let element"> {{element.checkInDate}} </td>
+                    <td mat-cell *matCellDef="let element"> {{element.checkInDate | date: 'MM/dd/yyyy'}} </td>
                 </ng-container>
                 <ng-container matColumnDef="checkOutDate">
-                    <th class="bg-th" mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Check Out Date">
+                    <th class="bg-th" mat-header-cell *matHeaderCellDef mat-sort-header
+                        sortActionDescription="Sort by Check Out Date">
                         Check Out Date
                     </th>
-                    <td mat-cell *matCellDef="let element"> {{element.checkOutDate}} </td>
+                    <td mat-cell *matCellDef="let element"> {{element.checkOutDate | date: 'MM/dd/yyyy'}} </td>
                 </ng-container>
                 <ng-container matColumnDef="purpose">
-                    <th class="bg-th" mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by purpose">
+                    <th class="bg-th" mat-header-cell *matHeaderCellDef mat-sort-header
+                        sortActionDescription="Sort by purpose">
                         Purpose
                     </th>
                     <td mat-cell *matCellDef="let element"> {{element.purpose}} </td>
                 </ng-container>
                 <ng-container matColumnDef="room">
-                    <th class="bg-th" mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Room">
+                    <th class="bg-th" mat-header-cell *matHeaderCellDef mat-sort-header
+                        sortActionDescription="Sort by Room">
                         Room
                     </th>
                     <td mat-cell *matCellDef="let element"> {{element.room}} </td>
                 </ng-container>
                 <ng-container matColumnDef="amount">
-                    <th class="bg-th" mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by amount">
-                        Nmount
+                    <th class="bg-th" mat-header-cell *matHeaderCellDef mat-sort-header
+                        sortActionDescription="Sort by amount">
+                        Amount
                     </th>
-                    <td mat-cell *matCellDef="let element"> {{element.amount}} </td>
+                    <td mat-cell *matCellDef="let element"> {{element.amount | currency:'USD'}} </td>
                 </ng-container>
                 <ng-container matColumnDef="action">
                     <th class="bg-th" mat-header-cell *matHeaderCellDef>
@@ -79,24 +86,24 @@
                     </th>
                     <td mat-cell *matCellDef="let element" class="text-center">
                         <a href="/dashboard/eidt-booking-admin">
-                            <button mat-raised-button matTooltip="edit" mat-icon-button class="example-icon" aria-label="Example icon-button"
-                                (click)="edit()">
+                            <button mat-raised-button matTooltip="edit" mat-icon-button class="example-icon"
+                                aria-label="Example icon-button" (click)="edit()">
                                 <mat-icon>edit</mat-icon>
                             </button>
                         </a> &nbsp;
                         <a href="/dashboard/make-payment">
-                            <button mat-raised-button matTooltip="pay" mat-icon-button class="example-icon" aria-label="Example icon-button"
-                                (click)="pay()">
+                            <button mat-raised-button matTooltip="pay" mat-icon-button class="example-icon"
+                                aria-label="Example icon-button" (click)="pay()">
                                 <mat-icon>monetization_on</mat-icon>
                             </button>
                         </a> &nbsp;
-                        <button (click)="openDialog('0ms', '0ms')" mat-raised-button matTooltip="cancel" mat-icon-button class="example-icon" aria-label="Example icon-button"
-                            (click)="cancel()">
+                        <button (click)="openDialog('0ms', '0ms')" mat-raised-button matTooltip="cancel" mat-icon-button
+                            class="example-icon" aria-label="Example icon-button" (click)="cancel()">
                             <mat-icon>cancel</mat-icon>
                         </button> &nbsp;
                         <a href="/dashboard/view-booking-admin">
-                            <button mat-raised-button matTooltip="view" mat-icon-button class="example-icon" aria-label="Example icon-button"
-                                (click)="view()">
+                            <button mat-raised-button matTooltip="view" mat-icon-button class="example-icon"
+                                aria-label="Example icon-button" (click)="view()">
                                 <mat-icon>library_books</mat-icon>
                             </button>
                         </a>
@@ -106,7 +113,7 @@
                 <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                 <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
             </table>
-            <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
+            <mat-paginator [pageSizeOptions]="[10, 20]" showFirstLastButtons
                 aria-label="Select page of periodic elements">
             </mat-paginator>
         </div>
