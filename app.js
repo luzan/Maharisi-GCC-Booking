@@ -10,7 +10,7 @@ app.use(express.json());
 app.use(cors({
     origin: '*'
 }));
-
+app.use('/', require('./routers/index'));
 app.use('/api/v1/users', require('./routers/users'));
 app.use('/api/v1/rooms', require('./routers/rooms'));
 app.use('/api/v1/bookings', require('./routers/bookings'));
