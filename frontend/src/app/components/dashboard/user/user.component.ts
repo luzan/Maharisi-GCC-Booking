@@ -97,7 +97,7 @@ export class UserComponent implements AfterViewInit {
   view(): void{}
 
   openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
-    this.dialog.open(DialogDeleteBooking, {
+    this.dialog.open(DialogDeleteUser, {
       width: '500px',
       height: '200px',
       enterAnimationDuration,
@@ -112,6 +112,6 @@ export class UserComponent implements AfterViewInit {
   templateUrl: 'dialog-delete.html'
 })
 
-export class DialogDeleteBooking {
-  constructor(public dialogRef: MatDialogRef<DialogDeleteBooking>) {}
+export class DialogDeleteUser {
+  constructor(public dialogRef: MatDialogRef<DialogDeleteUser>) {}
 }

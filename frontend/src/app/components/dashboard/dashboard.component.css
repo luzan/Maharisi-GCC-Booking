@@ -3,6 +3,11 @@
     flex: 1 1 auto;
 }
 
+.a-login {
+    color: #fff;
+    text-decoration: none;
+}
+
 .header {
     color: #fff;
     font-size: 26px;
@@ -156,7 +161,8 @@
     float: left;
     padding: 20px;
     text-align: left;
-    min-height: 580px;
+    /* min-height: 580px; */
+    min-height: 640px;
 }
 
 .main-room {
@@ -364,19 +370,19 @@ th.mat-sort-header-sorted {
     position: absolute;
 }
 
-.p-t20{
+.p-t20 {
     padding-top: 15px;
 }
 
-.wid100{
+.wid100 {
     width: 100%;
     min-height: 500px;
 }
 
-.wid70{
+.wid70 {
     width: 70%
 }
 
-.bg-disable{
+.bg-disable {
     background: radial-gradient(#0000004a, #00000096);
 }

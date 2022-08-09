@@ -1,7 +1,11 @@
 <div class="container">
     <mat-toolbar class="header">
-        <img src="../assets/images/miu-icon.png" class="img-log" />
-        <span>Maharishi GCC Booking</span>
+        <a href="/dashboard" class="a-login">
+            <img src="../assets/images/miu-icon.png" class="img-log" />
+        </a>
+        <a href="/dashboard" class="a-login">
+            <span>Maharishi GCC Booking</span>
+        </a>
         <span class="example-spacers"></span>
             <a href="/dashboard/list-booking" class="menu">
                 <button mat-stroked-button class="example-icon btn-menu">Bookings</button>
@@ -64,8 +68,8 @@
                             <mat-label>Accessibility : </mat-label>
                             <mat-radio-group aria-label="Select an Option" formControlName="isAccessible">
                                 <section class="example-section">
-                                    <mat-radio-button class="mg-checkbox" value="true" [checked]="false">Yes</mat-radio-button>
-                                    <mat-radio-button class="mg-checkbox" value="false" [checked]="false">No
+                                    <mat-radio-button class="mg-checkbox" value="true">Yes</mat-radio-button>
+                                    <mat-radio-button class="mg-checkbox" value="false">No
                                     </mat-radio-button>
                                 </section>
                             </mat-radio-group>

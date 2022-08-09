@@ -1,33 +1,28 @@
 <div class="container">
     <mat-toolbar class="header">
-        <a href="/dashboard" class="a-login">
+        <a href="/booking" class="a-login">
             <img src="../assets/images/miu-icon.png" class="img-log" />
         </a>
-        <a href="/dashboard" class="a-login">
+        <a href="/booking" class="a-login">
             <span>Maharishi GCC Booking</span>
         </a>
         <span class="example-spacers"></span>
-        <a href="/dashboard/list-booking" class="menu">
-            <button mat-stroked-button class="example-icon btn-menu">Bookings</button>
+        <a href="/booking/book-history" class="menu">
+            <button mat-stroked-button class="example-icon btn-menu">My Bookings</button>
         </a>
-        <a href="/dashboard/payment" class="menu">
+        <a href="/booking/payment-guest" class="menu">
             <button mat-stroked-button class="example-icon btn-menu">Payments</button>
         </a>
-        <a href="/dashboard/room" class="menu">
-            <button mat-stroked-button class="example-icon btn-menu">Rooms</button>
-        </a>
-        <a href="/dashboard/user" class="menu">
-            <button mat-stroked-button class="example-icon btn-menu">Users</button>
-        </a>
         <span class="example-spacer"></span>
-        <button mat-icon-button class="example-icon" aria-label="Example icon-button" (click)="logout()">
+        <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon"
+            (click)="logout()">
             <mat-icon>logout</mat-icon>
         </button>
     </mat-toolbar>
     <div class="dashbaord-body">
         <div class="book-box text-left">
             <p class="book-list">Payment Lists</p>
-            <!-- <a href="/dashboard/make-payment">
+            <!-- <a href="/booking/payment-guest">
                 <button mat-stroked-button class="example-icon btn-menu make-payment">
                     Making Payment
                 </button>

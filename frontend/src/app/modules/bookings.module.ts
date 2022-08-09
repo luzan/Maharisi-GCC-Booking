@@ -7,25 +7,31 @@ import { EditBookingComponent } from '../components/booking/edit-booking/edit-bo
 import { BookingComponent } from '../components/booking/booking.component';
 import { MaterialModule } from '../material/material.module';
 import { PaymentGuestComponent } from '../components/booking/payment-guest/payment-guest.component';
-import { BookingHistoryComponent } from '../components/booking/booking-history/booking-history.component';
+import { BookingHistoryComponent, DialogDeleteBookingHistory } from '../components/booking/booking-history/booking-history.component';
+import { ListPaymentsComponent } from '../components/booking/payment-guest/list-payments/list-payments.component';
 
 @NgModule({
   declarations: [
     BookingComponent,
     BookingHistoryComponent,
+    DialogDeleteBookingHistory,
     EditBookingComponent,
     PaymentGuestComponent,
+    ListPaymentsComponent
   ],
   imports: [
     CommonModule,
     RouterModule.forChild([
       { path: '', component: BookingComponent },
+      { path: 'payment-guest', component: ListPaymentsComponent },
+      // { path: 'make-payment-guest', component: PaymentGuestComponent },
       { path: 'make-payment/:booking_id', component: PaymentGuestComponent },
       { path: 'book-history', component: BookingHistoryComponent },
       { path: 'edit/:booking_id', component: EditBookingComponent },
     ]),
     ReactiveFormsModule,
     MaterialModule
-  ]
+  ],
+  bootstrap: [DialogDeleteBookingHistory]
 })
 export class BookingsModule { }
