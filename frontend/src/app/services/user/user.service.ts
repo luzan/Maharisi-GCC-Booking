@@ -41,4 +41,25 @@ export class UserService {
       this.userState$.next(JSON.parse(userState));
     }
   }
+
+  getAllUsers(): any {
+    return this.http.get<any>(`${environment.apiUrl}/users`); 
+  }
+
+  getUserById(user_id?: string): any {
+    return this.http.get<any>(`${environment.apiUrl}/users/${user_id}`);
+  }
+
+  addUser(user: User) {
+    return this.http.post<any>(`${environment.apiUrl}/users`, user);
+  }
+
+  updateUserBooking(user: User, user_id?: string): any {
+    return this.http.put(`${environment.apiUrl}/users/${user_id}`, user);
+  }
+
+  deleteUserBooking(user_id?: string): any {
+    return this.http.delete<any>(`${environment.apiUrl}/users/${user_id}`);
+  }
+
 }

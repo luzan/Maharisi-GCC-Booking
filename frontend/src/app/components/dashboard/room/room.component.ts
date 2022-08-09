@@ -1,7 +1,4 @@
-
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-
 import {LiveAnnouncer} from '@angular/cdk/a11y';
 import {AfterViewInit, Component, ViewChild, OnInit} from '@angular/core';
 import {MatSort, Sort} from '@angular/material/sort';
@@ -10,6 +7,7 @@ import {MatTableDataSource} from '@angular/material/table';
 
 import { UserService } from '../../../services/user/user.service';
 import { RoomService } from 'src/app/services/room/room.service';
+
 export interface PeriodicElement {
   position: number;
   building: string;
@@ -33,9 +31,7 @@ export class RoomComponent implements AfterViewInit {
     private userService: UserService,
     private roomService: RoomService,
     private router: Router, 
-    private _liveAnnouncer: LiveAnnouncer) { 
-
-  }
+    private _liveAnnouncer: LiveAnnouncer) { }
   
   @ViewChild(MatSort) sort!: MatSort;  
   @ViewChild(MatPaginator) paginator!: MatPaginator;

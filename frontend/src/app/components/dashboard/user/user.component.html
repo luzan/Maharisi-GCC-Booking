@@ -43,17 +43,23 @@
                     </th>
                     <td mat-cell *matCellDef="let element"> {{element.name}} </td>
                 </ng-container>
+                <ng-container matColumnDef="gender">
+                    <th class="bg-th" mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by gender">
+                        Gender
+                    </th>
+                    <td mat-cell *matCellDef="let element"> {{element.gender}} </td>
+                </ng-container>
                 <ng-container matColumnDef="email">
                     <th class="bg-th" mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by email">
                         Email
                     </th>
                     <td mat-cell *matCellDef="let element"> {{element.email}} </td>
                 </ng-container>
-                <ng-container matColumnDef="room">
-                    <th class="bg-th" mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Room">
-                        Room
+                <ng-container matColumnDef="role">
+                    <th class="bg-th" mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by role">
+                        Role
                     </th>
-                    <td mat-cell *matCellDef="let element"> {{element.room}} </td>
+                    <td mat-cell *matCellDef="let element"> {{element.role}} </td>
                 </ng-container>
                 <ng-container matColumnDef="phone">
                     <th class="bg-th" mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by phone">
@@ -66,14 +72,12 @@
                         Actions
                     </th>
                     <td mat-cell *matCellDef="let element" class="text-center">
-                        <a href="/dashboard/edit-user">
-                            <button mat-raised-button matTooltip="change role" mat-icon-button class="example-icon" aria-label="Example icon-button with share icon"
-                                (click)="edit()">
-                                <mat-icon>edit</mat-icon>
-                            </button>
-                        </a> &nbsp;
+                        <button mat-raised-button matTooltip="change role" mat-icon-button class="example-icon" aria-label="Example icon-button with share icon"
+                            (click)="edit(element.user_id)">
+                            <mat-icon>edit</mat-icon>
+                        </button> &nbsp;
                         <button (click)="openDialog('0ms', '0ms')" mat-raised-button matTooltip="delete" mat-icon-button class="example-icon" aria-label="Example icon-button with share icon"
-                            (click)="cancel()">
+                            (click)="cancel(element.user_id)">
                             <mat-icon>cancel</mat-icon>
                         </button>
                     </td>

@@ -8,5 +8,5 @@ export interface Room {
     building: string;
     floor: string;
     pictureUrls: string;
-    // pricePerNigh: number;
+    pricePerNigh?: number;
 }
