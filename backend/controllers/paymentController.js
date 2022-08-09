@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const ObjectId = mongoose.Types.ObjectId;
 async function getAllPayments(req, res, next) {
     try {
-        const payments = await Payment.find().sort({ paymentDate: 1 });
+        const payments = await Payment.find().sort({ paymentDate: -1 });
         console.log(payments);
         res.status(200).json({
             message: 'All payments retrieved successfully',
@@ -95,7 +95,9 @@ async function createPaymentForBookingByAdmin(req, res, next) {
     try {
         const { booking_id } = req.params;
 
-        const { userId, firstName, lastName, email, paymentMethod, paymentAmount, paymentRef } = req.body;
+        const { userId, firstName, lastName, email, address, country, state, zipCode,
+            paymentMethod, paymentAmount, paymentRef
+        } = req.body;
         const bookingCostInfo = await BookingService.getCostInformationFromBooking(booking_id);
 
         if (!bookingCostInfo) {
@@ -111,7 +113,11 @@ async function createPaymentForBookingByAdmin(req, res, next) {
                     user_id: userId,
                     firstName: firstName,
                     lastName: lastName,
-                    email: email
+                    email: email,
+                    address: address,
+                    country: country,
+                    state: state,
+                    zipCode: zipCode,
                 },
                 booking_id: booking_id,
                 paymentMethod: paymentMethod,
