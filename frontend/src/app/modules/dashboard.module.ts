@@ -5,8 +5,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { DashboardComponent } from '../components/dashboard/dashboard.component';
 import { MaterialModule } from '../material/material.module';
-import { AddDashboardComponent } from '../components/dashboard/add-dashboard/add-dashboard.component';
-import { EditDashboardComponent } from '../components/dashboard/edit-dashboard/edit-dashboard.component';
 
 import { PaymentComponent } from '../components/dashboard/payment/payment.component';
 import { MakePaymentComponent } from '../components/dashboard/payment/make-payment/make-payment.component';
@@ -19,12 +17,12 @@ import { UserComponent } from '../components/dashboard/user/user.component';
 import { ListBookingComponent } from '../components/dashboard/list-booking/list-booking.component';
 import { AddUserComponent } from '../components/dashboard/user/add-user/add-user.component';
 import { EditUserComponent } from '../components/dashboard/user/edit-user/edit-user.component';
+import { EditBookingAdminComponent } from '../components/dashboard/edit-booking-admin/edit-booking-admin.component';
+import { ViewBookingAdminComponent } from '../components/dashboard/view-booking-admin/view-booking-admin.component';
 
 @NgModule({
   declarations: [
     DashboardComponent,
-    AddDashboardComponent,
-    EditDashboardComponent,
     ListBookingComponent,
     PaymentComponent,
     RoomComponent,
@@ -41,6 +39,8 @@ import { EditUserComponent } from '../components/dashboard/user/edit-user/edit-u
     RouterModule.forChild([
       { path: '', component: DashboardComponent },
       { path: 'list-booking', component: ListBookingComponent },
+      { path: 'eidt-booking-admin', component: EditBookingAdminComponent },
+      { path: 'view-booking-admin', component: ViewBookingAdminComponent },
       { path: 'payment', component: PaymentComponent },
       { path: 'make-payment', component: MakePaymentComponent },
       { path: 'room', component: RoomComponent },

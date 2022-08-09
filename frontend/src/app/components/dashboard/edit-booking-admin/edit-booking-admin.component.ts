@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-add-dashboard',
-  templateUrl: './add-dashboard.component.html',
+  selector: 'app-edit-booking-admin',
+  templateUrl: './edit-booking-admin.component.html',
   styleUrls: ['../dashboard.component.css']
 })
-export class AddDashboardComponent implements OnInit {
+export class EditBookingAdminComponent implements OnInit {
 
   constructor() { }
 

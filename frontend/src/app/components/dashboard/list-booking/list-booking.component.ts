@@ -7,6 +7,8 @@ import {MatSort, Sort} from '@angular/material/sort';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
 
+import {MatDialog, MatDialogRef} from '@angular/material/dialog';
+
 import { UserService } from '../../../services/user/user.service';
 export interface PeriodicElement {
   position: number;
@@ -39,7 +41,11 @@ const ELEMENT_DATA: PeriodicElement[] = [
 export class ListBookingComponent implements AfterViewInit {
   displayedColumns: string[] = ['position', 'name', 'checkInDate', 'checkOutDate', 'purpose', 'room', 'amount', 'action'];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
-  constructor(private userService: UserService, private router: Router, private _liveAnnouncer: LiveAnnouncer) { }
+  constructor(
+    public dialog: MatDialog, 
+    private userService: UserService, 
+    private router: Router, 
+    private _liveAnnouncer: LiveAnnouncer) { }
   
   @ViewChild(MatSort) sort!: MatSort;  
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -73,4 +79,25 @@ export class ListBookingComponent implements AfterViewInit {
 
   view(): void{}
 
+
+
+  openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
+    this.dialog.open(DialogDeleteBooking, {
+      width: '500px',
+      height: '200px',
+      enterAnimationDuration,
+      exitAnimationDuration,
+    });
+  }
+
 }
+
+@Component({
+  selector: 'dialog-delete',
+  templateUrl: 'dialog-delete.html'
+})
+
+export class DialogDeleteBooking {
+  constructor(public dialogRef: MatDialogRef<DialogDeleteBooking>) {}
+}
+

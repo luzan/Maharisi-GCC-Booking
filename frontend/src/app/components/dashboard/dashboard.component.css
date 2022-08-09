@@ -348,7 +348,7 @@ th.mat-sort-header-sorted {
     box-shadow: none;
 }
 
-/* testing */
+/* img */
 .h30 {
     height: 30px;
 }
@@ -362,4 +362,8 @@ th.mat-sort-header-sorted {
     height: 100%;
     cursor: pointer;
     position: absolute;
+}
+
+.p-t20{
+    padding-top: 15px;
 }
