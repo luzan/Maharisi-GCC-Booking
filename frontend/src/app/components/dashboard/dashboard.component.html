@@ -48,11 +48,10 @@
                     </div>
                     <div class="box-title-right">
                         <p class="box-name">
-                            {{dash.user.firstName ? dash.user.firstName : "Empty"}}
-                            {{dash.user.lastName ? dash.user.lastName : "Empty"}}
+                            {{dash.user.firstName + ' ' + dash.user.lastName}}
                         </p>
-                        <p class="box-checkin">CheckIn: {{dash.checkInDate ? dash.checkInDate : "Aug 3, 2022"}}</p>
-                        <p class="box-phone">{{dash.phoneNumber ? dash.phoneNumber : "Empty"}} </p>
+                        <p class="box-checkin">CheckIn Date: {{dash.checkInDate | date}}</p>
+                        <p class="box-phone">{{ dash.user.phoneNumber ? dash.user.phoneNumber : dash.user.email}} </p>
                     </div>
                 </div>
             </div>
