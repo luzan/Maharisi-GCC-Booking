@@ -126,7 +126,7 @@ export class EditRoomComponent implements OnInit {
         });
       },
       error: (err: any) => {
-        console.log("--err getting booking by ID--", err);
+        console.log("--err getting room by ID--", err);
       }
     })
   }
