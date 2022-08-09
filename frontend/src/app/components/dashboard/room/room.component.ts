@@ -9,6 +9,7 @@ import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
 
 import { UserService } from '../../../services/user/user.service';
+import { RoomService } from 'src/app/services/room/room.service';
 export interface PeriodicElement {
   position: number;
   building: string;
@@ -37,8 +38,15 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 export class RoomComponent implements AfterViewInit {
   displayedColumns: string[] = ['position', 'building', 'roomNumber', 'isAccessible', 'floor', 'action'];
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
-  constructor(private userService: UserService, private router: Router, private _liveAnnouncer: LiveAnnouncer) { }
+  // dataSource = new MatTableDataSource(ELEMENT_DATA);
+  dataSource = new MatTableDataSource();
+  constructor(
+    private userService: UserService,
+    private roomService: RoomService,
+    private router: Router, 
+    private _liveAnnouncer: LiveAnnouncer) { 
+
+  }
   
   @ViewChild(MatSort) sort!: MatSort;  
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -48,6 +56,33 @@ export class RoomComponent implements AfterViewInit {
     this.dataSource.paginator = this.paginator;
   }
 
+  getAllRoomData(): void {
+    this.roomService.getAllRooms().subscribe({
+      next: (response: any) => {
+        // console.log("--response.data--", response.data)
+        this.dataSource.data = this.roomDataParser(response.data);
+      },
+      error: (err: any) => {
+        console.log(err);
+      }
+    });
+  }
+
+  roomDataParser(data: any[]): any[] {
+    return data.map((room: any, index) => {
+      return {
+        position: ++index,
+        // room_id: room._id,
+        building: room.building,
+        roomNumber: room.roomNumber,
+        isAccessible: room.isAccessible,
+        floor: room.floor,
+        action: ''
+      };
+    });
+  }
+
+
   /** Announce the change in sort state for assistive technology. */
   announceSortChange(sortState: Sort) {
     if (sortState.direction) {
@@ -56,7 +91,9 @@ export class RoomComponent implements AfterViewInit {
       this._liveAnnouncer.announce('Sorting cleared');
     }
   }
+
   ngOnInit(): void {
+    this.getAllRoomData();
   }
 
   logout(): void{
@@ -64,7 +101,10 @@ export class RoomComponent implements AfterViewInit {
     this.router.navigate(['/', 'login']);
   }
 
-  edit(): void{}
+  edit(room_id: string): void {
+    console.log("roosdfsdf----", room_id)
+    this.router.navigate(['/', 'dashboard', 'edit-room', room_id]);
+  }
 
   disable(): void{}
 
