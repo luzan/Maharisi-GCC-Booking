@@ -323,6 +323,18 @@ async function deleteBooking(req, res, next) {
     }
 }
 
+async function cancelBooking(req, res, next) {
+    try {
+
+        const booking = await Booking.findByIdAndUpdate(req.params.id, { bookingStatus: "cancelled" });
+        res.status(200).json({
+            message: `Booking cancelled successfully`
+        });
+    } catch (err) {
+        next(err);
+    }
+}
+
 module.exports = {
     getAllBookings,
     getBookingById,

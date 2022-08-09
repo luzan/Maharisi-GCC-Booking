@@ -34,10 +34,10 @@ async function getUserById(req, res, next) {
 // Todo: parse the req.body only allow roles to be added by admin
 async function createUser(req, res, next) {
     try {
-        const { firstName, middelName, lastName, email, phone, password, gender } = req.body;
+        const { firstName, middleName, lastName, email, phone, password, gender } = req.body;
         const userData = {
             firstName: firstName,
-            middelName: middelName,
+            middleName: middleName,
             lastName: lastName,
             email: email,
             phone: phone,
