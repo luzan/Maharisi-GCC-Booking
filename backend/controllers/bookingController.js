@@ -39,7 +39,9 @@ async function getBookingById(req, res, next) {
     try {
         const currentUser = req.user;
         const booking = await Booking.findById(req.params.id);
-        if (booking.user.user_id.toString() !== currentUser.user_id && currentUser.role !== Role.Admin) {
+        let bookingUserId;
+        (booking.user.user_id) ? bookingUserId = booking.user.user_id.toString() : null;
+        if (bookingUserId !== currentUser.user_id && currentUser.role !== Role.Admin) {
             return res.status(401).json({ message: 'Unauthorized' });
         }
         res.status(200).json({
@@ -225,13 +227,13 @@ async function updateBooking(req, res, next) {
             checkInDate ? data.checkInDate = sanitizeDate(checkInDate) : null;
             checkOutDate ? data.checkOutDate = sanitizeDate(checkOutDate) : null;
             purposeOfStay ? data.purposeOfStay = purposeOfStay : null;
-            data.status = "revised";
+            data.bookingStatus = "revised";
             data.cost = {
                 regularPrice: totalPrice,
                 totalPrice: totalPrice,
             }
             data.user = {
-                user_id: user_id,
+                user_id: user_id ? user_id : null,
                 firstName: currentUser.firstName,
                 lastName: currentUser.lastName,
                 phoneNumber: phoneNumber,
@@ -248,6 +250,61 @@ async function updateBooking(req, res, next) {
                 message: `No rooms are available for that period`
             });
         }
+    } catch (err) {
+        next(err);
+    }
+}
+
+async function updateBookingByAdmin(req, res, next) {
+    try {
+        console.log('---iam in update booking by admin---');
+        const { booking_id } = req.params;
+        const {
+            roomId, roomType, roomNumber, building, firstName, lastName, email, phoneNumber,
+            numberOfGuests, accessibleRequired,
+            checkInDate, checkOutDate, arrivalTime, departureTime,
+            purposeOfStay, bookingFor, discountType, discountOf, pricePerNight
+        } = req.body;
+        console.log(req.body);
+        let daysToBook = createArrayOfDays(checkInDate, checkOutDate);
+        let totalAmount = parseInt(pricePerNight) * daysToBook.length;
+        let discountedAmount = Utils.applyDiscount(totalAmount, discountType, parseInt(discountOf));
+
+        const bookingData = {
+            room: {
+                room_id: roomId,
+                roomNumber: roomNumber,
+                building: building,
+            },
+            user: {
+                firstName: firstName,
+                lastName: lastName,
+                email: email,
+                phoneNumber: phoneNumber
+            },
+            numberOfGuests: numberOfGuests,
+            accessibleRequired: accessibleRequired,
+            checkInDate: sanitizeDate(checkInDate),
+            checkOutDate: sanitizeDate(checkOutDate),
+            arrivalTime: arrivalTime ? arrivalTime : null,
+            departureTime: departureTime ? departureTime : null,
+            bookingFor: bookingFor,
+            purposeOfStay: purposeOfStay,
+            bookingStatus: "revised",
+            cost: {
+                regularPrice: totalAmount,
+                discountType: discountType,
+                discountOf: parseInt(discountOf),
+                totalPrice: discountedAmount,
+            }
+        }
+        console.log('---booking data---', bookingData);
+        const bookingResponse = await Booking.findByIdAndUpdate(booking_id, bookingData);
+
+        res.status(201).json({
+            message: `Booking updated successfully`, data: bookingResponse
+        });
+
     } catch (err) {
         next(err);
     }
@@ -273,5 +330,6 @@ module.exports = {
     createBooking,
     createBookingByAdmin,
     updateBooking,
+    updateBookingByAdmin,
     deleteBooking,
 }
