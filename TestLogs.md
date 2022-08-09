@@ -1,7 +1,8 @@
 ## Feature Testing
+
 > Task: Check all the features and list them out
 
-### *Sample Report Format*
+### _Sample Report Format_
 
 ```
 Feature: Creating Booking
@@ -12,16 +13,16 @@ Test Status: Passed | Failed | Needs Attention
 Observation:
     - There is no use of sending few information on booking
 ```
+
 > Note: Remember to have observations in detail if Test Status is Failed (with when it failed and what was the user role and other data when you tested it). Need attention can be status when you think there can be improvements or need fixes.
 
-### *Feature Test Reports Here*
-
-
+### _Feature Test Reports Here_
 
 ## API Testing
->Task: Check All APIs with for authentication and authorization
 
-### *Sample Report Format*
+> Task: Check All APIs with for authentication and authorization
+
+### _Sample Report Format_
 
 ```
 API: /api/v1/users
@@ -31,14 +32,16 @@ Expected Task
     - User will be unauthorized
     - User information returned should not have password
 Test Status: Passed | Failed | Needs Attention
-Observation: 
+Observation:
     - Looks like there are other values which are not necessary and are shown on the returned data
 ```
+
 > Note: Remember to have observations in detail if Test Status is Failed (with when it failed and what was the user role and other data when you tested it). Need attention can be status when you think there can be improvements or need fixes.
 
+### _API Test Reports Here_
 
-### *API Test Reports Here*
 ### User Controller
+
 ```
 Method: Post
 API: http://localhost:3000/api/v1/users
@@ -123,6 +126,7 @@ Test Status: Passed
 ```
 
 ### Room Controller
+
 ```
 Method: Post
 API: http://localhost:3000/api/v1/rooms
@@ -197,6 +201,7 @@ Test Status: Passed
 ```
 
 ### Booking Controller
+
 ```
 Method: Post
 API: http://localhost:3000/api/v1/bookings
@@ -214,7 +219,7 @@ Test Status: Passed
 ```
 
 ```
-Method: Post 
+Method: Post
 API: http://localhost:3000/api/v1/bookings
 Role: Admin
 Expected Task: Create new booking by room id
@@ -234,7 +239,7 @@ Test Status: Passed
 Method: Get
 API: http://localhost:3000/api/v1/bookings
 Role: User
-Expected Task: Cannot access all bookings 
+Expected Task: Cannot access all bookings
 Test Status: Passed
 ```
 
@@ -288,12 +293,13 @@ Test Status: Passed
 Method: Delete
 API: http://localhost:3000/api/v1/bookings/{id}
 Role: User
-Expected Task: Delete own booking 
+Expected Task: Delete own booking
 Test Status: Needs attention
 Observation: User should be able to cancel their own booking
 ```
 
 ### Payment Controller
+
 ```
 Method: Post
 API: http://localhost:3000/api/v1/payments/booking/{booking_id}
@@ -341,7 +347,7 @@ Role: User
 Expected Task: Return payment details for specific booking
 Test Status: Failed
 Observation: Returns "unauthorized" message even for your own booking payment
-Update: 
+Update:
  - Payment needs to have user {user_id, firstName, lastName, email } data.
  - Unauthorized issue fixed
 Test Status: Pass
