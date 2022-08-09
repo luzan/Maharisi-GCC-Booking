@@ -48,7 +48,7 @@ export class EditUserComponent implements OnInit {
         {
           next: (response: any) => {
             this.openSnackBar(response.message, 'Close');
-            this.resetForm();
+            // this.resetForm();
           },
           error: (err: any) => {
             this.openSnackBar(err.error.message, 'Close');
@@ -81,7 +81,7 @@ export class EditUserComponent implements OnInit {
   getUserById(room_id?: string): void {
     this.userService.getUserById(room_id).subscribe({
       next: (response: any) => {
-        console.log("--response--", response);
+        // console.log("--response--", response);
         this.editUserForm.patchValue({
           firstName: response.data.firstName,
           middleName: response.data.middleName,

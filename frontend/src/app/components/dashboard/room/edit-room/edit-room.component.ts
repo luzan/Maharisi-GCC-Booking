@@ -80,7 +80,7 @@ export class EditRoomComponent implements OnInit {
         {
           next: (response: any) => {
             this.openSnackBar(response.message, 'Close');
-            this.resetForm();
+            // this.router.navigate(['/', 'login']);
           },
           error: (err: any) => {
             this.openSnackBar(err.error.message, 'Close');
