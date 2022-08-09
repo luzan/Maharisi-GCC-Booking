@@ -7,28 +7,10 @@ import { MatSort, Sort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 
-import {MatDialog, MatDialogRef} from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 
 import { UserService } from '../../../services/user/user.service';
-export interface PeriodicElement {
-  position: number;
-  checkInDate: string;
-  checkOutDate: string;
-  bookingHistory: string;
-  paymentStatus: string;
-  action:string;
-}
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, checkInDate: 'H', checkOutDate: 'H', bookingHistory: 'H', paymentStatus:"H", action:''},
-  {position: 2, checkInDate: 'H', checkOutDate: 'H', bookingHistory: 'H', paymentStatus:"H", action:''},
-  {position: 3, checkInDate: 'H', checkOutDate: 'H', bookingHistory: 'H', paymentStatus:"H", action:''},
-  {position: 4, checkInDate: 'H', checkOutDate: 'H', bookingHistory: 'H', paymentStatus:"H", action:''},
-  {position: 5, checkInDate: 'H', checkOutDate: 'H', bookingHistory: 'H', paymentStatus:"H", action:''},
-  {position: 6, checkInDate: 'H', checkOutDate: 'H', bookingHistory: 'H', paymentStatus:"H", action:''},
-  {position: 7, checkInDate: 'H', checkOutDate: 'H', bookingHistory: 'H', paymentStatus:"H", action:''},
-  {position: 8, checkInDate: 'H', checkOutDate: 'H', bookingHistory: 'H', paymentStatus:"H", action:''},
-  {position: 9, checkInDate: 'H', checkOutDate: 'H', bookingHistory: 'H', paymentStatus:"H", action:''},
-  {position: 10, checkInDate: 'H', checkOutDate: 'H', bookingHistory: 'H', paymentStatus:"H", action:''},];
+import { BookingsService } from 'src/app/services/booking/bookings.service';
 
 @Component({
   selector: 'app-booking-history',
@@ -38,11 +20,12 @@ const ELEMENT_DATA: PeriodicElement[] = [
 
 
 export class BookingHistoryComponent implements AfterViewInit {
-  displayedColumns: string[] = ['position', 'checkInDate', 'checkOutDate', 'bookingHistory', 'paymentStatus', 'action' ];
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
-  constructor(public dialog: MatDialog, 
-    private userService: UserService, 
-    private router: Router, 
+  displayedColumns: string[] = ['position', 'checkInDate', 'checkOutDate', 'room', 'purpose', 'paymentStatus', 'action'];
+  dataSource = new MatTableDataSource();
+  constructor(public dialog: MatDialog,
+    private userService: UserService,
+    private bookingService: BookingsService,
+    private router: Router,
     private _liveAnnouncer: LiveAnnouncer) { }
 
   @ViewChild(MatSort) sort!: MatSort;
@@ -62,6 +45,8 @@ export class BookingHistoryComponent implements AfterViewInit {
     }
   }
   ngOnInit(): void {
+    const userState = this.userService.getUserState()
+    this.getAllBookingDataOfUser(userState?.user_id);
   }
 
   logout(): void {
@@ -69,7 +54,38 @@ export class BookingHistoryComponent implements AfterViewInit {
     this.router.navigate(['/', 'login']);
   }
 
-  edit(): void { }
+  getAllBookingDataOfUser(userId?: string): void {
+
+    this.bookingService.getAllBookingDataOfUser(userId).subscribe({
+      next: (response: any) => {
+        this.dataSource.data = this.bookingDataParser(response.data);
+      },
+      error: (err: any) => {
+        console.log(err);
+      }
+    })
+  }
+
+  bookingDataParser(data: any[]): any[] {
+    return data.map((booking: any, index) => {
+      return {
+        position: ++index,
+        booking_id: booking._id,
+        checkInDate: booking.checkInDate,
+        checkOutDate: booking.checkOutDate,
+        purpose: booking.purposeOfStay,
+        room: `${booking.room.building} RM#${booking.room.roomNumber}`,
+        paymentStatus: `$${booking.cost.totalPrice} \n (${booking.paymentStatus})`,
+        amount: booking.cost.totalPrice,
+        action: ''
+      };
+    });
+  }
+
+  edit(booking_id: string): void {
+    // console.log(booking_id);
+    this.router.navigate(['/', 'booking', 'edit', booking_id]);
+  }
 
   pay(): void { }
 
@@ -94,5 +110,5 @@ export class BookingHistoryComponent implements AfterViewInit {
 })
 
 export class DialogDeleteBooking {
-  constructor(public dialogRef: MatDialogRef<DialogDeleteBooking>) {}
+  constructor(public dialogRef: MatDialogRef<DialogDeleteBooking>) { }
 }

@@ -23,7 +23,7 @@ import { BookingHistoryComponent } from '../components/booking/booking-history/b
       { path: '', component: BookingComponent },
       { path: 'make-payment-guest', component: PaymentGuestComponent },
       { path: 'book-history', component: BookingHistoryComponent },
-      { path: 'edit', component: EditBookingComponent },
+      { path: 'edit/:booking_id', component: EditBookingComponent },
     ]),
     ReactiveFormsModule,
     MaterialModule
