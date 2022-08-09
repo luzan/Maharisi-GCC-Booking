@@ -101,7 +101,8 @@ export class DashboardComponent implements OnInit {
       roomId: e.value,
       building: roomData[0],
       roomNumber: roomData[1],
-      totalPrice: roomData[2]
+      totalPrice: roomData[2],
+      roomType: roomData[3]
     });
   }
 
@@ -177,9 +178,6 @@ export class DashboardComponent implements OnInit {
     this.router.navigate(['/', 'login']);
   }
 
-  getAllBookings(): void {
-
-  }
 
   openSnackBar(message: string, action: string) {
     this.snackBar.open(message, action, {
