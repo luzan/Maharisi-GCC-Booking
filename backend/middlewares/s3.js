@@ -1,4 +1,8 @@
-
+/**
+ * Reference Taken from
+ * Amir Mustafa
+ * https://javascript.plainenglish.io/file-upload-to-amazon-s3-using-node-js-42757c6a39e9
+ */
 require("dotenv").config();
 const S3 = require("aws-sdk/clients/s3");
 const fs = require("fs");
@@ -21,4 +25,13 @@ function uploadFile(file) {
     };
     return s3.upload(uploadParams).promise(); // this will upload file to S3
 }
-module.exports = { uploadFile };
+
+// DOWNLOAD FILE FROM S3
+function getFileStream(fileKey) {
+    const downloadParams = {
+        Key: fileKey,
+        Bucket: bucketName,
+    };
+    return s3.getObject(downloadParams).createReadStream();
+}
+module.exports = { uploadFile, getFileStream };

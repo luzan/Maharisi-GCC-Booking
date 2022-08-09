@@ -64,15 +64,17 @@ async function getRoomById(req, res, next) {
 
 async function createRoom(req, res, next) {
     try {
-        const { roomNumber, building, floor, isAccessible, roomType, pricePerNight, pictureUrl } = req.body;
+        const { roomNumber, building, floor, isAccessible, maxOccupancy, roomType, pricePerNight, pictureUrl } = req.body;
+
         await uploadFile(req.file).then(async (result) => {
             const room = await Room.create({
                 building: building,
                 roomNumber: roomNumber,
                 floor: floor,
-                isAccessible: isAccessible,
+                isAccessible: (isAccessible) ? true : false,
                 roomType: roomType,
                 pricePerNight: pricePerNight,
+                maxOccupancy: maxOccupancy,
                 pictureUrls: [result.Location]
             });
             // Deleting from local if uploaded in S3 bucket
@@ -82,10 +84,24 @@ async function createRoom(req, res, next) {
                 data: room
             });
         }).catch(err => {
+            console.log(err);
             res.status(201).json({
                 message: `Problem uploading file`,
                 error: true
             });
+        });
+    } catch (err) {
+        next(err);
+    }
+}
+
+async function getRoomSummary(req, res, next) {
+    try {
+        const room = await Room.find().distinct('roomType');
+        //const image = room.pictureUrls.find(image => image.key === req.params.image_key);
+        res.status(200).json({
+            message: `Room image found successfully`,
+            data: room
         });
     } catch (err) {
         next(err);
@@ -122,5 +138,6 @@ module.exports = {
     getRoomById,
     createRoom,
     updateRoom,
-    deleteRoom
+    deleteRoom,
+    getRoomSummary
 }
