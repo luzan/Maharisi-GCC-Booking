@@ -61,7 +61,7 @@
                         <mat-form-field appearance="fill" class="input-style-100">
                             <mat-label>Select Image</mat-label>
                             <mat-toolbar class="h30">
-                                <input matInput formControlName="selectImage" readonly name="name" />
+                                <input matInput formControlName="selectImage" readonly #img_n/>
                                 <button mat-flat-button class="bg-green-img">Browse File</button>
                             </mat-toolbar>
                             <input
@@ -69,7 +69,7 @@
                                 #fileInput
                                 id="uploadFile"
                                 (change)="uploadFileEvt($event)"
-                                name="uploadFile"
+                                formControlName="uploadFile"
                                 multiple="multiple"
                                 accept="image/*"
                             />
