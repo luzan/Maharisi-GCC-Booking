@@ -8,6 +8,7 @@ const bookingModel = new Schema({
     room: {
         room_id: mongoose.Types.ObjectId,
         roomNumber: Number,
+        building: String,
     },
     user: {
         user_id: mongoose.Types.ObjectId,

@@ -3,6 +3,7 @@ const RoomService = require('../services/roomService');
 const { createArrayOfDays, sanitizeDate } = require('../utils/dateUtils');
 const Utils = require('../utils/tools');
 const Role = require('../_helpers/roles');
+const mongoose = require('mongoose');
 
 async function getAllBookings(req, res, next) {
     try {
@@ -41,6 +42,23 @@ async function getBookingById(req, res, next) {
         if (booking.user.user_id !== currentUser.user_id && currentUser.role !== Role.Admin) {
             return res.status(401).json({ message: 'Unauthorized' });
         }
+        res.status(200).json({
+            success: true,
+            data: booking
+        });
+    } catch (err) {
+        next(err);
+    }
+}
+
+async function getBookingsByUserId(req, res, next) {
+    try {
+        const currentUser = req.user;
+        const { user_id } = req.params;
+        if (user_id !== currentUser.user_id && currentUser.role !== Role.Admin) {
+            return res.status(401).json({ message: 'Unauthorized' });
+        }
+        const booking = await Booking.find({ 'user.user_id': mongoose.Types.ObjectId(user_id) });
         res.status(200).json({
             success: true,
             data: booking
@@ -221,8 +239,9 @@ async function deleteBooking(req, res, next) {
 module.exports = {
     getAllBookings,
     getBookingById,
+    getBookingsByUserId,
     createBooking,
+    createBookingByAdmin,
     updateBooking,
     deleteBooking,
-    createBookingByAdmin
 }
