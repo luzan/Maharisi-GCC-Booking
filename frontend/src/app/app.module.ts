@@ -23,7 +23,7 @@ import { DashboardModule } from './modules/dashboard.module';
   declarations: [
     AppComponent,
     RegisterComponent,
-    LoginComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

@@ -156,7 +156,8 @@
     float: left;
     padding: 20px;
     text-align: left;
-    min-height: 580px;
+    /* min-height: 580px; */
+    min-height: 640px;
 }
 
 .main-room {
