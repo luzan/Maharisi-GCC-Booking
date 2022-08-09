@@ -12,6 +12,8 @@ import { UserService } from '../../../../services/user/user.service';
 export class AddRoomComponent implements OnInit {
   addRoomForm!: FormGroup;
 
+  imgname='Choose file';
+  @ViewChild('img_n') img_n!:ElementRef; 
   constructor(private fb: FormBuilder, 
     private userService: UserService,
     private router: Router) {
@@ -22,19 +24,21 @@ export class AddRoomComponent implements OnInit {
         isAccessible: new FormControl(), 
         maxOccupancy: new FormControl(),
         floor: new FormControl(),
-        selectImage: new FormControl()
-      })
+        selectImage: new FormControl("Choose file"),
+        uploadFile: new FormControl(),
+      });
   }
 
-  @ViewChild('fileInput')
-  fileInput!: ElementRef;
-  selectImage = 'Choose File';
+  @ViewChild('fileInput') fileInput!: ElementRef;
   uploadFileEvt(imgFile: any) {
     if (imgFile.target.files && imgFile.target.files[0]) {
-      this.selectImage = '';
+     
+   this.imgname='';
       Array.from(imgFile.target.files).forEach((file: any) => {
-        this.selectImage += file.name + ' - ';
+        this.imgname += file.name + ' - ';
       });
+
+      this.img_n.nativeElement.value = this.imgname;
       // HTML5 FileReader API
       let reader = new FileReader();
       reader.onload = (e: any) => {
@@ -47,7 +51,7 @@ export class AddRoomComponent implements OnInit {
       // Reset if duplicate image uploaded again
       this.fileInput.nativeElement.value = '';
     } else {
-      this.selectImage = 'Choose File';
+      this.imgname = 'Choose File';
     }
   }
 

@@ -8,6 +8,7 @@ const bookingModel = new Schema({
     room: {
         room_id: mongoose.Types.ObjectId,
         roomNumber: Number,
+        building: String,
     },
     user: {
         user_id: mongoose.Types.ObjectId,
@@ -41,11 +42,12 @@ const bookingModel = new Schema({
         default: 'started'
     },
 }, { timestamps: true });
-
+let oldRoomId;
 let oldCheckInDate;
 let oldCheckoutDate;
 bookingModel.pre('save', async function (next) {
     if (this.bookingStatus === 'revised' || this.bookingStatus === 'cancelled') {
+        oldRoomId = this.room.room_id;
         oldCheckInDate = this.checkInDate;
         oldCheckoutDate = this.checkOutDate;
     }
@@ -60,7 +62,12 @@ bookingModel.post('save', async function (doc, next) {
         await RoomService.resetRoomBookingDatesForGivenDays(doc.room.room_id, daysToBook);
     } else if (doc.bookingStatus === 'revised') {
         let previousBookingDates = createArrayOfDays(oldCheckInDate, oldCheckoutDate);
-        await RoomService.resetRoomBookingDatesForGivenDays(doc.room.room_id, previousBookingDates, daysToBook);
+        if (oldRoomId !== doc.room.room_id) {
+            await RoomService.resetRoomBookingDatesForGivenDays(oldRoomId, previousBookingDates);
+            await RoomService.addBookingDates(doc.room.room_id, daysToBook);
+        } else {
+            await RoomService.resetRoomBookingDatesForGivenDays(doc.room.room_id, previousBookingDates, daysToBook);
+        }
     } else if (doc.bookingStatus === 'cancelled') {
         let previousBookingDates = createArrayOfDays(oldCheckInDate, oldCheckoutDate);
         await RoomService.resetRoomBookingDatesForGivenDays(doc.room.room_id, previousBookingDates);
