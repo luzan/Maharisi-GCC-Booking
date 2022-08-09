@@ -40,7 +40,7 @@ import { ViewBookingAdminComponent } from '../components/dashboard/view-booking-
     RouterModule.forChild([
       { path: '', component: DashboardComponent },
       { path: 'list-booking', component: ListBookingComponent },
-      { path: 'eidt-booking-admin', component: EditBookingAdminComponent },
+      { path: 'edit-booking/:booking_id', component: EditBookingAdminComponent },
       { path: 'view-booking-admin', component: ViewBookingAdminComponent },
       { path: 'payment', component: PaymentComponent },
       { path: 'make-payment', component: MakePaymentComponent },
