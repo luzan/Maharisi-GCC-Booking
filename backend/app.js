@@ -4,7 +4,7 @@ const cors = require('cors');
 const app = express();
 require('dotenv').config()
 
-mongoose.connect(`mongodb+srv://miuBooking:${process.env.MONGO_PWD}@cluster0.ujquu0n.mongodb.net/?retryWrites=true&w=majority`, { useNewUrlParser: true });
+mongoose.connect(`${process.env.MONGO_URL}`, { useNewUrlParser: true });
 
 app.use(express.json());
 app.use(cors({

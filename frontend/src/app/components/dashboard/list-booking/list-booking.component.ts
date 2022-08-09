@@ -87,7 +87,9 @@ export class ListBookingComponent implements OnInit, AfterViewInit {
     this.router.navigate(['/', 'dashboard', 'edit-booking', booking_id]);
   }
 
-  pay(): void { }
+  pay(booking_id: string): void {
+    this.router.navigate(['/', 'dashboard', 'make-payment', booking_id]);
+  }
 
   cancel(): void { }
 

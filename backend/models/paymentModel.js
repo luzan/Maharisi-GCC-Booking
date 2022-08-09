@@ -8,6 +8,11 @@ const paymentModel = new Schema({
         firstName: String,
         lastName: String,
         email: String,
+        address: String,
+        phoneNumber: String,
+        country: String,
+        state: String,
+        zipCode: String,
     },
     paymentMethod: { type: String, required: true },    // cash, credit card, debit card, etc.
     paymentDate: { type: Number, default: Date.now() },
