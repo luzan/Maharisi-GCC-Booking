@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -22,8 +22,14 @@ export class DashboardComponent implements OnInit {
   isLinear = true;
   availableRooms?: any;
   listOfDashboard: any;
-  summary: any;
+  summary: any = {
+    roomCount: 0,
+    bookingCount: 0,
+    checkinCount: 0,
+    userCount: 0,
+  };
 
+  @ViewChild('stepper') stepper: any;
   constructor(private fb: FormBuilder,
     private userService: UserService,
     private roomService: RoomService,
@@ -164,6 +170,7 @@ export class DashboardComponent implements OnInit {
           next: (response: any) => {
             this.openSnackBar(response.message, 'Close');
             this.resetForm();
+            this.stepper.reset();
           },
           error: (err) => {
             this.openSnackBar(err.error.message, 'Close');
@@ -186,9 +193,9 @@ export class DashboardComponent implements OnInit {
   }
 
   resetForm(): void {
-    this.bookForm.reset();
-    this.checkInCheckOutForm.reset();
-    this.contactForm.reset();
+    this.bookForm.markAsPristine();
+    this.checkInCheckOutForm.markAsPristine();
+    this.contactForm.markAsPristine();
   }
 
 }
