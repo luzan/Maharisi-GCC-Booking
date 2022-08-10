@@ -38,8 +38,8 @@ export class EditUserComponent implements OnInit {
       middleName: this.editUserForm.value.middleName,
       lastName: this.editUserForm.value.lastName, 
       gender: this.editUserForm.value.gender,
-      // password: this.editUserForm.value.password,
-      password: 123456,
+      password: this.editUserForm.value.password,
+      // password: 123456,
       phone: this.editUserForm.value.phone,
       email: this.editUserForm.value.email,
       role: this.editUserForm.value.role
