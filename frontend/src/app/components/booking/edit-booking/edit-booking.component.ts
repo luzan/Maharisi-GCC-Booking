@@ -134,7 +134,7 @@ export class EditBookingComponent implements OnInit {
   }
 
   resetForm(): void {
-    this.bookAdminForm.reset();
+    this.bookAdminForm.markAsPristine();
   }
 
 }

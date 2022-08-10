@@ -20,7 +20,7 @@ const bookingModel = new Schema({
     numberOfGuests: Number,
     bookingFor: {
         type: String,
-        enum: ['student', 'staff', 'faculty', 'other'],
+        enum: ['student', 'staff', 'faculty', 'other', 'guest'],
         default: 'other'
     },
     accessibleRequired: Boolean,

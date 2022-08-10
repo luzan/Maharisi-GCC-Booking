@@ -151,10 +151,11 @@
                     <mat-step label="Assign Room">
                         <form [formGroup]="bookForm" (ngSubmit)="addBooking()" class="p-t20">
                             <mat-form-field appearance="fill" class="input-style-45">
-                                <mat-label>Choose a Room Type</mat-label>
+                                <mat-label>Choose a Room (Bldg-RM-PP-Type)</mat-label>
                                 <mat-select formControlName="roomId" (selectionChange)="getSelectedRoom($event)">
                                     <mat-option *ngFor="let room of availableRooms" [value]="room._id">
-                                        {{room.building}} - {{room.roomNumber}} - {{room.pricePerNight}} </mat-option>
+                                        {{room.building}} - {{room.roomNumber}} - {{room.pricePerNight}} - {{
+                                        room.roomType }} </mat-option>
                                 </mat-select>
                             </mat-form-field>
                             <!-- Room Information -->
@@ -169,14 +170,15 @@
                                         <mat-radio-button class="mg-checkbox" value="percentage">Percentage
                                         </mat-radio-button>
                                         <mat-radio-button class="mg-checkbox" value="fixed">Amount</mat-radio-button>
-                                        <mat-radio-button class="mg-checkbox" value="">None</mat-radio-button>
+                                        <mat-radio-button class="mg-checkbox" value="" [checked]="true">None
+                                        </mat-radio-button>
                                     </section>
                                 </mat-radio-group>
                             </div>
 
                             <mat-form-field appearance="fill" class="input-style-30">
                                 <mat-label>Enter Discount Of</mat-label>
-                                <input matInput formControlName="discountOf" placeholder="Discount Of" required>
+                                <input matInput formControlName="discountOf" placeholder="Discount Of">
                             </mat-form-field>
                             <mat-form-field appearance="fill" class="input-style-30">
                                 <mat-label>Enter Occupants</mat-label>
