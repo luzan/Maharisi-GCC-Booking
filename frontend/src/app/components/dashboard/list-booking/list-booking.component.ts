@@ -92,7 +92,7 @@ export class ListBookingComponent implements OnInit, AfterViewInit {
   }
 
   cancel(user_id: string): void {
-    console.log("--user_id--", user_id)
+    // console.log("--user_id--", user_id)
     this.bookingService.deleteBookingById(user_id).subscribe({
       next: (response: any) => {
         // console.log("--response.data--", response.data)
@@ -114,7 +114,7 @@ export class ListBookingComponent implements OnInit, AfterViewInit {
       height: '200px',
     });
     dialogRef.afterClosed().subscribe(result => {
-      console.log("--result--", result)
+      // console.log("--result--", result)
       if( result == "delete"){
         this.cancel(booking_id);
       }
