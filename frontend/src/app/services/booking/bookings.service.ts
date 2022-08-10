@@ -44,4 +44,8 @@ export class BookingsService {
     return this.http.put(`${environment.apiUrl}/bookings/admin/${booking_id}`, booking);
   }
 
+  deleteBookingById(booking_id?: string): any {
+    return this.http.delete<any>(`${environment.apiUrl}/bookings/${booking_id}`);
+  }
+
 }
