@@ -91,18 +91,33 @@ export class ListBookingComponent implements OnInit, AfterViewInit {
     this.router.navigate(['/', 'dashboard', 'make-payment', booking_id]);
   }
 
-  cancel(): void { }
+  cancel(user_id: string): void {
+    // console.log("--user_id--", user_id)
+    this.bookingService.deleteBookingById(user_id).subscribe({
+      next: (response: any) => {
+        // console.log("--response.data--", response.data)
+        this.getAllBookingData();
+      },
+      error: (err: any) => {
+        console.log(err);
+      }
+    });
+  }
 
   view(): void { }
 
 
 
-  openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
-    this.dialog.open(DialogDeleteBooking, {
-      width: '500px',
+  openDialog(booking_id: string): void {
+    const dialogRef = this.dialog.open(DialogDeleteBooking, {
+      width: '250px',
       height: '200px',
-      enterAnimationDuration,
-      exitAnimationDuration,
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      // console.log("--result--", result)
+      if( result == "delete"){
+        this.cancel(booking_id);
+      }
     });
   }
 
@@ -114,6 +129,12 @@ export class ListBookingComponent implements OnInit, AfterViewInit {
 })
 
 export class DialogDeleteBooking {
+  listBookAction = "delete";
   constructor(public dialogRef: MatDialogRef<DialogDeleteBooking>) { }
+
+  onNoClick(): void {
+    this.listBookAction = "no-delete"
+    this.dialogRef.close(this.listBookAction);
+  }
 }
 

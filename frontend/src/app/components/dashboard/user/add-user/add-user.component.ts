@@ -46,6 +46,7 @@ export class AddUserComponent implements OnInit {
       .subscribe(
         {
           next: (response: any) => {
+            this.router.navigate(['/', 'dashboard', 'user']);
             this.openSnackBar(response.message, 'Close');
             this.resetForm();
           },

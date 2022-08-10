@@ -1,11 +1,11 @@
 import { Router } from '@angular/router';
-import {LiveAnnouncer} from '@angular/cdk/a11y';
-import {AfterViewInit, Component, ViewChild, OnInit} from '@angular/core';
-import {MatSort, Sort} from '@angular/material/sort';
-import {MatPaginator} from '@angular/material/paginator';
-import {MatTableDataSource} from '@angular/material/table';
+import { LiveAnnouncer } from '@angular/cdk/a11y';
+import { AfterViewInit, Component, ViewChild, OnInit, Input } from '@angular/core';
+import { MatSort, Sort } from '@angular/material/sort';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 
-import {MatDialog, MatDialogRef} from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 
 import { UserService } from '../../../services/user/user.service';
 
@@ -27,13 +27,14 @@ export interface PeriodicElement {
 export class UserComponent implements AfterViewInit {
   displayedColumns: string[] = ['position', 'name', 'email', 'gender', 'phone', 'role', 'action'];
   dataSource = new MatTableDataSource();
+
   constructor(
-    public dialog: MatDialog, 
-    private userService: UserService, 
-    private router: Router, 
+    public dialog: MatDialog,
+    private userService: UserService,
+    private router: Router,
     private _liveAnnouncer: LiveAnnouncer) { }
-  
-  @ViewChild(MatSort) sort!: MatSort;  
+
+  @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   ngAfterViewInit() {
@@ -59,6 +60,7 @@ export class UserComponent implements AfterViewInit {
         position: ++index,
         user_id: room._id,
         name: room.firstName + ' ' + room.middleName + ' ' + room.lastName,
+        // name: room.firstName + ' ' + room.lastName,
         gender: room.gender,
         email: room.email,
         phone: room.phone,
@@ -80,7 +82,7 @@ export class UserComponent implements AfterViewInit {
     this.getAllUserData();
   }
 
-  logout(): void{
+  logout(): void {
     this.userService.logout();
     this.router.navigate(['/', 'login']);
   }
@@ -90,21 +92,29 @@ export class UserComponent implements AfterViewInit {
   }
 
   cancel(user_id: string): void {
-  }
-
-  pay(): void{}
-
-  view(): void{}
-
-  openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
-    this.dialog.open(DialogDeleteUser, {
-      width: '500px',
-      height: '200px',
-      enterAnimationDuration,
-      exitAnimationDuration,
+    this.userService.deleteUser(user_id).subscribe({
+      next: (response: any) => {
+        // console.log("--response.data--", response.data)
+        this.getAllUserData();
+      },
+      error: (err: any) => {
+        console.log(err);
+      }
     });
   }
 
+  openDialog(user_id: string): void {
+    const dialogRef = this.dialog.open(DialogDeleteUser, {
+      width: '250px',
+      height: '200px',
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      // console.log("--result--", result)
+      if( result == "delete"){
+        this.cancel(user_id);
+      }
+    });
+  }
 }
 
 @Component({
@@ -113,5 +123,11 @@ export class UserComponent implements AfterViewInit {
 })
 
 export class DialogDeleteUser {
-  constructor(public dialogRef: MatDialogRef<DialogDeleteUser>) {}
+  userAction = "delete";
+  constructor(public dialogRef: MatDialogRef<DialogDeleteUser>) { }
+
+  onNoClick(): void {
+    this.userAction = "no-delete"
+    this.dialogRef.close(this.userAction);
+  }
 }
