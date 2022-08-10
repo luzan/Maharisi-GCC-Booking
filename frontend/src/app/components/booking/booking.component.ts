@@ -104,7 +104,7 @@ export class BookingComponent implements OnInit {
   }
 
   resetForm(): void {
-    this.bookAdminForm.reset();
+    this.bookAdminForm.markAsPristine();
   }
 
 
